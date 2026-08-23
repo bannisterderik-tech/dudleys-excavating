@@ -6,6 +6,14 @@ import { fileURLToPath } from "node:url";
 import { biz, paradise, photos } from "./data.mjs";
 
 const OUT = fileURLToPath(new URL("../docs/", import.meta.url));
+const BASE = process.env.BASE ?? "";           // e.g. "/dudleys-excavating" for project Pages
+const basify = h => BASE ? h
+  .replaceAll('href="/', `href="${BASE}/`)
+  .replaceAll('src="/', `src="${BASE}/`)
+  .replaceAll("'/assets/", `'${BASE}/assets/`)
+  .replaceAll("'/world/", `'${BASE}/world/`)
+  .replaceAll('"/world/assets/', `"${BASE}/world/assets/`)
+  .replaceAll(`href="${BASE}//`, 'href="//') : h;
 
 /* ---------------------------------- CSS ---------------------------------- */
 const css = `
@@ -144,6 +152,12 @@ background:none;border:1px solid var(--line);padding:8px 16px;border-radius:2px;
 .masonry figcaption{position:absolute;inset:auto 0 0 0;padding:26px 14px 12px;font-size:12.5px;color:#fff;
 background:linear-gradient(0deg,rgba(0,0,0,.82),transparent);opacity:0;transition:.3s}
 .masonry figure:hover figcaption{opacity:1}
+
+/* interior scrub hero */
+.pscrub{height:260vh}
+.pbeat{position:absolute;left:clamp(18px,5vw,72px);bottom:clamp(64px,12vh,130px);max-width:min(820px,92vw)}
+.pbeat h1{font-size:clamp(44px,7.4vw,104px);text-shadow:0 4px 40px rgba(0,0,0,.85)}
+.pbeat .lede{color:rgba(245,245,245,.9);text-shadow:0 1px 14px rgba(0,0,0,.9)}
 
 /* page hero */
 .phero{position:relative;min-height:64vh;display:flex;align-items:flex-end;overflow:hidden}
@@ -284,6 +298,42 @@ function svcCard(href,img,tab,title,text){
   <div class="in"><h3>${title}</h3><p>${text}</p><span class="go">See the work →</span></div></a>`;
 }
 
+function scrubHero(clipN,kick,title,lede,alt,ctas){
+  const c=ctas||`<a class="btn red" href="${biz.phoneHref}">Call ${biz.phone}</a><a class="btn ghost" href="/world/">◉ Fly the bore</a>`;
+  return `<section class="scrub pscrub" data-clip="${clipN}"><div class="scrub-stick">
+  <img class="poster" src="/world/assets/still_${clipN}.jpg" alt="${esc(alt||"")}">
+  <video muted playsinline preload="auto" style="opacity:0"></video>
+  <div class="scrub-shade"></div>
+  <div class="pbeat"><span class="kick">${kick}</span><h1>${title}</h1>
+  <p class="lede" style="margin-top:18px">${lede}</p>
+  <div class="hero-ctas">${c}</div></div>
+  <div class="scrub-hint"><span>Scroll</span><i></i></div>
+  </div></section>
+  <script>
+  (()=>{
+    const sec=document.currentScript.previousElementSibling.tagName==='SECTION'?document.currentScript.previousElementSibling:document.querySelector('.pscrub');
+    const vid=sec.querySelector('video'),poster=sec.querySelector('.poster'),hint=sec.querySelector('.scrub-hint');
+    const n=sec.dataset.clip;
+    const phone=matchMedia('(max-width:860px),(pointer:coarse)').matches;
+    const src='/world/assets/dive_'+n+(phone?'_m':'')+'.mp4';
+    let ready=false,busy=false,pend=null,wd=null;
+    vid.addEventListener('seeked',()=>{clearTimeout(wd);busy=false;
+      if(pend!=null){const p2=pend;pend=null;seek(p2);}});
+    function seek(t){if(!ready)return;
+      if(Math.abs(vid.currentTime-t)<0.02)return;
+      if(busy){pend=t;return;}
+      busy=true;vid.currentTime=t;wd=setTimeout(()=>{busy=false;},300);}
+    fetch(src,{method:'HEAD'}).then(r=>{if(!r.ok)return;vid.src=src;vid.load();
+      vid.addEventListener('loadeddata',()=>{ready=true;vid.style.opacity=1;poster.style.opacity=0;},{once:true});}).catch(()=>{});
+    addEventListener('touchstart',()=>{if(vid.src)vid.play().then(()=>vid.pause()).catch(()=>{});},{once:true,passive:true});
+    function onS(){const r=sec.getBoundingClientRect();
+      const p=Math.min(1,Math.max(0,-r.top/(r.height-innerHeight)));
+      if(ready&&vid.duration)seek(p*Math.max(0,vid.duration-0.05));
+      hint.style.opacity=p>0.04?0:1;}
+    addEventListener('scroll',onS,{passive:true});onS();
+  })();
+  </script>`;
+}
 function pageHero(img,kick,title,lede,alt){
   return `<section class="phero"><img class="bg" src="${P(img)}" alt="${esc(alt||title)}"><div class="shade"></div>
   <div class="wrap in"><span class="kick">${kick}</span><h1>${title}</h1>
@@ -426,8 +476,9 @@ pages.push({slug:"directional-boring",active:"directional-boring",
 title:`Directional Boring Northern California — Under Streets, Highways, Streams & Railroads | Dudley's Excavating`,
 desc:`Horizontal directional drilling (HDD) in Tehama, Shasta, Butte & Glenn counties. Trenchless utility installs under roads, streams and railroads. 40 miles bored under Paradise. CSLB #694077.`,
 body:`
-${pageHero("80144252-8a61-4e2b-be71-811a5ea9d846.jpg","Service 01 · The flagship","Directional<br>Boring",
-`Horizontal directional drilling puts gas, water, sewer, power and fiber <b>under</b> streets, highways, streams and railroads — without opening the surface. It's the work we're known for across Northern California.`,"Dudley's directional boring rig at sunrise on a highway shoulder")}
+${scrubHero(3,"Service 01 · The flagship","Directional<br>Boring",
+`Horizontal directional drilling puts gas, water, sewer, power and fiber <b>under</b> streets, highways, streams and railroads — without opening the surface. You're inside one of our bores right now.`,"Inside a Dudley's directional bore — drill head advancing through red clay",
+`<a class="btn red" href="${biz.phoneHref}">Call ${biz.phone}</a><a class="btn ghost" href="/paradise-fiber/">The Paradise job →</a>`)}
 
 <section class="sec"><div class="wrap band">
   <div class="rv">
@@ -471,9 +522,11 @@ ${paradiseBand()}
 `});
 
 /* ---- simple service pages ---- */
-function servicePage({slug,num,title,heroImg,heroAlt,kick,lede,sections,cats,titleTag,desc}){
+function servicePage({slug,num,title,heroImg,heroAlt,kick,lede,sections,cats,titleTag,desc,clip}){
+  const hero = clip ? scrubHero(clip,`Service ${num}`,title,lede,heroAlt)
+                    : pageHero(heroImg,`Service ${num}`,title,lede,heroAlt);
   pages.push({slug,active:slug,title:titleTag,desc,
-  body:`${pageHero(heroImg,`Service ${num}`,title,lede,heroAlt)}
+  body:`${hero}
   ${sections.map((s,i)=>`
   <section class="sec"${i%2?' style="padding-top:0"':''}><div class="wrap band${i%2?" rev":""}">
     <div class="rv"><span class="kick">${s.kick}</span><h2>${s.h}</h2><p class="lede">${s.p}</p>
@@ -484,7 +537,7 @@ function servicePage({slug,num,title,heroImg,heroAlt,kick,lede,sections,cats,tit
   <section class="sec"><div class="wrap"><h2 class="rv">From the jobsite</h2><div class="rv">${gallery(cats)}</div></div></section>`});
 }
 
-servicePage({slug:"excavation",num:"02",title:"Excavation",heroImg:"Untitled-1.jpg",
+servicePage({slug:"excavation",num:"02",clip:2,title:"Excavation",heroImg:"Untitled-1.jpg",
 heroAlt:"Excavator cutting a rock trench beside a mountain highway",
 titleTag:"Excavation Contractor — Rock Trenching & Site Excavation | Dudley's Excavating, Gerber CA",
 desc:"Class A excavation contractor in Northern California. Rock trenching, site excavation, plated road cuts. Tehama, Shasta, Butte, Glenn counties. CSLB #694077.",
@@ -494,7 +547,7 @@ sections:[
  checks:["<b>Trenching</b> in soil, cobble and rock — shored and plated to spec.","<b>Roadside excavation</b> with our own certified traffic control (it's on our license).","<b>Steep-ground work</b> — hillside cuts with full rigging and spotters.","<b>Radio-dispatched hauling</b> — spoils out and base rock in without waiting on a sub."]},
 ],cats:["excavation","crew"]});
 
-servicePage({slug:"utilities",num:"03",title:"Utility<br>Installation",heroImg:"21c6cc0e-b49d-4ac3-a612-9cf67f2aa817.jpg",
+servicePage({slug:"utilities",num:"03",clip:4,title:"Utility<br>Installation",heroImg:"21c6cc0e-b49d-4ac3-a612-9cf67f2aa817.jpg",
 heroAlt:"Butt-fusing HDPE pipe on a Northern California hillside",
 titleTag:"Underground Utility Installation — Gas, Water, Sewer, Electric | Dudley's Excavating",
 desc:"Rural and urban underground utility installation: gas, electrical, water and sewer lines, cable, pipe and conduit placement. Northern California. CSLB #694077 + Low Voltage classification.",
@@ -505,7 +558,7 @@ sections:[
  checks:["<b>Gas, water, sewer</b> — rural and urban installs to agency standards.","<b>Electric &amp; comms</b> — Low Voltage classification held on our CSLB license.","<b>HDPE fusion</b> on site — one continuous line, no joints in the ground.","<b>Vacuum potholing</b> — we daylight what's buried before we touch it."]},
 ],cats:["utility","boring"]});
 
-servicePage({slug:"paving",num:"04",title:"Paving",heroImg:"34f1ef0d-0849-49b2-a3be-b96a1235aab6.jpg",
+servicePage({slug:"paving",num:"04",clip:5,title:"Paving",heroImg:"34f1ef0d-0849-49b2-a3be-b96a1235aab6.jpg",
 heroAlt:"CAT double-drum roller compacting fresh asphalt",
 titleTag:"Asphalt Paving & Patching — Parking Lots, Driveways, Streets | Dudley's Excavating, Gerber CA",
 desc:"Asphalt paving, paving and patching, parking lot and driveway paving in Tehama, Shasta, Butte and Glenn counties. Commercial and residential. CSLB #694077.",
@@ -516,7 +569,7 @@ sections:[
  checks:["<b>Asphalt paving &amp; patching</b> — streets, lots, driveways.","<b>Trench paveback</b> — our utility cuts closed to agency spec.","<b>Parking lots</b> — commercial paving with grading that actually drains.","<b>Driveways</b> — clean edges, compacted lifts, aprons that hold."]},
 ],cats:["paving"]});
 
-servicePage({slug:"chip-seal",num:"05",title:"Chip Seal",heroImg:"761beb71-0b24-4c8d-808d-97f1f806b5eb.jpg",
+servicePage({slug:"chip-seal",num:"05",clip:1,title:"Chip Seal",heroImg:"761beb71-0b24-4c8d-808d-97f1f806b5eb.jpg",
 heroAlt:"Freshly sealed two-lane road through the pines",
 titleTag:"Chip Seal Roads — Northern California | Dudley's Excavating",
 desc:"Chip seal road surfacing for counties, districts and private road associations in Northern California. Dudley's Excavating, Gerber CA. CSLB #694077.",
@@ -564,8 +617,9 @@ sections:[
 pages.push({slug:"paradise-fiber",active:"",title:`The Paradise Fiber Rebuild — 40 Miles of Underground Fiber After the Camp Fire | Dudley's Excavating`,
 desc:`How Dudley's Excavating bored 40 miles of underground fiber through red clay, cobble and granite to help rebuild Paradise, CA after the Camp Fire — a 6-year AT&T infrastructure restoration.`,
 body:`
-${pageHero("60c82a06-8321-44e5-b403-a7b5255d25b0.jpg","Case study · Butte County","The Paradise<br>Job",
-`The Camp Fire erased a town's infrastructure in a day. Putting it back — underground this time — takes years. This is the job our crews have carried since.`,"Fusing fiber conduit in the Camp Fire burn scar above Paradise")}
+${scrubHero(6,"Case study · Butte County","The Paradise<br>Job",
+`The Camp Fire erased a town's infrastructure in a day. Putting it back — underground this time — takes years. This is the job our crews have carried since.`,"Directional drill rig at golden hour on the ridge",
+`<a class="btn red" href="/directional-boring/">Our boring capability →</a><a class="btn ghost" href="${biz.phoneHref}">Call ${biz.phone}</a>`)}
 
 <section class="sec"><div class="wrap band">
   <div class="rv">
@@ -714,8 +768,14 @@ ${pageHero("80144252-8a61-4e2b-be71-811a5ea9d846.jpg","One call does it","Contac
 `});
 
 /* --------------------------------- emit --------------------------------- */
+// world page: emitted from gen/world.html with BASE applied
+import { readFileSync } from "node:fs";
+const worldSrc = readFileSync(new URL("./world.html", import.meta.url), "utf8");
+mkdirSync(OUT + "world", {recursive:true});
+writeFileSync(OUT + "world/index.html", basify(worldSrc));
+console.log("✓ world");
 for (const p of pages) {
-  const html = layout(p);
+  const html = basify(layout(p));
   if (p.slug === "index") writeFileSync(OUT + "index.html", html);
   else { mkdirSync(OUT + p.slug, {recursive:true}); writeFileSync(`${OUT}${p.slug}/index.html`, html); }
   console.log("✓", p.slug);

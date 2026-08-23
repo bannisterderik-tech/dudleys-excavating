@@ -152,6 +152,12 @@ background:none;border:1px solid var(--line);padding:8px 16px;border-radius:2px;
 background:linear-gradient(0deg,rgba(0,0,0,.82),transparent);opacity:0;transition:.3s}
 .masonry figure:hover figcaption{opacity:1}
 
+/* interior scrub hero */
+.pscrub{height:260vh}
+.pbeat{position:absolute;left:clamp(18px,5vw,72px);bottom:clamp(64px,12vh,130px);max-width:min(820px,92vw)}
+.pbeat h1{font-size:clamp(44px,7.4vw,104px);text-shadow:0 4px 40px rgba(0,0,0,.85)}
+.pbeat .lede{color:rgba(245,245,245,.9);text-shadow:0 1px 14px rgba(0,0,0,.9)}
+
 /* page hero */
 .phero{position:relative;min-height:64vh;display:flex;align-items:flex-end;overflow:hidden}
 .phero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.92)}
@@ -184,15 +190,15 @@ footer .lic{border-top:1px solid var(--line);padding-top:22px;font-family:var(--
 <body>
 <div class="grain" aria-hidden="true"></div>
 <header class="hdr" id="hdr">
-  <a class="brand" href="/"><b>Dudley&rsquo;s Excavating</b><span>Gerber · California · Inc.</span></a>
-  <nav class="nav" id="nav"><a href="/directional-boring/" >Boring</a><a href="/excavation/" >Excavation</a><a href="/paving/" >Paving</a><a href="/septic/" >Septic</a><a href="/projects/" >Projects</a><a href="/about/" >About</a><a href="/contact/" >Contact</a></nav>
+  <a class="brand" href="/dudleys-excavating/"><b>Dudley&rsquo;s Excavating</b><span>Gerber · California · Inc.</span></a>
+  <nav class="nav" id="nav"><a href="/dudleys-excavating/directional-boring/" >Boring</a><a href="/dudleys-excavating/excavation/" >Excavation</a><a href="/dudleys-excavating/paving/" >Paving</a><a href="/dudleys-excavating/septic/" >Septic</a><a href="/dudleys-excavating/projects/" >Projects</a><a href="/dudleys-excavating/about/" >About</a><a href="/dudleys-excavating/contact/" >Contact</a></nav>
   <a class="call" href="tel:5303851445">530-385-1445</a>
   <button class="burger" id="burger" aria-label="menu">☰</button>
 </header>
 
 <section class="scrub" id="scrub">
   <div class="scrub-stick">
-    <img class="poster" id="scrubPoster" src="/world/assets/still_3.jpg" alt="Dudley's directional drill rig boring on a Northern California mountain job">
+    <img class="poster" id="scrubPoster" src="/dudleys-excavating/world/assets/still_3.jpg" alt="Dudley's directional drill rig boring on a Northern California mountain job">
     <video id="scrubVid" muted playsinline preload="auto" style="opacity:0"></video>
     <div class="scrub-shade"></div>
     <div class="beat" data-b="0">
@@ -200,7 +206,7 @@ footer .lic{border-top:1px solid var(--line);padding-top:22px;font-family:var(--
       <div class="bigline">Three generations<br>in the ground.</div>
       <div class="hero-ctas">
         <a class="btn red" href="tel:5303851445">Call 530-385-1445</a>
-        <a class="btn ghost" href="/about/">The Dudley story →</a>
+        <a class="btn ghost" href="/dudleys-excavating/about/">The Dudley story →</a>
       </div>
     </div>
     <div class="beat" data-b="1">
@@ -208,8 +214,8 @@ footer .lic{border-top:1px solid var(--line);padding-top:22px;font-family:var(--
       <div class="bigline">Under streets. Highways.<br><em>Streams. Railroads.</em></div>
       <p>We bore where you can't dig — 40 miles of it under Paradise alone.</p>
       <div class="hero-ctas">
-        <a class="btn red" href="/directional-boring/">Directional boring →</a>
-        <a class="btn ghost" href="/world/">◉ Fly the bore</a>
+        <a class="btn red" href="/dudleys-excavating/directional-boring/">Directional boring →</a>
+        <a class="btn ghost" href="/dudleys-excavating/world/">◉ Fly the bore</a>
       </div>
     </div>
     <div class="beat" data-b="2">
@@ -217,7 +223,7 @@ footer .lic{border-top:1px solid var(--line);padding-top:22px;font-family:var(--
       <div class="bigline">Dudley&rsquo;s <em>Excavating.</em></div>
       <div class="hero-ctas">
         <a class="btn red" href="tel:5303851445">Call 530-385-1445</a>
-        <a class="btn ghost" href="/world/">◉ Fly the bore</a>
+        <a class="btn ghost" href="/dudleys-excavating/world/">◉ Fly the bore</a>
       </div>
     </div>
     <div class="scrub-hint" id="scrubHint"><span>Scroll</span><i></i></div>
@@ -229,23 +235,23 @@ footer .lic{border-top:1px solid var(--line);padding-top:22px;font-family:var(--
   <h2 class="rv">The ground is our jobsite</h2>
   <p class="lede rv">Excavation, boring, paving and septic for public agencies, utilities, builders and homeowners across Tehama, Glenn, Butte, Shasta counties.</p>
   <div class="svc-grid">
-    <a class="svc lead rv" href="/directional-boring/"><img src="/assets/photos/80144252-8a61-4e2b-be71-811a5ea9d846.jpg" alt="Directional boring rig at sunrise">
+    <a class="svc lead rv" href="/dudleys-excavating/directional-boring/"><img src="/dudleys-excavating/assets/photos/80144252-8a61-4e2b-be71-811a5ea9d846.jpg" alt="Directional boring rig at sunrise">
       <div class="in"><span class="kick">Flagship</span><h3>Directional Boring</h3>
       <p style="font-size:16px;margin-top:10px">Trenchless installs under streets, highways, streams and railroads. No open cut, no closed road, no torn-up frontage — the surface never knows we were there.</p>
       <span class="go" style="margin-top:18px">The signature service →</span></div></a>
-    <a class="svc rv" href="/excavation/"><span class="tab">02</span><img src="/assets/photos/Untitled-1.jpg" alt="Excavation" loading="lazy">
+    <a class="svc rv" href="/dudleys-excavating/excavation/"><span class="tab">02</span><img src="/dudleys-excavating/assets/photos/Untitled-1.jpg" alt="Excavation" loading="lazy">
   <div class="in"><h3>Excavation</h3><p>Rock cuts, trenching, and site excavation — including the hard ground other outfits walk away from.</p><span class="go">See the work →</span></div></a>
-    <a class="svc rv" href="/utilities/"><span class="tab">03</span><img src="/assets/photos/21c6cc0e-b49d-4ac3-a612-9cf67f2aa817.jpg" alt="Utility Installation" loading="lazy">
+    <a class="svc rv" href="/dudleys-excavating/utilities/"><span class="tab">03</span><img src="/dudleys-excavating/assets/photos/21c6cc0e-b49d-4ac3-a612-9cf67f2aa817.jpg" alt="Utility Installation" loading="lazy">
   <div class="in"><h3>Utility Installation</h3><p>Gas, electric, water, sewer and comms — rural and urban, cable to conduit, fused and pulled.</p><span class="go">See the work →</span></div></a>
-    <a class="svc rv" href="/paving/"><span class="tab">04</span><img src="/assets/photos/34f1ef0d-0849-49b2-a3be-b96a1235aab6.jpg" alt="Paving" loading="lazy">
+    <a class="svc rv" href="/dudleys-excavating/paving/"><span class="tab">04</span><img src="/dudleys-excavating/assets/photos/34f1ef0d-0849-49b2-a3be-b96a1235aab6.jpg" alt="Paving" loading="lazy">
   <div class="in"><h3>Paving</h3><p>Asphalt paving, patching, parking lots and driveways — commercial and residential.</p><span class="go">See the work →</span></div></a>
-    <a class="svc rv" href="/septic/"><span class="tab">05</span><img src="/assets/photos/573dac2a-c90c-41d6-8b5f-b78b2055cdea.jpg" alt="Septic" loading="lazy">
+    <a class="svc rv" href="/dudleys-excavating/septic/"><span class="tab">05</span><img src="/dudleys-excavating/assets/photos/573dac2a-c90c-41d6-8b5f-b78b2055cdea.jpg" alt="Septic" loading="lazy">
   <div class="in"><h3>Septic</h3><p>Septic replacement and pumping for the properties the sewer never reached.</p><span class="go">See the work →</span></div></a>
-    <a class="svc rv" href="/grading/"><span class="tab">06</span><img src="/assets/photos/a6c99a6d-5882-4da3-bdbc-dc0ade895dd5.jpg" alt="Grading &amp; Site Work" loading="lazy">
+    <a class="svc rv" href="/dudleys-excavating/grading/"><span class="tab">06</span><img src="/dudleys-excavating/assets/photos/a6c99a6d-5882-4da3-bdbc-dc0ade895dd5.jpg" alt="Grading &amp; Site Work" loading="lazy">
   <div class="in"><h3>Grading & Site Work</h3><p>Grading for any construction, and subdivision development to local and state standards.</p><span class="go">See the work →</span></div></a>
-    <a class="svc rv" href="/hauling/"><span class="tab">07</span><img src="/assets/photos/c8befdac-e8b8-4964-a1b6-c3251011b4a2.jpg" alt="Hauling &amp; Materials" loading="lazy">
+    <a class="svc rv" href="/dudleys-excavating/hauling/"><span class="tab">07</span><img src="/dudleys-excavating/assets/photos/c8befdac-e8b8-4964-a1b6-c3251011b4a2.jpg" alt="Hauling &amp; Materials" loading="lazy">
   <div class="in"><h3>Hauling & Materials</h3><p>Radio-dispatched trucks. Topsoil, sand and gravel, delivered from our yard in Gerber.</p><span class="go">See the work →</span></div></a>
-    <a class="svc rv" href="/chip-seal/"><span class="tab">08</span><img src="/assets/photos/761beb71-0b24-4c8d-808d-97f1f806b5eb.jpg" alt="Chip Seal" loading="lazy">
+    <a class="svc rv" href="/dudleys-excavating/chip-seal/"><span class="tab">08</span><img src="/dudleys-excavating/assets/photos/761beb71-0b24-4c8d-808d-97f1f806b5eb.jpg" alt="Chip Seal" loading="lazy">
   <div class="in"><h3>Chip Seal</h3><p>Chip seal roads that stand up to valley heat and mountain winters alike.</p><span class="go">See the work →</span></div></a>
   </div>
 </div></section>
@@ -260,7 +266,7 @@ footer .lic{border-top:1px solid var(--line);padding-top:22px;font-family:var(--
 </div></div>
 
 <section class="paradise rv">
-  <img class="bgimg" src="/assets/photos/60c82a06-8321-44e5-b403-a7b5255d25b0.jpg" alt="Fusing fiber conduit in the Camp Fire burn scar" loading="lazy">
+  <img class="bgimg" src="/dudleys-excavating/assets/photos/60c82a06-8321-44e5-b403-a7b5255d25b0.jpg" alt="Fusing fiber conduit in the Camp Fire burn scar" loading="lazy">
   <div class="wrap in">
     <span class="kick">Case study · Camp Fire restoration</span>
     <h2 style="max-width:14ch">40 miles under a town that burned</h2>
@@ -270,7 +276,7 @@ footer .lic{border-top:1px solid var(--line);padding-top:22px;font-family:var(--
       <div><b>6 yr</b><span>Project length</span></div>
       <div><b>AT&amp;T</b><span>Client</span></div>
     </div>
-    <p style="margin-top:34px"><a class="btn ghost" href="/paradise-fiber/">Read the Paradise job →</a></p>
+    <p style="margin-top:34px"><a class="btn ghost" href="/dudleys-excavating/paradise-fiber/">Read the Paradise job →</a></p>
   </div>
 </section>
 
@@ -285,35 +291,35 @@ footer .lic{border-top:1px solid var(--line);padding-top:22px;font-family:var(--
       <li><b>127 permitted projects</b> across Chico, Redding and Butte County since 2018.</li>
       <li><b>Certified Small Business</b> (DGS #22540) — count us toward your SB participation goals.</li>
     </ul>
-    <p style="margin-top:28px"><a class="btn ghost" href="/about/">The Dudley story →</a></p>
+    <p style="margin-top:28px"><a class="btn ghost" href="/dudleys-excavating/about/">The Dudley story →</a></p>
   </div>
-  <figure class="rv"><img src="/assets/photos/64fcad2e-5201-4399-af3c-c5ebc1a974ff.jpg" alt="Dudley's crew and excavator on a hillside job" loading="lazy"><figcaption>Crew-owned standards</figcaption></figure>
+  <figure class="rv"><img src="/dudleys-excavating/assets/photos/64fcad2e-5201-4399-af3c-c5ebc1a974ff.jpg" alt="Dudley's crew and excavator on a hillside job" loading="lazy"><figcaption>Crew-owned standards</figcaption></figure>
 </div></section>
 
 <section class="sec" style="padding-top:0"><div class="wrap">
   <span class="kick rv">Proof</span>
   <h2 class="rv">Straight off the jobsite</h2>
   <p class="lede rv">No stock photos on this site. Every frame below is a Dudley's crew on a Northern California job.</p>
-  <div style="margin-top:36px" class="rv"><div class="masonry"><figure data-cat="boring"><img src="/assets/photos/f12f27ca-54ff-49e2-ae8a-ee6393f580fc.jpg" alt="Directional drill rig pushing rod on a mountain job" loading="lazy"><figcaption>Directional drill rig pushing rod on a mountain job</figcaption></figure>
-<figure data-cat="boring"><img src="/assets/photos/80144252-8a61-4e2b-be71-811a5ea9d846.jpg" alt="Bore rig set up on the highway shoulder at first light" loading="lazy"><figcaption>Bore rig set up on the highway shoulder at first light</figcaption></figure>
-<figure data-cat="boring"><img src="/assets/photos/f3a270d4-b715-4035-9683-9f4e000664f5.jpg" alt="27-foot 1-inch bore under a finished driveway — surface untouched" loading="lazy"><figcaption>27-foot 1-inch bore under a finished driveway — surface untouched</figcaption></figure>
-<figure data-cat="boring"><img src="/assets/photos/d14aee6c-5d5f-4bcc-bd55-29f00d333153.jpg" alt="Bore pits and product pipe in native red earth" loading="lazy"><figcaption>Bore pits and product pipe in native red earth</figcaption></figure>
-<figure data-cat="boring"><img src="/assets/photos/a004537b-0195-44d4-9fe7-1081749ff5ee.jpg" alt="Rig walking the shoulder between shots" loading="lazy"><figcaption>Rig walking the shoulder between shots</figcaption></figure>
-<figure data-cat="boring"><img src="/assets/photos/d159418c-2f4b-4ef1-ae66-7ca10a88a9da.jpg" alt="Fused HDPE strung and ready to pull" loading="lazy"><figcaption>Fused HDPE strung and ready to pull</figcaption></figure>
-<figure data-cat="excavation"><img src="/assets/photos/592d06b8-bc1e-4076-87f9-6508c62b130d.jpg" alt="Trenching rock beside the traveled way, plated overnight" loading="lazy"><figcaption>Trenching rock beside the traveled way, plated overnight</figcaption></figure>
-<figure data-cat="excavation"><img src="/assets/photos/Untitled-1.jpg" alt="Rock cut with the excavator — steel plates ready" loading="lazy"><figcaption>Rock cut with the excavator — steel plates ready</figcaption></figure>
-<figure data-cat="excavation"><img src="/assets/photos/2eecfa93-22bf-4b02-9b98-49e9c7c7ce23.jpg" alt="Excavator working the shoulder on a state route" loading="lazy"><figcaption>Excavator working the shoulder on a state route</figcaption></figure>
-<figure data-cat="excavation"><img src="/assets/photos/64fcad2e-5201-4399-af3c-c5ebc1a974ff.jpg" alt="Hillside excavation with full traffic control" loading="lazy"><figcaption>Hillside excavation with full traffic control</figcaption></figure>
-<figure data-cat="excavation"><img src="/assets/photos/a6c99a6d-5882-4da3-bdbc-dc0ade895dd5.jpg" alt="Loading out on a mountain grade" loading="lazy"><figcaption>Loading out on a mountain grade</figcaption></figure>
-<figure data-cat="excavation"><img src="/assets/photos/c8befdac-e8b8-4964-a1b6-c3251011b4a2.jpg" alt="Excavator and end-dump working the edge of the road at dusk" loading="lazy"><figcaption>Excavator and end-dump working the edge of the road at dusk</figcaption></figure>
-<figure data-cat="paving"><img src="/assets/photos/0c587916-7d9a-4a63-9daa-3ae3177b74ba.jpg" alt="Double-drum roller on a patch set" loading="lazy"><figcaption>Double-drum roller on a patch set</figcaption></figure>
-<figure data-cat="paving"><img src="/assets/photos/34f1ef0d-0849-49b2-a3be-b96a1235aab6.jpg" alt="Fresh mat rolled tight on a residential street" loading="lazy"><figcaption>Fresh mat rolled tight on a residential street</figcaption></figure>
-<figure data-cat="paving"><img src="/assets/photos/2a23c12b-610c-4e57-8e0f-3b6a968eb70f.jpg" alt="Rolling behind the water truck" loading="lazy"><figcaption>Rolling behind the water truck</figcaption></figure>
-<figure data-cat="paving"><img src="/assets/photos/2c5c0149-1d3e-40b6-913f-854b13b1371b.jpg" alt="Grinding out the failed section before repave" loading="lazy"><figcaption>Grinding out the failed section before repave</figcaption></figure>
-<figure data-cat="paving"><img src="/assets/photos/deab7f8d-a4a5-4448-a87b-96cc9d684233.jpg" alt="Compacting the lift along the curb line" loading="lazy"><figcaption>Compacting the lift along the curb line</figcaption></figure>
-<figure data-cat="paving"><img src="/assets/photos/44f5d4ea-dfb1-4b64-a87c-7d80f7d3f9c0.jpg" alt="Trench paveback down the centerline" loading="lazy"><figcaption>Trench paveback down the centerline</figcaption></figure>
-<figure data-cat="paving"><img src="/assets/photos/7499fd6f-4d0f-426e-9018-d7ae89bfd548.jpg" alt="Finished driveway apron, ready for traffic" loading="lazy"><figcaption>Finished driveway apron, ready for traffic</figcaption></figure></div> </div>
-  <p style="margin-top:28px" class="rv"><a class="btn ghost" href="/projects/">Full project gallery →</a></p>
+  <div style="margin-top:36px" class="rv"><div class="masonry"><figure data-cat="boring"><img src="/dudleys-excavating/assets/photos/f12f27ca-54ff-49e2-ae8a-ee6393f580fc.jpg" alt="Directional drill rig pushing rod on a mountain job" loading="lazy"><figcaption>Directional drill rig pushing rod on a mountain job</figcaption></figure>
+<figure data-cat="boring"><img src="/dudleys-excavating/assets/photos/80144252-8a61-4e2b-be71-811a5ea9d846.jpg" alt="Bore rig set up on the highway shoulder at first light" loading="lazy"><figcaption>Bore rig set up on the highway shoulder at first light</figcaption></figure>
+<figure data-cat="boring"><img src="/dudleys-excavating/assets/photos/f3a270d4-b715-4035-9683-9f4e000664f5.jpg" alt="27-foot 1-inch bore under a finished driveway — surface untouched" loading="lazy"><figcaption>27-foot 1-inch bore under a finished driveway — surface untouched</figcaption></figure>
+<figure data-cat="boring"><img src="/dudleys-excavating/assets/photos/d14aee6c-5d5f-4bcc-bd55-29f00d333153.jpg" alt="Bore pits and product pipe in native red earth" loading="lazy"><figcaption>Bore pits and product pipe in native red earth</figcaption></figure>
+<figure data-cat="boring"><img src="/dudleys-excavating/assets/photos/a004537b-0195-44d4-9fe7-1081749ff5ee.jpg" alt="Rig walking the shoulder between shots" loading="lazy"><figcaption>Rig walking the shoulder between shots</figcaption></figure>
+<figure data-cat="boring"><img src="/dudleys-excavating/assets/photos/d159418c-2f4b-4ef1-ae66-7ca10a88a9da.jpg" alt="Fused HDPE strung and ready to pull" loading="lazy"><figcaption>Fused HDPE strung and ready to pull</figcaption></figure>
+<figure data-cat="excavation"><img src="/dudleys-excavating/assets/photos/592d06b8-bc1e-4076-87f9-6508c62b130d.jpg" alt="Trenching rock beside the traveled way, plated overnight" loading="lazy"><figcaption>Trenching rock beside the traveled way, plated overnight</figcaption></figure>
+<figure data-cat="excavation"><img src="/dudleys-excavating/assets/photos/Untitled-1.jpg" alt="Rock cut with the excavator — steel plates ready" loading="lazy"><figcaption>Rock cut with the excavator — steel plates ready</figcaption></figure>
+<figure data-cat="excavation"><img src="/dudleys-excavating/assets/photos/2eecfa93-22bf-4b02-9b98-49e9c7c7ce23.jpg" alt="Excavator working the shoulder on a state route" loading="lazy"><figcaption>Excavator working the shoulder on a state route</figcaption></figure>
+<figure data-cat="excavation"><img src="/dudleys-excavating/assets/photos/64fcad2e-5201-4399-af3c-c5ebc1a974ff.jpg" alt="Hillside excavation with full traffic control" loading="lazy"><figcaption>Hillside excavation with full traffic control</figcaption></figure>
+<figure data-cat="excavation"><img src="/dudleys-excavating/assets/photos/a6c99a6d-5882-4da3-bdbc-dc0ade895dd5.jpg" alt="Loading out on a mountain grade" loading="lazy"><figcaption>Loading out on a mountain grade</figcaption></figure>
+<figure data-cat="excavation"><img src="/dudleys-excavating/assets/photos/c8befdac-e8b8-4964-a1b6-c3251011b4a2.jpg" alt="Excavator and end-dump working the edge of the road at dusk" loading="lazy"><figcaption>Excavator and end-dump working the edge of the road at dusk</figcaption></figure>
+<figure data-cat="paving"><img src="/dudleys-excavating/assets/photos/0c587916-7d9a-4a63-9daa-3ae3177b74ba.jpg" alt="Double-drum roller on a patch set" loading="lazy"><figcaption>Double-drum roller on a patch set</figcaption></figure>
+<figure data-cat="paving"><img src="/dudleys-excavating/assets/photos/34f1ef0d-0849-49b2-a3be-b96a1235aab6.jpg" alt="Fresh mat rolled tight on a residential street" loading="lazy"><figcaption>Fresh mat rolled tight on a residential street</figcaption></figure>
+<figure data-cat="paving"><img src="/dudleys-excavating/assets/photos/2a23c12b-610c-4e57-8e0f-3b6a968eb70f.jpg" alt="Rolling behind the water truck" loading="lazy"><figcaption>Rolling behind the water truck</figcaption></figure>
+<figure data-cat="paving"><img src="/dudleys-excavating/assets/photos/2c5c0149-1d3e-40b6-913f-854b13b1371b.jpg" alt="Grinding out the failed section before repave" loading="lazy"><figcaption>Grinding out the failed section before repave</figcaption></figure>
+<figure data-cat="paving"><img src="/dudleys-excavating/assets/photos/deab7f8d-a4a5-4448-a87b-96cc9d684233.jpg" alt="Compacting the lift along the curb line" loading="lazy"><figcaption>Compacting the lift along the curb line</figcaption></figure>
+<figure data-cat="paving"><img src="/dudleys-excavating/assets/photos/44f5d4ea-dfb1-4b64-a87c-7d80f7d3f9c0.jpg" alt="Trench paveback down the centerline" loading="lazy"><figcaption>Trench paveback down the centerline</figcaption></figure>
+<figure data-cat="paving"><img src="/dudleys-excavating/assets/photos/7499fd6f-4d0f-426e-9018-d7ae89bfd548.jpg" alt="Finished driveway apron, ready for traffic" loading="lazy"><figcaption>Finished driveway apron, ready for traffic</figcaption></figure></div> </div>
+  <p style="margin-top:28px" class="rv"><a class="btn ghost" href="/dudleys-excavating/projects/">Full project gallery →</a></p>
 </div></section>
 
 <script>
@@ -321,10 +327,10 @@ footer .lic{border-top:1px solid var(--line);padding-top:22px;font-family:var(--
   const sec=document.getElementById('scrub'),vid=document.getElementById('scrubVid'),
         poster=document.getElementById('scrubPoster'),hint=document.getElementById('scrubHint'),
         beats=[...document.querySelectorAll('.beat')];
-  const src='/assets/hero_scrub.mp4';
+  const src='/dudleys-excavating/assets/hero_scrub.mp4';
   let ready=false,seekBusy=false,pend=null;
   const phone=matchMedia('(max-width:860px),(pointer:coarse)').matches;
-  const useSrc=phone?'/assets/hero_scrub_m.mp4':src;   // 540p tight-GOP reel for phones
+  const useSrc=phone?'/dudleys-excavating/assets/hero_scrub_m.mp4':src;   // 540p tight-GOP reel for phones
   fetch(useSrc,{method:'HEAD'}).then(r=>{if(!r.ok)return;
     vid.src=useSrc;vid.load();
     vid.addEventListener('loadeddata',()=>{ready=true;vid.style.opacity=1;poster.style.opacity=0;},{once:true});
@@ -365,8 +371,8 @@ footer .lic{border-top:1px solid var(--line);padding-top:22px;font-family:var(--
       <h4>Dudley&rsquo;s Excavating, Inc.</h4>
       <p style="max-width:34ch;line-height:1.7">Three generations of underground construction out of Gerber, California. Founded by Harry Dudley.</p>
     </div>
-    <div><h4>Work</h4><a href="/directional-boring/">Directional Boring</a><a href="/utilities/">Utility Installation</a><a href="/excavation/">Excavation</a><a href="/paving/">Paving</a><a href="/chip-seal/">Chip Seal</a><a href="/septic/">Septic</a><a href="/grading/">Grading</a><a href="/hauling/">Hauling &amp; Materials</a></div>
-    <div><h4>Company</h4><a href="/about/">About</a><a href="/paradise-fiber/">The Paradise Job</a><a href="/projects/">Projects</a><a href="/service-area/">Service Area</a><a href="/world/">◉ Fly the Bore</a></div>
+    <div><h4>Work</h4><a href="/dudleys-excavating/directional-boring/">Directional Boring</a><a href="/dudleys-excavating/utilities/">Utility Installation</a><a href="/dudleys-excavating/excavation/">Excavation</a><a href="/dudleys-excavating/paving/">Paving</a><a href="/dudleys-excavating/chip-seal/">Chip Seal</a><a href="/dudleys-excavating/septic/">Septic</a><a href="/dudleys-excavating/grading/">Grading</a><a href="/dudleys-excavating/hauling/">Hauling &amp; Materials</a></div>
+    <div><h4>Company</h4><a href="/dudleys-excavating/about/">About</a><a href="/dudleys-excavating/paradise-fiber/">The Paradise Job</a><a href="/dudleys-excavating/projects/">Projects</a><a href="/dudleys-excavating/service-area/">Service Area</a><a href="/dudleys-excavating/world/">◉ Fly the Bore</a></div>
     <div><h4>Contact</h4><a href="tel:5303851445">530-385-1445</a><a href="mailto:paul@dudleysexcavating.com">paul@dudleysexcavating.com</a><p style="margin-top:8px;line-height:1.7">209 San Benito Ave<br>Gerber, CA 96035</p></div>
   </div>
   <div class="lic">© 2026 Dudley's Excavating, Inc. · CSLB Class A Lic #694077 · Class A General Engineering · Low Voltage Systems · Construction Zone Traffic Control<br>

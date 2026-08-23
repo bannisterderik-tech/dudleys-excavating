@@ -152,6 +152,12 @@ background:none;border:1px solid var(--line);padding:8px 16px;border-radius:2px;
 background:linear-gradient(0deg,rgba(0,0,0,.82),transparent);opacity:0;transition:.3s}
 .masonry figure:hover figcaption{opacity:1}
 
+/* interior scrub hero */
+.pscrub{height:260vh}
+.pbeat{position:absolute;left:clamp(18px,5vw,72px);bottom:clamp(64px,12vh,130px);max-width:min(820px,92vw)}
+.pbeat h1{font-size:clamp(44px,7.4vw,104px);text-shadow:0 4px 40px rgba(0,0,0,.85)}
+.pbeat .lede{color:rgba(245,245,245,.9);text-shadow:0 1px 14px rgba(0,0,0,.9)}
+
 /* page hero */
 .phero{position:relative;min-height:64vh;display:flex;align-items:flex-end;overflow:hidden}
 .phero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.92)}
@@ -184,15 +190,45 @@ footer .lic{border-top:1px solid var(--line);padding-top:22px;font-family:var(--
 <body>
 <div class="grain" aria-hidden="true"></div>
 <header class="hdr" id="hdr">
-  <a class="brand" href="/"><b>Dudley&rsquo;s Excavating</b><span>Gerber · California · Inc.</span></a>
-  <nav class="nav" id="nav"><a href="/directional-boring/" class="on">Boring</a><a href="/excavation/" >Excavation</a><a href="/paving/" >Paving</a><a href="/septic/" >Septic</a><a href="/projects/" >Projects</a><a href="/about/" >About</a><a href="/contact/" >Contact</a></nav>
+  <a class="brand" href="/dudleys-excavating/"><b>Dudley&rsquo;s Excavating</b><span>Gerber · California · Inc.</span></a>
+  <nav class="nav" id="nav"><a href="/dudleys-excavating/directional-boring/" class="on">Boring</a><a href="/dudleys-excavating/excavation/" >Excavation</a><a href="/dudleys-excavating/paving/" >Paving</a><a href="/dudleys-excavating/septic/" >Septic</a><a href="/dudleys-excavating/projects/" >Projects</a><a href="/dudleys-excavating/about/" >About</a><a href="/dudleys-excavating/contact/" >Contact</a></nav>
   <a class="call" href="tel:5303851445">530-385-1445</a>
   <button class="burger" id="burger" aria-label="menu">☰</button>
 </header>
 
-<section class="phero"><img class="bg" src="/assets/photos/80144252-8a61-4e2b-be71-811a5ea9d846.jpg" alt="Dudley's directional boring rig at sunrise on a highway shoulder"><div class="shade"></div>
-  <div class="wrap in"><span class="kick">Service 01 · The flagship</span><h1>Directional<br>Boring</h1>
-  <p class="lede" style="margin-top:20px">Horizontal directional drilling puts gas, water, sewer, power and fiber <b>under</b> streets, highways, streams and railroads — without opening the surface. It's the work we're known for across Northern California.</p></div></section>
+<section class="scrub pscrub" data-clip="3"><div class="scrub-stick">
+  <img class="poster" src="/dudleys-excavating/world/assets/still_3.jpg" alt="Inside a Dudley's directional bore — drill head advancing through red clay">
+  <video muted playsinline preload="auto" style="opacity:0"></video>
+  <div class="scrub-shade"></div>
+  <div class="pbeat"><span class="kick">Service 01 · The flagship</span><h1>Directional<br>Boring</h1>
+  <p class="lede" style="margin-top:18px">Horizontal directional drilling puts gas, water, sewer, power and fiber <b>under</b> streets, highways, streams and railroads — without opening the surface. You're inside one of our bores right now.</p>
+  <div class="hero-ctas"><a class="btn red" href="tel:5303851445">Call 530-385-1445</a><a class="btn ghost" href="/dudleys-excavating/paradise-fiber/">The Paradise job →</a></div></div>
+  <div class="scrub-hint"><span>Scroll</span><i></i></div>
+  </div></section>
+  <script>
+  (()=>{
+    const sec=document.currentScript.previousElementSibling.tagName==='SECTION'?document.currentScript.previousElementSibling:document.querySelector('.pscrub');
+    const vid=sec.querySelector('video'),poster=sec.querySelector('.poster'),hint=sec.querySelector('.scrub-hint');
+    const n=sec.dataset.clip;
+    const phone=matchMedia('(max-width:860px),(pointer:coarse)').matches;
+    const src='/dudleys-excavating/world/assets/dive_'+n+(phone?'_m':'')+'.mp4';
+    let ready=false,busy=false,pend=null,wd=null;
+    vid.addEventListener('seeked',()=>{clearTimeout(wd);busy=false;
+      if(pend!=null){const p2=pend;pend=null;seek(p2);}});
+    function seek(t){if(!ready)return;
+      if(Math.abs(vid.currentTime-t)<0.02)return;
+      if(busy){pend=t;return;}
+      busy=true;vid.currentTime=t;wd=setTimeout(()=>{busy=false;},300);}
+    fetch(src,{method:'HEAD'}).then(r=>{if(!r.ok)return;vid.src=src;vid.load();
+      vid.addEventListener('loadeddata',()=>{ready=true;vid.style.opacity=1;poster.style.opacity=0;},{once:true});}).catch(()=>{});
+    addEventListener('touchstart',()=>{if(vid.src)vid.play().then(()=>vid.pause()).catch(()=>{});},{once:true,passive:true});
+    function onS(){const r=sec.getBoundingClientRect();
+      const p=Math.min(1,Math.max(0,-r.top/(r.height-innerHeight)));
+      if(ready&&vid.duration)seek(p*Math.max(0,vid.duration-0.05));
+      hint.style.opacity=p>0.04?0:1;}
+    addEventListener('scroll',onS,{passive:true});onS();
+  })();
+  </script>
 
 <section class="sec"><div class="wrap band">
   <div class="rv">
@@ -209,12 +245,12 @@ footer .lic{border-top:1px solid var(--line);padding-top:22px;font-family:var(--
       <li>Rock &amp; cobble capable</li><li><b>Vermeer D23x30DR S3</b> class rigs</li><li>Vacuum potholing</li><li>HDPE fusion on site</li>
     </ul>
   </div>
-  <figure class="rv"><img src="/assets/photos/f3a270d4-b715-4035-9683-9f4e000664f5.jpg" alt="27 foot 1 inch bore under a finished driveway" loading="lazy"><figcaption>27&nbsp;ft bore · 1&Prime; · surface untouched</figcaption></figure>
+  <figure class="rv"><img src="/dudleys-excavating/assets/photos/f3a270d4-b715-4035-9683-9f4e000664f5.jpg" alt="27 foot 1 inch bore under a finished driveway" loading="lazy"><figcaption>27&nbsp;ft bore · 1&Prime; · surface untouched</figcaption></figure>
 </div></section>
 
 
 <section class="paradise rv">
-  <img class="bgimg" src="/assets/photos/60c82a06-8321-44e5-b403-a7b5255d25b0.jpg" alt="Fusing fiber conduit in the Camp Fire burn scar" loading="lazy">
+  <img class="bgimg" src="/dudleys-excavating/assets/photos/60c82a06-8321-44e5-b403-a7b5255d25b0.jpg" alt="Fusing fiber conduit in the Camp Fire burn scar" loading="lazy">
   <div class="wrap in">
     <span class="kick">Case study · Camp Fire restoration</span>
     <h2 style="max-width:14ch">40 miles under a town that burned</h2>
@@ -224,7 +260,7 @@ footer .lic{border-top:1px solid var(--line);padding-top:22px;font-family:var(--
       <div><b>6 yr</b><span>Project length</span></div>
       <div><b>AT&amp;T</b><span>Client</span></div>
     </div>
-    <p style="margin-top:34px"><a class="btn ghost" href="/paradise-fiber/">Read the Paradise job →</a></p>
+    <p style="margin-top:34px"><a class="btn ghost" href="/dudleys-excavating/paradise-fiber/">Read the Paradise job →</a></p>
   </div>
 </section>
 
@@ -240,23 +276,23 @@ footer .lic{border-top:1px solid var(--line);padding-top:22px;font-family:var(--
       <li><b>Restore</b> — pits closed, shoulder dressed, hydroseed down. Like we were never there.</li>
     </ul>
   </div>
-  <figure class="rv"><img src="/assets/photos/573dac2a-c90c-41d6-8b5f-b78b2055cdea.jpg" alt="Vacuum potholing to expose utilities before boring" loading="lazy"><figcaption>Vac potholing before the shot</figcaption></figure>
+  <figure class="rv"><img src="/dudleys-excavating/assets/photos/573dac2a-c90c-41d6-8b5f-b78b2055cdea.jpg" alt="Vacuum potholing to expose utilities before boring" loading="lazy"><figcaption>Vac potholing before the shot</figcaption></figure>
 </div></section>
 
 <section class="sec" style="padding-top:0"><div class="wrap">
   <h2 class="rv">Boring, on the record</h2>
-  <div class="rv"><div class="masonry"><figure data-cat="boring"><img src="/assets/photos/f12f27ca-54ff-49e2-ae8a-ee6393f580fc.jpg" alt="Directional drill rig pushing rod on a mountain job" loading="lazy"><figcaption>Directional drill rig pushing rod on a mountain job</figcaption></figure>
-<figure data-cat="boring"><img src="/assets/photos/80144252-8a61-4e2b-be71-811a5ea9d846.jpg" alt="Bore rig set up on the highway shoulder at first light" loading="lazy"><figcaption>Bore rig set up on the highway shoulder at first light</figcaption></figure>
-<figure data-cat="boring"><img src="/assets/photos/f3a270d4-b715-4035-9683-9f4e000664f5.jpg" alt="27-foot 1-inch bore under a finished driveway — surface untouched" loading="lazy"><figcaption>27-foot 1-inch bore under a finished driveway — surface untouched</figcaption></figure>
-<figure data-cat="boring"><img src="/assets/photos/d14aee6c-5d5f-4bcc-bd55-29f00d333153.jpg" alt="Bore pits and product pipe in native red earth" loading="lazy"><figcaption>Bore pits and product pipe in native red earth</figcaption></figure>
-<figure data-cat="boring"><img src="/assets/photos/a004537b-0195-44d4-9fe7-1081749ff5ee.jpg" alt="Rig walking the shoulder between shots" loading="lazy"><figcaption>Rig walking the shoulder between shots</figcaption></figure>
-<figure data-cat="boring"><img src="/assets/photos/d159418c-2f4b-4ef1-ae66-7ca10a88a9da.jpg" alt="Fused HDPE strung and ready to pull" loading="lazy"><figcaption>Fused HDPE strung and ready to pull</figcaption></figure>
-<figure data-cat="utility"><img src="/assets/photos/21c6cc0e-b49d-4ac3-a612-9cf67f2aa817.jpg" alt="Butt-fusing HDPE on the hillside" loading="lazy"><figcaption>Butt-fusing HDPE on the hillside</figcaption></figure>
-<figure data-cat="utility"><img src="/assets/photos/60c82a06-8321-44e5-b403-a7b5255d25b0.jpg" alt="Fusion weld on the line, burn-scar timber behind" loading="lazy"><figcaption>Fusion weld on the line, burn-scar timber behind</figcaption></figure>
-<figure data-cat="utility"><img src="/assets/photos/573dac2a-c90c-41d6-8b5f-b78b2055cdea.jpg" alt="Vacuum potholing to expose existing utilities" loading="lazy"><figcaption>Vacuum potholing to expose existing utilities</figcaption></figure>
-<figure data-cat="utility"><img src="/assets/photos/a092b754-85b0-4e1d-ab52-c89b3b5a56c9.jpg" alt="Vac crew daylighting a live line under traffic control" loading="lazy"><figcaption>Vac crew daylighting a live line under traffic control</figcaption></figure>
-<figure data-cat="utility"><img src="/assets/photos/610ce8ca-c6ad-47e8-864d-f4c0c7d661ed.jpg" alt="Potholing tight to landscape — surgical, not scorched-earth" loading="lazy"><figcaption>Potholing tight to landscape — surgical, not scorched-earth</figcaption></figure>
-<figure data-cat="utility"><img src="/assets/photos/c592f19f-b545-4e93-a547-5d780c311a95.jpg" alt="Open trench crossing in native red dirt" loading="lazy"><figcaption>Open trench crossing in native red dirt</figcaption></figure></div></div>
+  <div class="rv"><div class="masonry"><figure data-cat="boring"><img src="/dudleys-excavating/assets/photos/f12f27ca-54ff-49e2-ae8a-ee6393f580fc.jpg" alt="Directional drill rig pushing rod on a mountain job" loading="lazy"><figcaption>Directional drill rig pushing rod on a mountain job</figcaption></figure>
+<figure data-cat="boring"><img src="/dudleys-excavating/assets/photos/80144252-8a61-4e2b-be71-811a5ea9d846.jpg" alt="Bore rig set up on the highway shoulder at first light" loading="lazy"><figcaption>Bore rig set up on the highway shoulder at first light</figcaption></figure>
+<figure data-cat="boring"><img src="/dudleys-excavating/assets/photos/f3a270d4-b715-4035-9683-9f4e000664f5.jpg" alt="27-foot 1-inch bore under a finished driveway — surface untouched" loading="lazy"><figcaption>27-foot 1-inch bore under a finished driveway — surface untouched</figcaption></figure>
+<figure data-cat="boring"><img src="/dudleys-excavating/assets/photos/d14aee6c-5d5f-4bcc-bd55-29f00d333153.jpg" alt="Bore pits and product pipe in native red earth" loading="lazy"><figcaption>Bore pits and product pipe in native red earth</figcaption></figure>
+<figure data-cat="boring"><img src="/dudleys-excavating/assets/photos/a004537b-0195-44d4-9fe7-1081749ff5ee.jpg" alt="Rig walking the shoulder between shots" loading="lazy"><figcaption>Rig walking the shoulder between shots</figcaption></figure>
+<figure data-cat="boring"><img src="/dudleys-excavating/assets/photos/d159418c-2f4b-4ef1-ae66-7ca10a88a9da.jpg" alt="Fused HDPE strung and ready to pull" loading="lazy"><figcaption>Fused HDPE strung and ready to pull</figcaption></figure>
+<figure data-cat="utility"><img src="/dudleys-excavating/assets/photos/21c6cc0e-b49d-4ac3-a612-9cf67f2aa817.jpg" alt="Butt-fusing HDPE on the hillside" loading="lazy"><figcaption>Butt-fusing HDPE on the hillside</figcaption></figure>
+<figure data-cat="utility"><img src="/dudleys-excavating/assets/photos/60c82a06-8321-44e5-b403-a7b5255d25b0.jpg" alt="Fusion weld on the line, burn-scar timber behind" loading="lazy"><figcaption>Fusion weld on the line, burn-scar timber behind</figcaption></figure>
+<figure data-cat="utility"><img src="/dudleys-excavating/assets/photos/573dac2a-c90c-41d6-8b5f-b78b2055cdea.jpg" alt="Vacuum potholing to expose existing utilities" loading="lazy"><figcaption>Vacuum potholing to expose existing utilities</figcaption></figure>
+<figure data-cat="utility"><img src="/dudleys-excavating/assets/photos/a092b754-85b0-4e1d-ab52-c89b3b5a56c9.jpg" alt="Vac crew daylighting a live line under traffic control" loading="lazy"><figcaption>Vac crew daylighting a live line under traffic control</figcaption></figure>
+<figure data-cat="utility"><img src="/dudleys-excavating/assets/photos/610ce8ca-c6ad-47e8-864d-f4c0c7d661ed.jpg" alt="Potholing tight to landscape — surgical, not scorched-earth" loading="lazy"><figcaption>Potholing tight to landscape — surgical, not scorched-earth</figcaption></figure>
+<figure data-cat="utility"><img src="/dudleys-excavating/assets/photos/c592f19f-b545-4e93-a547-5d780c311a95.jpg" alt="Open trench crossing in native red dirt" loading="lazy"><figcaption>Open trench crossing in native red dirt</figcaption></figure></div></div>
 </div></section>
 
 <section class="slab"><div class="wrap in">
@@ -271,8 +307,8 @@ footer .lic{border-top:1px solid var(--line);padding-top:22px;font-family:var(--
       <h4>Dudley&rsquo;s Excavating, Inc.</h4>
       <p style="max-width:34ch;line-height:1.7">Three generations of underground construction out of Gerber, California. Founded by Harry Dudley.</p>
     </div>
-    <div><h4>Work</h4><a href="/directional-boring/">Directional Boring</a><a href="/utilities/">Utility Installation</a><a href="/excavation/">Excavation</a><a href="/paving/">Paving</a><a href="/chip-seal/">Chip Seal</a><a href="/septic/">Septic</a><a href="/grading/">Grading</a><a href="/hauling/">Hauling &amp; Materials</a></div>
-    <div><h4>Company</h4><a href="/about/">About</a><a href="/paradise-fiber/">The Paradise Job</a><a href="/projects/">Projects</a><a href="/service-area/">Service Area</a><a href="/world/">◉ Fly the Bore</a></div>
+    <div><h4>Work</h4><a href="/dudleys-excavating/directional-boring/">Directional Boring</a><a href="/dudleys-excavating/utilities/">Utility Installation</a><a href="/dudleys-excavating/excavation/">Excavation</a><a href="/dudleys-excavating/paving/">Paving</a><a href="/dudleys-excavating/chip-seal/">Chip Seal</a><a href="/dudleys-excavating/septic/">Septic</a><a href="/dudleys-excavating/grading/">Grading</a><a href="/dudleys-excavating/hauling/">Hauling &amp; Materials</a></div>
+    <div><h4>Company</h4><a href="/dudleys-excavating/about/">About</a><a href="/dudleys-excavating/paradise-fiber/">The Paradise Job</a><a href="/dudleys-excavating/projects/">Projects</a><a href="/dudleys-excavating/service-area/">Service Area</a><a href="/dudleys-excavating/world/">◉ Fly the Bore</a></div>
     <div><h4>Contact</h4><a href="tel:5303851445">530-385-1445</a><a href="mailto:paul@dudleysexcavating.com">paul@dudleysexcavating.com</a><p style="margin-top:8px;line-height:1.7">209 San Benito Ave<br>Gerber, CA 96035</p></div>
   </div>
   <div class="lic">© 2026 Dudley's Excavating, Inc. · CSLB Class A Lic #694077 · Class A General Engineering · Low Voltage Systems · Construction Zone Traffic Control<br>
