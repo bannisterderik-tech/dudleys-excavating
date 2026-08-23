@@ -96,7 +96,11 @@ color:var(--ink-soft);border:1px solid var(--line);padding:7px 12px;border-radiu
 .chips li b{color:var(--red-hot);font-weight:600}
 
 /* hero scrub */
-.scrub{position:relative;height:380vh}
+.scrub{position:relative;height:880vh}
+.rail{position:absolute;right:clamp(18px,4vw,56px);bottom:26px;display:flex;align-items:center;gap:6px;z-index:3}
+.rail i{width:22px;height:2px;background:rgba(245,245,245,.22);transition:background .3s}
+.rail i.on{background:var(--red-hot)}
+.rail b{margin-left:10px;font-family:var(--mono);font-weight:400;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
 .scrub-stick{position:sticky;top:0;height:100vh;overflow:hidden}
 .scrub-stick video,.scrub-stick .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%}
 .scrub-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,14,14,.55) 0%,rgba(14,14,14,.12) 38%,rgba(14,14,14,.62) 100%)}
@@ -220,6 +224,10 @@ footer .lic{border-top:1px solid var(--line);padding-top:22px;font-family:var(--
 h2{margin-bottom:18px}
 .lede{font-size:16.5px}
 .beat,.pbeat{left:var(--gut);right:var(--gut);max-width:none;bottom:clamp(56px,10vh,110px)}
+.scrub{height:620vh}
+.rail{right:var(--gut);bottom:18px}
+.rail b{display:none}
+.beat p{font-size:15px}
 .hero-ctas{gap:10px}
 .hero-ctas .btn{width:100%;justify-content:center}
 .btn{font-size:17px;padding:13px 20px}
@@ -299,7 +307,7 @@ function layout({slug,title,desc,body,active}) {
 <div class="grain" aria-hidden="true"></div>
 <header class="hdr" id="hdr">
   <a class="brand" href="/"><b>Dudley&rsquo;s Excavating</b><span>Gerber · California · Inc.</span></a>
-  <nav class="nav" id="nav">${navHtml}<div class="m-cta"><a class="btn red" href="${biz.phoneHref}">Call ${biz.phone}</a><a class="btn ghost" href="/world/">◉ Fly the bore</a></div></nav>
+  <nav class="nav" id="nav">${navHtml}<div class="m-cta"><a class="btn red" href="${biz.phoneHref}">Call ${biz.phone}</a><a class="btn ghost" href="/contact/">Get a quote →</a></div></nav>
   <a class="call" href="${biz.phoneHref}">${biz.phone}</a>
   <button class="burger" id="burger" aria-label="menu" aria-expanded="false"><i class="bi"></i></button>
 </header>
@@ -317,7 +325,7 @@ ${body}
       <p style="max-width:34ch;line-height:1.7">Three generations of underground construction out of Gerber, California. Founded by ${biz.founder}.</p>
     </div>
     <div><h4>Work</h4><a href="/directional-boring/">Directional Boring</a><a href="/utilities/">Utility Installation</a><a href="/excavation/">Excavation</a><a href="/paving/">Paving</a><a href="/chip-seal/">Chip Seal</a><a href="/septic/">Septic</a><a href="/grading/">Grading</a><a href="/hauling/">Hauling &amp; Materials</a></div>
-    <div><h4>Company</h4><a href="/about/">About</a><a href="/paradise-fiber/">The Paradise Job</a><a href="/projects/">Projects</a><a href="/service-area/">Service Area</a><a href="/world/">◉ Fly the Bore</a></div>
+    <div><h4>Company</h4><a href="/about/">About</a><a href="/paradise-fiber/">The Paradise Job</a><a href="/projects/">Projects</a><a href="/service-area/">Service Area</a></div>
     <div><h4>Contact</h4><a href="${biz.phoneHref}">${biz.phone}</a><a href="mailto:${biz.email}">${biz.email}</a><p style="margin-top:8px;line-height:1.7">209 San Benito Ave<br>Gerber, CA 96035</p></div>
   </div>
   <div class="lic">© 2026 ${biz.name} · CSLB Class A Lic #${biz.license} · ${biz.licenseClasses}<br>
@@ -371,7 +379,7 @@ function svcCard(href,img,tab,title,text){
 }
 
 function scrubHero(clipN,kick,title,lede,alt,ctas){
-  const c=ctas||`<a class="btn red" href="${biz.phoneHref}">Call ${biz.phone}</a><a class="btn ghost" href="/world/">◉ Fly the bore</a>`;
+  const c=ctas||`<a class="btn red" href="${biz.phoneHref}">Call ${biz.phone}</a><a class="btn ghost" href="/contact/">Get a quote →</a>`;
   return `<section class="scrub pscrub" data-clip="${clipN}"><div class="scrub-stick">
   <img class="poster" src="/world/assets/still_${clipN}.jpg" alt="${esc(alt||"")}">
   <video muted playsinline preload="auto" style="opacity:0"></video>
@@ -427,35 +435,68 @@ desc:`Three generations of underground construction in Northern California. Dire
 body:`
 <section class="scrub" id="scrub">
   <div class="scrub-stick">
-    <img class="poster" id="scrubPoster" src="/world/assets/still_3.jpg" alt="Dudley's directional drill rig boring on a Northern California mountain job">
+    <img class="poster" id="scrubPoster" src="/world/assets/still_1.jpg" alt="A Northern California mountain road — the start of the Dudley's flight">
     <video id="scrubVid" muted playsinline preload="auto" style="opacity:0"></video>
     <div class="scrub-shade"></div>
     <div class="beat" data-b="0">
       <span class="kick">Gerber, California · Est. by ${biz.founder}</span>
       <div class="bigline">Three generations<br>in the ground.</div>
+      <p>Scroll. You're about to fly a real Dudley's jobsite — road, cut, bore, line, mat, home.</p>
       <div class="hero-ctas">
         <a class="btn red" href="${biz.phoneHref}">Call ${biz.phone}</a>
         <a class="btn ghost" href="/about/">The Dudley story →</a>
       </div>
     </div>
     <div class="beat" data-b="1">
-      <span class="kick">Horizontal directional drilling</span>
-      <div class="bigline">Under streets. Highways.<br><em>Streams. Railroads.</em></div>
-      <p>We bore where you can't dig — ${paradise.miles} miles of it under Paradise alone.</p>
+      <span class="kick">Excavation</span>
+      <div class="bigline">We don't stop<br><em>at rock.</em></div>
+      <p>Granite on the grades, hardpan in the valley. We cut it, plate it, and keep the road open.</p>
       <div class="hero-ctas">
-        <a class="btn red" href="/directional-boring/">Directional boring →</a>
-        <a class="btn ghost" href="/world/">◉ Fly the bore</a>
+        <a class="btn red" href="/excavation/">Excavation →</a>
+        <a class="btn ghost" href="${biz.phoneHref}">Call ${biz.phone}</a>
       </div>
     </div>
     <div class="beat" data-b="2">
-      <span class="kick">Class A Contractor · CA Lic #${biz.license}</span>
-      <div class="bigline">Dudley&rsquo;s <em>Excavating.</em></div>
+      <span class="kick">Horizontal directional drilling · The flagship</span>
+      <div class="bigline">Under streets. Highways.<br><em>Streams. Railroads.</em></div>
+      <p>You're inside a bore. The road above never closes — ${paradise.miles} miles of this went under Paradise alone.</p>
       <div class="hero-ctas">
-        <a class="btn red" href="${biz.phoneHref}">Call ${biz.phone}</a>
-        <a class="btn ghost" href="/world/">◉ Fly the bore</a>
+        <a class="btn red" href="/directional-boring/">Directional boring →</a>
+        <a class="btn ghost" href="/paradise-fiber/">The Paradise job →</a>
       </div>
     </div>
-    <div class="scrub-hint" id="scrubHint"><span>Scroll</span><i></i></div>
+    <div class="beat" data-b="3">
+      <span class="kick">Utility installation</span>
+      <div class="bigline">One continuous<br><em>line.</em></div>
+      <p>Gas, water, sewer, power, fiber — fused on site and pulled back through the bore. No joints in the ground.</p>
+      <div class="hero-ctas">
+        <a class="btn red" href="/utilities/">Utility installation →</a>
+        <a class="btn ghost" href="${biz.phoneHref}">Call ${biz.phone}</a>
+      </div>
+    </div>
+    <div class="beat" data-b="4">
+      <span class="kick">Paving</span>
+      <div class="bigline">Finish like we were<br><em>never there.</em></div>
+      <p>The outfit that opened the ground closes it — grade, base, mat, rolled to agency spec. One crew.</p>
+      <div class="hero-ctas">
+        <a class="btn red" href="/paving/">Paving →</a>
+        <a class="btn ghost" href="/chip-seal/">Chip seal →</a>
+      </div>
+    </div>
+    <div class="beat" data-b="5">
+      <span class="kick">Class A Contractor · CA Lic #${biz.license}</span>
+      <div class="bigline">Put us in<br><em>the ground.</em></div>
+      <p>${biz.address}. Radio-dispatched fleet, three generations deep.</p>
+      <div class="hero-ctas">
+        <a class="btn red" href="${biz.phoneHref}">Call ${biz.phone}</a>
+        <a class="btn ghost" href="/contact/">Get a quote →</a>
+      </div>
+    </div>
+    <div class="rail" id="rail" aria-hidden="true">
+      <i></i><i></i><i></i><i></i><i></i><i></i>
+      <b id="railLabel">01 · The road</b>
+    </div>
+    <div class="scrub-hint" id="scrubHint"><span>Scroll to fly</span><i></i></div>
   </div>
 </section>
 
@@ -510,10 +551,10 @@ ${paradiseBand()}
   const sec=document.getElementById('scrub'),vid=document.getElementById('scrubVid'),
         poster=document.getElementById('scrubPoster'),hint=document.getElementById('scrubHint'),
         beats=[...document.querySelectorAll('.beat')];
-  const src='/assets/hero_scrub.mp4';
+  const src='/assets/flight.mp4';
   let ready=false,seekBusy=false,pend=null;
   const phone=matchMedia('(max-width:860px),(pointer:coarse)').matches;
-  const useSrc=phone?'/assets/hero_scrub_m.mp4':src;   // 540p tight-GOP reel for phones
+  const useSrc=phone?'/assets/flight_m.mp4':src;   // 480p tight-GOP reel for phones
   fetch(useSrc,{method:'HEAD'}).then(r=>{if(!r.ok)return;
     vid.src=useSrc;vid.load();
     vid.addEventListener('loadeddata',()=>{ready=true;vid.style.opacity=1;poster.style.opacity=0;},{once:true});
@@ -529,16 +570,23 @@ ${paradiseBand()}
     seekBusy=true;vid.currentTime=t;
     watchdog=setTimeout(()=>{seekBusy=false;},300); // decoder hiccup safety
   }
+  // scene windows as fractions of the 50.8s reel: six dives, connectors run clean between them
+  const SC=[[0,.119],[.168,.287],[.337,.495],[.545,.663],[.713,.832],[.881,1]];
+  const NAMES=['01 · The road','02 · The cut','03 · The bore','04 · The line','05 · The mat','06 · Roll home'];
+  const rail=document.getElementById('rail'),railLabel=document.getElementById('railLabel'),pips=[...rail.querySelectorAll('i')];
+  let lastScene=-1;
   function onScroll(){
     const r=sec.getBoundingClientRect();
     const total=r.height-innerHeight;
-    const p=Math.min(1,Math.max(0,-r.top/total));
+    const p=total>0?Math.min(1,Math.max(0,-r.top/total)):0;
     if(ready&&vid.duration) seek(p*Math.max(0,vid.duration-0.05));
-    const idx=p<0.34?0:p<0.72?1:2;
+    let idx=-1,scene=0;
+    SC.forEach(([a,b],i)=>{ if(p>=a) scene=i; const len=b-a; const lo=i===0?0:a+len*.08, hi=i===5?1.01:b-len*.06; if(p>=lo&&p<hi) idx=i; });
     beats.forEach((b,i)=>b.classList.toggle('on',i===idx));
-    hint.style.opacity=p>0.04?0:1;
+    if(scene!==lastScene){lastScene=scene;railLabel.textContent=NAMES[scene];pips.forEach((el,i)=>el.classList.toggle('on',i<=scene));}
+    hint.style.opacity=p>0.02?0:1;
   }
-  addEventListener('scroll',onScroll,{passive:true});onScroll();
+  addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);addEventListener('load',onScroll);onScroll();
 })();
 </script>
 `});
@@ -842,9 +890,8 @@ ${pageHero("80144252-8a61-4e2b-be71-811a5ea9d846.jpg","One call does it","Contac
 /* --------------------------------- emit --------------------------------- */
 // world page: emitted from gen/world.html with BASE applied
 import { readFileSync } from "node:fs";
-const worldSrc = readFileSync(new URL("./world.html", import.meta.url), "utf8");
-mkdirSync(OUT + "world", {recursive:true});
-writeFileSync(OUT + "world/index.html", basify(worldSrc));
+// /world/ is folded into the homepage flight; keep the old URL alive as a redirect (assets stay for service-page heroes)
+writeFileSync(OUT + "world/index.html", basify(`<!doctype html><meta charset="utf-8"><title>Dudley's Excavating</title><meta http-equiv="refresh" content="0;url=/"><link rel="canonical" href="/"><script>location.replace("/")</script>`));
 console.log("✓ world");
 for (const p of pages) {
   const html = basify(layout(p));

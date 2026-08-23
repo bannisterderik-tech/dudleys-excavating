@@ -95,7 +95,11 @@ color:var(--ink-soft);border:1px solid var(--line);padding:7px 12px;border-radiu
 .chips li b{color:var(--red-hot);font-weight:600}
 
 /* hero scrub */
-.scrub{position:relative;height:380vh}
+.scrub{position:relative;height:880vh}
+.rail{position:absolute;right:clamp(18px,4vw,56px);bottom:26px;display:flex;align-items:center;gap:6px;z-index:3}
+.rail i{width:22px;height:2px;background:rgba(245,245,245,.22);transition:background .3s}
+.rail i.on{background:var(--red-hot)}
+.rail b{margin-left:10px;font-family:var(--mono);font-weight:400;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
 .scrub-stick{position:sticky;top:0;height:100vh;overflow:hidden}
 .scrub-stick video,.scrub-stick .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%}
 .scrub-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,14,14,.55) 0%,rgba(14,14,14,.12) 38%,rgba(14,14,14,.62) 100%)}
@@ -219,6 +223,10 @@ footer .lic{border-top:1px solid var(--line);padding-top:22px;font-family:var(--
 h2{margin-bottom:18px}
 .lede{font-size:16.5px}
 .beat,.pbeat{left:var(--gut);right:var(--gut);max-width:none;bottom:clamp(56px,10vh,110px)}
+.scrub{height:620vh}
+.rail{right:var(--gut);bottom:18px}
+.rail b{display:none}
+.beat p{font-size:15px}
 .hero-ctas{gap:10px}
 .hero-ctas .btn{width:100%;justify-content:center}
 .btn{font-size:17px;padding:13px 20px}
@@ -259,7 +267,7 @@ footer .cols{grid-template-columns:1fr;gap:26px;margin-bottom:30px}
 <div class="grain" aria-hidden="true"></div>
 <header class="hdr" id="hdr">
   <a class="brand" href="/dudleys-excavating/"><b>Dudley&rsquo;s Excavating</b><span>Gerber · California · Inc.</span></a>
-  <nav class="nav" id="nav"><a href="/dudleys-excavating/directional-boring/" >Boring</a><a href="/dudleys-excavating/excavation/" >Excavation</a><a href="/dudleys-excavating/paving/" >Paving</a><a href="/dudleys-excavating/septic/" >Septic</a><a href="/dudleys-excavating/projects/" >Projects</a><a href="/dudleys-excavating/about/" >About</a><a href="/dudleys-excavating/contact/" >Contact</a><div class="m-cta"><a class="btn red" href="tel:5303851445">Call 530-385-1445</a><a class="btn ghost" href="/dudleys-excavating/world/">◉ Fly the bore</a></div></nav>
+  <nav class="nav" id="nav"><a href="/dudleys-excavating/directional-boring/" >Boring</a><a href="/dudleys-excavating/excavation/" >Excavation</a><a href="/dudleys-excavating/paving/" >Paving</a><a href="/dudleys-excavating/septic/" >Septic</a><a href="/dudleys-excavating/projects/" >Projects</a><a href="/dudleys-excavating/about/" >About</a><a href="/dudleys-excavating/contact/" >Contact</a><div class="m-cta"><a class="btn red" href="tel:5303851445">Call 530-385-1445</a><a class="btn ghost" href="/dudleys-excavating/contact/">Get a quote →</a></div></nav>
   <a class="call" href="tel:5303851445">530-385-1445</a>
   <button class="burger" id="burger" aria-label="menu" aria-expanded="false"><i class="bi"></i></button>
 </header>
@@ -310,7 +318,7 @@ footer .cols{grid-template-columns:1fr;gap:26px;margin-bottom:30px}
       <p style="max-width:34ch;line-height:1.7">Three generations of underground construction out of Gerber, California. Founded by Harry Dudley.</p>
     </div>
     <div><h4>Work</h4><a href="/dudleys-excavating/directional-boring/">Directional Boring</a><a href="/dudleys-excavating/utilities/">Utility Installation</a><a href="/dudleys-excavating/excavation/">Excavation</a><a href="/dudleys-excavating/paving/">Paving</a><a href="/dudleys-excavating/chip-seal/">Chip Seal</a><a href="/dudleys-excavating/septic/">Septic</a><a href="/dudleys-excavating/grading/">Grading</a><a href="/dudleys-excavating/hauling/">Hauling &amp; Materials</a></div>
-    <div><h4>Company</h4><a href="/dudleys-excavating/about/">About</a><a href="/dudleys-excavating/paradise-fiber/">The Paradise Job</a><a href="/dudleys-excavating/projects/">Projects</a><a href="/dudleys-excavating/service-area/">Service Area</a><a href="/dudleys-excavating/world/">◉ Fly the Bore</a></div>
+    <div><h4>Company</h4><a href="/dudleys-excavating/about/">About</a><a href="/dudleys-excavating/paradise-fiber/">The Paradise Job</a><a href="/dudleys-excavating/projects/">Projects</a><a href="/dudleys-excavating/service-area/">Service Area</a></div>
     <div><h4>Contact</h4><a href="tel:5303851445">530-385-1445</a><a href="mailto:paul@dudleysexcavating.com">paul@dudleysexcavating.com</a><p style="margin-top:8px;line-height:1.7">209 San Benito Ave<br>Gerber, CA 96035</p></div>
   </div>
   <div class="lic">© 2026 Dudley's Excavating, Inc. · CSLB Class A Lic #694077 · Class A General Engineering · Low Voltage Systems · Construction Zone Traffic Control<br>
