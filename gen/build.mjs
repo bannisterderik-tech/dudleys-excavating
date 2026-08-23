@@ -891,7 +891,7 @@ ${pageHero("80144252-8a61-4e2b-be71-811a5ea9d846.jpg","One call does it","Contac
 // world page: emitted from gen/world.html with BASE applied
 import { readFileSync } from "node:fs";
 // /world/ is folded into the homepage flight; keep the old URL alive as a redirect (assets stay for service-page heroes)
-writeFileSync(OUT + "world/index.html", basify(`<!doctype html><meta charset="utf-8"><title>Dudley's Excavating</title><meta http-equiv="refresh" content="0;url=/"><link rel="canonical" href="/"><script>location.replace("/")</script>`));
+writeFileSync(OUT + "world/index.html", `<!doctype html><meta charset="utf-8"><title>Dudley's Excavating</title><meta http-equiv="refresh" content="0;url=${BASE}/"><link rel="canonical" href="${BASE}/"><script>location.replace("${BASE}/")</script>`);
 console.log("✓ world");
 for (const p of pages) {
   const html = basify(layout(p));
