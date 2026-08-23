@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dudley's Excavating, Inc. — Directional Boring, Excavation &amp; Paving | Gerber, CA</title>
+<meta name="description" content="Three generations of underground construction in Northern California. Directional boring under streets, highways, streams and railroads. CSLB #694077. Call 530-385-1445.">
+<link rel="canonical" href="https://dudleysexcavating.com/">
+<meta property="og:title" content="Dudley's Excavating, Inc. — Directional Boring, Excavation &amp; Paving | Gerber, CA">
+<meta property="og:description" content="Three generations of underground construction in Northern California. Directional boring under streets, highways, streams and railroads. CSLB #694077. Call 530-385-1445.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0e0e0e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230e0e0e'/%3E%3Ctext x='32' y='44' font-family='Arial Black,sans-serif' font-size='30' font-weight='900' fill='%23c1272d' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"GeneralContractor","@id":"https://dudleysexcavating.com/#business","name":"Dudley's Excavating, Inc.","telephone":"+15303851445","email":"paul@dudleysexcavating.com","url":"https://dudleysexcavating.com/","founder":{"@type":"Person","name":"Harry Dudley"},"address":{"@type":"PostalAddress","streetAddress":"209 San Benito Ave","addressLocality":"Gerber","addressRegion":"CA","postalCode":"96035","addressCountry":"US"},"areaServed":[{"@type":"AdministrativeArea","name":"Tehama County, CA"},{"@type":"AdministrativeArea","name":"Glenn County, CA"},{"@type":"AdministrativeArea","name":"Butte County, CA"},{"@type":"AdministrativeArea","name":"Shasta County, CA"}],"hasCredential":[{"@type":"EducationalOccupationalCredential","credentialCategory":"license","name":"CSLB Class A Contractor #694077"}]}</script>
+<style>
+:root{--bg:#0e0e0e;--panel:#161616;--panel2:#1d1c1a;--ink:#f5f5f5;--ink-soft:rgba(245,245,245,.68);
+--ink-faint:rgba(245,245,245,.45);--red:#c1272d;--red-hot:#e03a40;--line:rgba(245,245,245,.1);
+--yellow:#d7a21a;--disp:'Barlow Condensed',Impact,sans-serif;--body:'Barlow',system-ui,sans-serif;
+--mono:ui-monospace,'SF Mono',Menlo,monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+::selection{background:var(--red);color:#fff}
+
+/* grain */
+.grain{position:fixed;inset:-100px;pointer-events:none;z-index:90;opacity:.05;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+animation:grain 8s steps(10) infinite}
+@keyframes grain{0%,100%{transform:translate(0,0)}10%{transform:translate(-30px,20px)}30%{transform:translate(30px,-40px)}50%{transform:translate(-40px,-20px)}70%{transform:translate(20px,40px)}90%{transform:translate(-20px,10px)}}
+
+/* header */
+.hdr{position:fixed;top:0;left:0;right:0;z-index:80;display:flex;align-items:center;justify-content:space-between;
+gap:16px;padding:14px clamp(18px,4vw,56px);transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+.hdr.solid{background:rgba(14,14,14,.92);backdrop-filter:blur(10px);border-color:var(--line)}
+.brand{display:flex;flex-direction:column;line-height:1}
+.brand b{font-family:var(--disp);font-weight:700;font-size:22px;letter-spacing:.04em;text-transform:uppercase}
+.brand span{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--red-hot);margin-top:4px}
+.nav{display:flex;gap:clamp(10px,1.6vw,26px);align-items:center;font-size:12.5px;letter-spacing:.09em;text-transform:uppercase}
+.nav a{color:var(--ink-soft);padding:6px 2px;border-bottom:2px solid transparent;transition:.2s}
+.nav a:hover,.nav a.on{color:var(--ink);border-color:var(--red)}
+.hdr .call{font-family:var(--disp);font-weight:700;font-size:19px;letter-spacing:.03em;color:#fff;background:var(--red);
+padding:9px 16px;border-radius:2px;white-space:nowrap;transition:.2s}
+.hdr .call:hover{background:var(--red-hot)}
+.burger{display:none;background:none;border:0;color:var(--ink);font-size:26px;cursor:pointer}
+@media(max-width:940px){.brand b{font-size:17px}.brand span{font-size:8.5px;letter-spacing:.18em}.hdr .call{font-size:16px;padding:8px 12px}.nav{display:none;position:fixed;inset:0;background:rgba(14,14,14,.97);flex-direction:column;
+justify-content:center;font-size:20px;gap:22px;z-index:79}
+.nav.open{display:flex}.burger{display:block;z-index:81}}
+
+/* type + layout */
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(18px,4vw,56px)}
+.sec{padding:clamp(64px,9vw,120px) 0}
+.kick{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11.5px;letter-spacing:.22em;
+text-transform:uppercase;color:var(--red-hot);margin-bottom:18px}
+.kick::before{content:"";width:30px;height:2px;background:var(--red)}
+h1,h2{font-family:var(--disp);font-weight:700;text-transform:uppercase;line-height:.96;letter-spacing:.005em}
+h1{font-size:clamp(52px,9vw,124px)}
+h2{font-size:clamp(36px,4.6vw,62px);margin-bottom:22px}
+h3{font-family:var(--disp);font-weight:600;text-transform:uppercase;font-size:clamp(21px,2vw,26px);letter-spacing:.02em}
+.lede{font-size:clamp(16px,1.35vw,18.5px);line-height:1.65;color:var(--ink-soft);max-width:640px;text-wrap:pretty}
+.lede b{color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.chips li{list-style:none;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+color:var(--ink-soft);border:1px solid var(--line);padding:7px 12px;border-radius:2px;background:rgba(245,245,245,.03)}
+.chips li b{color:var(--red-hot);font-weight:600}
+
+/* hero scrub */
+.scrub{position:relative;height:380vh}
+.scrub-stick{position:sticky;top:0;height:100vh;overflow:hidden}
+.scrub-stick video,.scrub-stick .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%}
+.scrub-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,14,14,.55) 0%,rgba(14,14,14,.12) 38%,rgba(14,14,14,.62) 100%)}
+.beat{position:absolute;left:clamp(18px,5vw,72px);bottom:clamp(72px,13vh,140px);max-width:min(880px,92vw);opacity:0;transform:translateY(26px);transition:opacity .18s ease,transform .3s;will-change:opacity;pointer-events:none}
+.beat.on{opacity:1;transform:none;transition:opacity .5s ease .12s,transform .5s ease .12s;pointer-events:auto}
+.beat .kick{margin-bottom:10px}
+.beat h1,.beat .bigline{text-shadow:0 4px 40px rgba(0,0,0,.85)}
+.bigline{font-family:var(--disp);font-weight:700;text-transform:uppercase;line-height:.94;font-size:clamp(44px,7.6vw,104px)}
+.bigline em{font-style:normal;color:var(--red-hot)}
+.beat p{margin-top:16px;font-size:clamp(15px,1.3vw,18px);line-height:1.55;color:rgba(245,245,245,.88);max-width:560px;text-shadow:0 1px 14px rgba(0,0,0,.9)}
+.scrub-hint{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;
+font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);transition:opacity .4s}
+.scrub-hint i{width:20px;height:32px;border-radius:11px;border:2px solid rgba(245,245,245,.28);position:relative}
+.scrub-hint i::after{content:"";position:absolute;left:50%;top:6px;width:4px;height:7px;border-radius:2px;background:var(--red);transform:translateX(-50%);animation:wheel 1.7s ease-in-out infinite}
+@keyframes wheel{0%,100%{transform:translate(-50%,0);opacity:1}70%{transform:translate(-50%,11px);opacity:0}}
+.hero-ctas{display:flex;gap:14px;margin-top:26px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--disp);font-weight:700;font-size:19px;letter-spacing:.04em;
+text-transform:uppercase;padding:14px 26px;border-radius:2px;transition:.2s;border:1px solid transparent}
+.btn.red{background:var(--red);color:#fff}.btn.red:hover{background:var(--red-hot)}
+.btn.ghost{border-color:rgba(245,245,245,.35);color:var(--ink)}.btn.ghost:hover{border-color:var(--ink)}
+.btn.big{font-size:clamp(22px,2.4vw,30px);padding:18px 34px}
+
+/* service cards */
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;margin-top:44px}
+.svc{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:3px;overflow:hidden;transition:transform .25s,border-color .25s}
+.svc:hover{transform:translateY(-4px);border-color:rgba(193,39,45,.55)}
+.svc img{aspect-ratio:4/3;object-fit:cover;width:100%;filter:saturate(.94)}
+.svc .tab{position:absolute;top:0;left:0;background:var(--red);color:#fff;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:6px 10px}
+.svc .in{padding:20px 22px 24px}
+.svc h3{margin-bottom:8px}
+.svc p{font-size:14.5px;line-height:1.6;color:var(--ink-soft)}
+.svc .go{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--red-hot)}
+.svc.lead{grid-column:1/-1;display:grid;grid-template-columns:1.15fr 1fr;background:linear-gradient(120deg,#191412,var(--panel))}
+.svc.lead img{height:100%;aspect-ratio:auto;min-height:320px}
+.svc.lead .in{padding:clamp(26px,3.4vw,52px);display:flex;flex-direction:column;justify-content:center}
+.svc.lead h3{font-size:clamp(30px,3.4vw,46px)}
+@media(max-width:860px){.svc.lead{grid-template-columns:1fr}}
+
+/* stat band */
+.stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel)}
+.stats .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0}
+.stat{padding:clamp(28px,3.5vw,48px) 20px;text-align:center;border-left:1px solid var(--line)}
+.stat:first-child{border-left:0}
+.stat b{display:block;font-family:var(--disp);font-weight:700;font-size:clamp(40px,4.4vw,64px);line-height:1;color:var(--ink)}
+.stat b i{font-style:normal;color:var(--red-hot)}
+.stat span{display:block;margin-top:8px;font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint)}
+@media(max-width:700px){.stat{border-left:0;border-top:1px solid var(--line)}}
+
+/* feature bands */
+.band{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,72px);align-items:center}
+.band.rev{direction:rtl}.band.rev>*{direction:ltr}
+.band figure{position:relative}
+.band figure img{border-radius:3px;border:1px solid var(--line)}
+.band figcaption{position:absolute;left:0;bottom:0;background:var(--red);color:#fff;font-family:var(--disp);font-weight:600;
+font-size:15px;letter-spacing:.05em;text-transform:uppercase;padding:9px 16px}
+@media(max-width:860px){.band{grid-template-columns:1fr}}
+.checks{margin-top:22px;display:grid;gap:11px}
+.checks li{list-style:none;display:flex;gap:12px;align-items:baseline;font-size:15.5px;line-height:1.55;color:var(--ink-soft)}
+.checks li::before{content:"//";font-family:var(--mono);color:var(--red-hot);font-size:12px;flex:none}
+.checks li b{color:var(--ink)}
+
+/* paradise */
+.paradise{position:relative;overflow:hidden;background:#120d0b}
+.paradise .bgimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.28;filter:saturate(.8)}
+.paradise .in{position:relative;padding:clamp(72px,10vw,140px) 0}
+.paradise .mono-row{display:flex;flex-wrap:wrap;gap:26px;margin-top:34px}
+.paradise .mono-row div b{display:block;font-family:var(--disp);font-weight:700;font-size:clamp(34px,3.6vw,52px);color:var(--red-hot);line-height:1}
+.paradise .mono-row div span{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint)}
+
+/* gallery */
+.filter{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 30px}
+.filter button{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);
+background:none;border:1px solid var(--line);padding:8px 16px;border-radius:2px;cursor:pointer;transition:.2s}
+.filter button.on,.filter button:hover{border-color:var(--red);color:var(--ink);background:rgba(193,39,45,.12)}
+.masonry{columns:3 300px;column-gap:14px}
+.masonry figure{break-inside:avoid;margin-bottom:14px;position:relative;border-radius:3px;overflow:hidden;border:1px solid var(--line)}
+.masonry img{width:100%;transition:transform .35s;filter:saturate(.95)}
+.masonry figure:hover img{transform:scale(1.03)}
+.masonry figcaption{position:absolute;inset:auto 0 0 0;padding:26px 14px 12px;font-size:12.5px;color:#fff;
+background:linear-gradient(0deg,rgba(0,0,0,.82),transparent);opacity:0;transition:.3s}
+.masonry figure:hover figcaption{opacity:1}
+
+/* page hero */
+.phero{position:relative;min-height:64vh;display:flex;align-items:flex-end;overflow:hidden}
+.phero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.92)}
+.phero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,14,14,.6),rgba(14,14,14,.18) 45%,rgba(14,14,14,.94))}
+.phero .in{position:relative;padding:140px 0 clamp(40px,6vw,72px);width:100%}
+.phero h1{font-size:clamp(44px,7.4vw,104px)}
+
+/* CTA slab + footer */
+.slab{background:linear-gradient(120deg,#1a0e0f,#0e0e0e 60%);border-top:1px solid rgba(193,39,45,.35)}
+.slab .in{padding:clamp(64px,9vw,120px) 0;text-align:center}
+.slab h2{font-size:clamp(42px,6vw,84px)}
+.slab .phone{display:inline-block;font-family:var(--disp);font-weight:700;font-size:clamp(46px,7vw,96px);color:var(--red-hot);line-height:1;margin:18px 0 10px;letter-spacing:.01em}
+.slab p{color:var(--ink-soft)}
+footer{border-top:1px solid var(--line);padding:44px 0 60px;font-size:13.5px;color:var(--ink-faint)}
+footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:36px}
+footer h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px}
+footer a{display:block;padding:3px 0;color:var(--ink-faint)}footer a:hover{color:var(--ink)}
+footer .lic{border-top:1px solid var(--line);padding-top:22px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;line-height:1.9}
+@media(max-width:820px){footer .cols{grid-template-columns:1fr 1fr}}
+
+/* reveal on scroll */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}
+.rv.on{opacity:1;transform:none}
+.credgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:36px}
+.cred{background:var(--panel);border:1px solid var(--line);border-radius:3px;padding:22px}
+.cred b{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--red-hot);display:block;margin-bottom:8px}
+.cred span{font-size:15px;color:var(--ink-soft);line-height:1.5}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<header class="hdr" id="hdr">
+  <a class="brand" href="/"><b>Dudley&rsquo;s Excavating</b><span>Gerber · California · Inc.</span></a>
+  <nav class="nav" id="nav"><a href="/directional-boring/" >Boring</a><a href="/excavation/" >Excavation</a><a href="/paving/" >Paving</a><a href="/septic/" >Septic</a><a href="/projects/" >Projects</a><a href="/about/" >About</a><a href="/contact/" >Contact</a></nav>
+  <a class="call" href="tel:5303851445">530-385-1445</a>
+  <button class="burger" id="burger" aria-label="menu">☰</button>
+</header>
+
+<section class="scrub" id="scrub">
+  <div class="scrub-stick">
+    <img class="poster" id="scrubPoster" src="/world/assets/still_3.jpg" alt="Dudley's directional drill rig boring on a Northern California mountain job">
+    <video id="scrubVid" muted playsinline preload="auto" style="opacity:0"></video>
+    <div class="scrub-shade"></div>
+    <div class="beat" data-b="0">
+      <span class="kick">Gerber, California · Est. by Harry Dudley</span>
+      <div class="bigline">Three generations<br>in the ground.</div>
+      <div class="hero-ctas">
+        <a class="btn red" href="tel:5303851445">Call 530-385-1445</a>
+        <a class="btn ghost" href="/about/">The Dudley story →</a>
+      </div>
+    </div>
+    <div class="beat" data-b="1">
+      <span class="kick">Horizontal directional drilling</span>
+      <div class="bigline">Under streets. Highways.<br><em>Streams. Railroads.</em></div>
+      <p>We bore where you can't dig — 40 miles of it under Paradise alone.</p>
+      <div class="hero-ctas">
+        <a class="btn red" href="/directional-boring/">Directional boring →</a>
+        <a class="btn ghost" href="/world/">◉ Fly the bore</a>
+      </div>
+    </div>
+    <div class="beat" data-b="2">
+      <span class="kick">Class A Contractor · CA Lic #694077</span>
+      <div class="bigline">Dudley&rsquo;s <em>Excavating.</em></div>
+      <div class="hero-ctas">
+        <a class="btn red" href="tel:5303851445">Call 530-385-1445</a>
+        <a class="btn ghost" href="/world/">◉ Fly the bore</a>
+      </div>
+    </div>
+    <div class="scrub-hint" id="scrubHint"><span>Scroll</span><i></i></div>
+  </div>
+</section>
+
+<section class="sec"><div class="wrap">
+  <span class="kick rv">What we do</span>
+  <h2 class="rv">The ground is our jobsite</h2>
+  <p class="lede rv">Excavation, boring, paving and septic for public agencies, utilities, builders and homeowners across Tehama, Glenn, Butte, Shasta counties.</p>
+  <div class="svc-grid">
+    <a class="svc lead rv" href="/directional-boring/"><img src="/assets/photos/80144252-8a61-4e2b-be71-811a5ea9d846.jpg" alt="Directional boring rig at sunrise">
+      <div class="in"><span class="kick">Flagship</span><h3>Directional Boring</h3>
+      <p style="font-size:16px;margin-top:10px">Trenchless installs under streets, highways, streams and railroads. No open cut, no closed road, no torn-up frontage — the surface never knows we were there.</p>
+      <span class="go" style="margin-top:18px">The signature service →</span></div></a>
+    <a class="svc rv" href="/excavation/"><span class="tab">02</span><img src="/assets/photos/Untitled-1.jpg" alt="Excavation" loading="lazy">
+  <div class="in"><h3>Excavation</h3><p>Rock cuts, trenching, and site excavation — including the hard ground other outfits walk away from.</p><span class="go">See the work →</span></div></a>
+    <a class="svc rv" href="/utilities/"><span class="tab">03</span><img src="/assets/photos/21c6cc0e-b49d-4ac3-a612-9cf67f2aa817.jpg" alt="Utility Installation" loading="lazy">
+  <div class="in"><h3>Utility Installation</h3><p>Gas, electric, water, sewer and comms — rural and urban, cable to conduit, fused and pulled.</p><span class="go">See the work →</span></div></a>
+    <a class="svc rv" href="/paving/"><span class="tab">04</span><img src="/assets/photos/34f1ef0d-0849-49b2-a3be-b96a1235aab6.jpg" alt="Paving" loading="lazy">
+  <div class="in"><h3>Paving</h3><p>Asphalt paving, patching, parking lots and driveways — commercial and residential.</p><span class="go">See the work →</span></div></a>
+    <a class="svc rv" href="/septic/"><span class="tab">05</span><img src="/assets/photos/573dac2a-c90c-41d6-8b5f-b78b2055cdea.jpg" alt="Septic" loading="lazy">
+  <div class="in"><h3>Septic</h3><p>Septic replacement and pumping for the properties the sewer never reached.</p><span class="go">See the work →</span></div></a>
+    <a class="svc rv" href="/grading/"><span class="tab">06</span><img src="/assets/photos/a6c99a6d-5882-4da3-bdbc-dc0ade895dd5.jpg" alt="Grading &amp; Site Work" loading="lazy">
+  <div class="in"><h3>Grading & Site Work</h3><p>Grading for any construction, and subdivision development to local and state standards.</p><span class="go">See the work →</span></div></a>
+    <a class="svc rv" href="/hauling/"><span class="tab">07</span><img src="/assets/photos/c8befdac-e8b8-4964-a1b6-c3251011b4a2.jpg" alt="Hauling &amp; Materials" loading="lazy">
+  <div class="in"><h3>Hauling & Materials</h3><p>Radio-dispatched trucks. Topsoil, sand and gravel, delivered from our yard in Gerber.</p><span class="go">See the work →</span></div></a>
+    <a class="svc rv" href="/chip-seal/"><span class="tab">08</span><img src="/assets/photos/761beb71-0b24-4c8d-808d-97f1f806b5eb.jpg" alt="Chip Seal" loading="lazy">
+  <div class="in"><h3>Chip Seal</h3><p>Chip seal roads that stand up to valley heat and mountain winters alike.</p><span class="go">See the work →</span></div></a>
+  </div>
+</div></section>
+
+
+<div class="stats rv"><div class="wrap row">
+  <div class="stat"><b><i>3</i></b><span>Generations</span></div>
+  <div class="stat"><b>40</b><span>Power units</span></div>
+  <div class="stat"><b>44</b><span>Drivers &amp; operators</span></div>
+  <div class="stat"><b>127</b><span>Permitted projects since &rsquo;18</span></div>
+  <div class="stat"><b><i>4</i></b><span>NorCal counties</span></div>
+</div></div>
+
+<section class="paradise rv">
+  <img class="bgimg" src="/assets/photos/60c82a06-8321-44e5-b403-a7b5255d25b0.jpg" alt="Fusing fiber conduit in the Camp Fire burn scar" loading="lazy">
+  <div class="wrap in">
+    <span class="kick">Case study · Camp Fire restoration</span>
+    <h2 style="max-width:14ch">40 miles under a town that burned</h2>
+    <p class="lede">When the Camp Fire took Paradise, it took the infrastructure with it. Dudley&rsquo;s crews have spent years on the AT&amp;T fiber restoration — <b>40 miles of underground fiber</b> bored through red clay, rock cobble, and granite on a 6-year rebuild, running a Vermeer D23x30DR S3.</p>
+    <div class="mono-row">
+      <div><b>40 mi</b><span>Underground fiber</span></div>
+      <div><b>6 yr</b><span>Project length</span></div>
+      <div><b>AT&amp;T</b><span>Client</span></div>
+    </div>
+    <p style="margin-top:34px"><a class="btn ghost" href="/paradise-fiber/">Read the Paradise job →</a></p>
+  </div>
+</section>
+
+<section class="sec"><div class="wrap band">
+  <div class="rv">
+    <span class="kick">Since Harry Dudley broke ground</span>
+    <h2>We know how the ground moves here</h2>
+    <p class="lede">Dudley&rsquo;s Excavating has been serving the Gerber area for generations. We understand the way the ground moves around here, the soil types that are common, and the hazards a project can run into — because we've been digging in it our whole lives.</p>
+    <ul class="checks">
+      <li><b>Three generations</b> of Dudleys running the work — Scott Dudley, Michael Dudley, Kyle Dudley.</li>
+      <li><b>40 power units, 44 drivers</b> on file with the FMCSA — real fleet depth, radio dispatched.</li>
+      <li><b>127 permitted projects</b> across Chico, Redding and Butte County since 2018.</li>
+      <li><b>Certified Small Business</b> (DGS #22540) — count us toward your SB participation goals.</li>
+    </ul>
+    <p style="margin-top:28px"><a class="btn ghost" href="/about/">The Dudley story →</a></p>
+  </div>
+  <figure class="rv"><img src="/assets/photos/64fcad2e-5201-4399-af3c-c5ebc1a974ff.jpg" alt="Dudley's crew and excavator on a hillside job" loading="lazy"><figcaption>Crew-owned standards</figcaption></figure>
+</div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap">
+  <span class="kick rv">Proof</span>
+  <h2 class="rv">Straight off the jobsite</h2>
+  <p class="lede rv">No stock photos on this site. Every frame below is a Dudley's crew on a Northern California job.</p>
+  <div style="margin-top:36px" class="rv"><div class="masonry"><figure data-cat="boring"><img src="/assets/photos/f12f27ca-54ff-49e2-ae8a-ee6393f580fc.jpg" alt="Directional drill rig pushing rod on a mountain job" loading="lazy"><figcaption>Directional drill rig pushing rod on a mountain job</figcaption></figure>
+<figure data-cat="boring"><img src="/assets/photos/80144252-8a61-4e2b-be71-811a5ea9d846.jpg" alt="Bore rig set up on the highway shoulder at first light" loading="lazy"><figcaption>Bore rig set up on the highway shoulder at first light</figcaption></figure>
+<figure data-cat="boring"><img src="/assets/photos/f3a270d4-b715-4035-9683-9f4e000664f5.jpg" alt="27-foot 1-inch bore under a finished driveway — surface untouched" loading="lazy"><figcaption>27-foot 1-inch bore under a finished driveway — surface untouched</figcaption></figure>
+<figure data-cat="boring"><img src="/assets/photos/d14aee6c-5d5f-4bcc-bd55-29f00d333153.jpg" alt="Bore pits and product pipe in native red earth" loading="lazy"><figcaption>Bore pits and product pipe in native red earth</figcaption></figure>
+<figure data-cat="boring"><img src="/assets/photos/a004537b-0195-44d4-9fe7-1081749ff5ee.jpg" alt="Rig walking the shoulder between shots" loading="lazy"><figcaption>Rig walking the shoulder between shots</figcaption></figure>
+<figure data-cat="boring"><img src="/assets/photos/d159418c-2f4b-4ef1-ae66-7ca10a88a9da.jpg" alt="Fused HDPE strung and ready to pull" loading="lazy"><figcaption>Fused HDPE strung and ready to pull</figcaption></figure>
+<figure data-cat="excavation"><img src="/assets/photos/592d06b8-bc1e-4076-87f9-6508c62b130d.jpg" alt="Trenching rock beside the traveled way, plated overnight" loading="lazy"><figcaption>Trenching rock beside the traveled way, plated overnight</figcaption></figure>
+<figure data-cat="excavation"><img src="/assets/photos/Untitled-1.jpg" alt="Rock cut with the excavator — steel plates ready" loading="lazy"><figcaption>Rock cut with the excavator — steel plates ready</figcaption></figure>
+<figure data-cat="excavation"><img src="/assets/photos/2eecfa93-22bf-4b02-9b98-49e9c7c7ce23.jpg" alt="Excavator working the shoulder on a state route" loading="lazy"><figcaption>Excavator working the shoulder on a state route</figcaption></figure>
+<figure data-cat="excavation"><img src="/assets/photos/64fcad2e-5201-4399-af3c-c5ebc1a974ff.jpg" alt="Hillside excavation with full traffic control" loading="lazy"><figcaption>Hillside excavation with full traffic control</figcaption></figure>
+<figure data-cat="excavation"><img src="/assets/photos/a6c99a6d-5882-4da3-bdbc-dc0ade895dd5.jpg" alt="Loading out on a mountain grade" loading="lazy"><figcaption>Loading out on a mountain grade</figcaption></figure>
+<figure data-cat="excavation"><img src="/assets/photos/c8befdac-e8b8-4964-a1b6-c3251011b4a2.jpg" alt="Excavator and end-dump working the edge of the road at dusk" loading="lazy"><figcaption>Excavator and end-dump working the edge of the road at dusk</figcaption></figure>
+<figure data-cat="paving"><img src="/assets/photos/0c587916-7d9a-4a63-9daa-3ae3177b74ba.jpg" alt="Double-drum roller on a patch set" loading="lazy"><figcaption>Double-drum roller on a patch set</figcaption></figure>
+<figure data-cat="paving"><img src="/assets/photos/34f1ef0d-0849-49b2-a3be-b96a1235aab6.jpg" alt="Fresh mat rolled tight on a residential street" loading="lazy"><figcaption>Fresh mat rolled tight on a residential street</figcaption></figure>
+<figure data-cat="paving"><img src="/assets/photos/2a23c12b-610c-4e57-8e0f-3b6a968eb70f.jpg" alt="Rolling behind the water truck" loading="lazy"><figcaption>Rolling behind the water truck</figcaption></figure>
+<figure data-cat="paving"><img src="/assets/photos/2c5c0149-1d3e-40b6-913f-854b13b1371b.jpg" alt="Grinding out the failed section before repave" loading="lazy"><figcaption>Grinding out the failed section before repave</figcaption></figure>
+<figure data-cat="paving"><img src="/assets/photos/deab7f8d-a4a5-4448-a87b-96cc9d684233.jpg" alt="Compacting the lift along the curb line" loading="lazy"><figcaption>Compacting the lift along the curb line</figcaption></figure>
+<figure data-cat="paving"><img src="/assets/photos/44f5d4ea-dfb1-4b64-a87c-7d80f7d3f9c0.jpg" alt="Trench paveback down the centerline" loading="lazy"><figcaption>Trench paveback down the centerline</figcaption></figure>
+<figure data-cat="paving"><img src="/assets/photos/7499fd6f-4d0f-426e-9018-d7ae89bfd548.jpg" alt="Finished driveway apron, ready for traffic" loading="lazy"><figcaption>Finished driveway apron, ready for traffic</figcaption></figure></div> </div>
+  <p style="margin-top:28px" class="rv"><a class="btn ghost" href="/projects/">Full project gallery →</a></p>
+</div></section>
+
+<script>
+(()=>{
+  const sec=document.getElementById('scrub'),vid=document.getElementById('scrubVid'),
+        poster=document.getElementById('scrubPoster'),hint=document.getElementById('scrubHint'),
+        beats=[...document.querySelectorAll('.beat')];
+  const src='/assets/hero_scrub.mp4';
+  let ready=false,seekBusy=false,pend=null;
+  const phone=matchMedia('(max-width:860px),(pointer:coarse)').matches;
+  const useSrc=phone?'/assets/hero_scrub_m.mp4':src;   // 540p tight-GOP reel for phones
+  fetch(useSrc,{method:'HEAD'}).then(r=>{if(!r.ok)return;
+    vid.src=useSrc;vid.load();
+    vid.addEventListener('loadeddata',()=>{ready=true;vid.style.opacity=1;poster.style.opacity=0;},{once:true});
+  }).catch(()=>{});
+  // iOS: prime the decoder on first touch so seeks paint
+  addEventListener('touchstart',()=>{if(vid.src)vid.play().then(()=>vid.pause()).catch(()=>{});},{once:true,passive:true});
+  let watchdog=null;
+  vid.addEventListener('seeked',()=>{clearTimeout(watchdog);seekBusy=false;
+    if(pend!=null){const p=pend;pend=null;seek(p);}});
+  function seek(t){ if(!ready)return;
+    if(Math.abs(vid.currentTime-t)<0.02)return;   // same-frame seek never fires 'seeked'
+    if(seekBusy){pend=t;return;}
+    seekBusy=true;vid.currentTime=t;
+    watchdog=setTimeout(()=>{seekBusy=false;},300); // decoder hiccup safety
+  }
+  function onScroll(){
+    const r=sec.getBoundingClientRect();
+    const total=r.height-innerHeight;
+    const p=Math.min(1,Math.max(0,-r.top/total));
+    if(ready&&vid.duration) seek(p*Math.max(0,vid.duration-0.05));
+    const idx=p<0.34?0:p<0.72?1:2;
+    beats.forEach((b,i)=>b.classList.toggle('on',i===idx));
+    hint.style.opacity=p>0.04?0:1;
+  }
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+})();
+</script>
+
+<section class="slab"><div class="wrap in">
+  <span class="kick" style="justify-content:center">Class A Contractor · CA Lic #694077</span>
+  <h2>Put us in the ground</h2>
+  <a class="phone" href="tel:5303851445">530-385-1445</a>
+  <p>209 San Benito Ave, Gerber, CA 96035 &nbsp;·&nbsp; <a href="mailto:paul@dudleysexcavating.com" style="color:var(--ink-soft);text-decoration:underline">paul@dudleysexcavating.com</a></p>
+</div></section>
+<footer><div class="wrap">
+  <div class="cols">
+    <div>
+      <h4>Dudley&rsquo;s Excavating, Inc.</h4>
+      <p style="max-width:34ch;line-height:1.7">Three generations of underground construction out of Gerber, California. Founded by Harry Dudley.</p>
+    </div>
+    <div><h4>Work</h4><a href="/directional-boring/">Directional Boring</a><a href="/utilities/">Utility Installation</a><a href="/excavation/">Excavation</a><a href="/paving/">Paving</a><a href="/chip-seal/">Chip Seal</a><a href="/septic/">Septic</a><a href="/grading/">Grading</a><a href="/hauling/">Hauling &amp; Materials</a></div>
+    <div><h4>Company</h4><a href="/about/">About</a><a href="/paradise-fiber/">The Paradise Job</a><a href="/projects/">Projects</a><a href="/service-area/">Service Area</a><a href="/world/">◉ Fly the Bore</a></div>
+    <div><h4>Contact</h4><a href="tel:5303851445">530-385-1445</a><a href="mailto:paul@dudleysexcavating.com">paul@dudleysexcavating.com</a><p style="margin-top:8px;line-height:1.7">209 San Benito Ave<br>Gerber, CA 96035</p></div>
+  </div>
+  <div class="lic">© 2026 Dudley's Excavating, Inc. · CSLB Class A Lic #694077 · Class A General Engineering · Low Voltage Systems · Construction Zone Traffic Control<br>
+  DGS Certified Small Business #22540 · USDOT 2728939 · Serving Tehama, Glenn, Butte, Shasta Counties, Northern California</div>
+</div></footer>
+<script>
+const hdr=document.getElementById('hdr');
+addEventListener('scroll',()=>hdr.classList.toggle('solid',scrollY>40),{passive:true});
+hdr.classList.toggle('solid',scrollY>40);
+document.getElementById('burger').onclick=()=>document.getElementById('nav').classList.toggle('open');
+const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('on')),{threshold:.14});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
