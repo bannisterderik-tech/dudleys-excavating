@@ -47,9 +47,35 @@ gap:16px;padding:14px clamp(18px,4vw,56px);transition:background .3s,border-colo
 padding:9px 16px;border-radius:2px;white-space:nowrap;transition:.2s}
 .hdr .call:hover{background:var(--red-hot)}
 .burger{display:none;background:none;border:0;color:var(--ink);font-size:26px;cursor:pointer}
-@media(max-width:940px){.brand b{font-size:17px}.brand span{font-size:8.5px;letter-spacing:.18em}.hdr .call{font-size:16px;padding:8px 12px}.nav{display:none;position:fixed;inset:0;background:rgba(14,14,14,.97);flex-direction:column;
-justify-content:center;font-size:20px;gap:22px;z-index:79}
-.nav.open{display:flex}.burger{display:block;z-index:81}}
+.nav .m-cta{display:none}
+@media(max-width:940px){
+.brand b{font-size:17px}.brand span{font-size:8.5px;letter-spacing:.18em}.hdr .call{font-size:16px;padding:8px 12px}
+.nav{display:none;position:fixed;inset:0;background:#0e0e0e;flex-direction:column;align-items:flex-start;
+justify-content:center;gap:0;z-index:84;padding:96px clamp(24px,8vw,48px) 40px;overflow-y:auto}
+.nav.open{display:flex}
+.nav a{font-family:var(--disp);font-weight:700;font-size:clamp(34px,9vw,44px);letter-spacing:.02em;
+color:var(--ink);border:0;border-bottom:1px solid var(--line);width:100%;padding:14px 0;display:flex;
+align-items:baseline;gap:14px;counter-increment:mnav}
+.nav a::before{content:counter(mnav,decimal-leading-zero);font-family:var(--mono);font-size:11px;
+letter-spacing:.15em;color:var(--red-hot)}
+.nav a.on{color:var(--red-hot)}
+.nav{counter-reset:mnav}
+.nav .m-cta{margin-top:28px;border:0;width:100%;display:flex;flex-direction:column;gap:12px}
+.nav .m-cta a{border:0;padding:0;width:auto;counter-increment:none}
+.nav .m-cta a::before{content:none}
+.nav .m-cta .btn{width:100%;justify-content:center;font-size:20px}
+.burger{display:block;z-index:86;position:relative;width:40px;height:40px}
+.burger .bi,.burger .bi::before,.burger .bi::after{content:"";position:absolute;left:8px;right:8px;height:2px;
+background:var(--ink);transition:transform .25s,opacity .2s,top .25s}
+.burger .bi{top:19px}.burger .bi::before,.burger .bi::after{left:0;right:0}.burger .bi::before{top:-7px}.burger .bi::after{top:7px}
+body.menu-open{overflow:hidden}
+body.menu-open .burger .bi{transform:rotate(45deg)}
+body.menu-open .burger .bi::before{top:0;transform:rotate(90deg)}
+body.menu-open .burger .bi::after{top:0;opacity:0}
+body.menu-open .hdr{background:#0e0e0e}
+body.menu-open .brand{position:relative;z-index:86}
+body.menu-open .hdr .call{visibility:hidden}
+}
 
 /* type + layout */
 .wrap{max-width:1240px;margin:0 auto;padding:0 clamp(18px,4vw,56px)}
@@ -116,7 +142,12 @@ text-transform:uppercase;padding:14px 26px;border-radius:2px;transition:.2s;bord
 .stat b{display:block;font-family:var(--disp);font-weight:700;font-size:clamp(40px,4.4vw,64px);line-height:1;color:var(--ink)}
 .stat b i{font-style:normal;color:var(--red-hot)}
 .stat span{display:block;margin-top:8px;font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint)}
-@media(max-width:700px){.stat{border-left:0;border-top:1px solid var(--line)}}
+@media(max-width:700px){
+.stats .row{grid-template-columns:1fr 1fr;gap:1px;background:var(--line)}
+.stat{border:0;background:var(--panel);padding:26px 12px}
+.stat:last-child:nth-child(odd){grid-column:1/-1}
+.stat b{font-size:38px}
+.stat span{font-size:9.5px;letter-spacing:.14em}}
 
 /* feature bands */
 .band{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,72px);align-items:center}
@@ -134,7 +165,7 @@ font-size:15px;letter-spacing:.05em;text-transform:uppercase;padding:9px 16px}
 /* paradise */
 .paradise{position:relative;overflow:hidden;background:#120d0b}
 .paradise .bgimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.28;filter:saturate(.8)}
-.paradise .in{position:relative;padding:clamp(72px,10vw,140px) 0}
+.paradise .in{position:relative;padding-top:clamp(72px,10vw,140px);padding-bottom:clamp(72px,10vw,140px)}
 .paradise .mono-row{display:flex;flex-wrap:wrap;gap:26px;margin-top:34px}
 .paradise .mono-row div b{display:block;font-family:var(--disp);font-weight:700;font-size:clamp(34px,3.6vw,52px);color:var(--red-hot);line-height:1}
 .paradise .mono-row div span{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint)}
@@ -191,9 +222,9 @@ footer .lic{border-top:1px solid var(--line);padding-top:22px;font-family:var(--
 <div class="grain" aria-hidden="true"></div>
 <header class="hdr" id="hdr">
   <a class="brand" href="/dudleys-excavating/"><b>Dudley&rsquo;s Excavating</b><span>Gerber · California · Inc.</span></a>
-  <nav class="nav" id="nav"><a href="/dudleys-excavating/directional-boring/" >Boring</a><a href="/dudleys-excavating/excavation/" >Excavation</a><a href="/dudleys-excavating/paving/" >Paving</a><a href="/dudleys-excavating/septic/" >Septic</a><a href="/dudleys-excavating/projects/" >Projects</a><a href="/dudleys-excavating/about/" >About</a><a href="/dudleys-excavating/contact/" >Contact</a></nav>
+  <nav class="nav" id="nav"><a href="/dudleys-excavating/directional-boring/" >Boring</a><a href="/dudleys-excavating/excavation/" >Excavation</a><a href="/dudleys-excavating/paving/" >Paving</a><a href="/dudleys-excavating/septic/" >Septic</a><a href="/dudleys-excavating/projects/" >Projects</a><a href="/dudleys-excavating/about/" >About</a><a href="/dudleys-excavating/contact/" >Contact</a><div class="m-cta"><a class="btn red" href="tel:5303851445">Call 530-385-1445</a><a class="btn ghost" href="/dudleys-excavating/world/">◉ Fly the bore</a></div></nav>
   <a class="call" href="tel:5303851445">530-385-1445</a>
-  <button class="burger" id="burger" aria-label="menu">☰</button>
+  <button class="burger" id="burger" aria-label="menu" aria-expanded="false"><i class="bi"></i></button>
 </header>
 
 <section class="phero"><img class="bg" src="/dudleys-excavating/assets/photos/761beb71-0b24-4c8d-808d-97f1f806b5eb.jpg" alt="Two-lane road through Northern California pines"><div class="shade"></div>
@@ -240,7 +271,11 @@ footer .lic{border-top:1px solid var(--line);padding-top:22px;font-family:var(--
 const hdr=document.getElementById('hdr');
 addEventListener('scroll',()=>hdr.classList.toggle('solid',scrollY>40),{passive:true});
 hdr.classList.toggle('solid',scrollY>40);
-document.getElementById('burger').onclick=()=>document.getElementById('nav').classList.toggle('open');
+const burger=document.getElementById('burger'),navEl=document.getElementById('nav');
+burger.onclick=()=>{const open=navEl.classList.toggle('open');
+  document.body.classList.toggle('menu-open',open);burger.setAttribute('aria-expanded',open);};
+navEl.addEventListener('click',e=>{if(e.target.closest('a')){navEl.classList.remove('open');
+  document.body.classList.remove('menu-open');burger.setAttribute('aria-expanded','false');}});
 const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('on')),{threshold:.14});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 </script>
