@@ -108,14 +108,6 @@ padding:7px 12px;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text
 .sndbtn.on{border-color:var(--red);color:var(--ink)}
 .sndbtn.on::before{background:var(--red-hot);box-shadow:0 0 10px var(--red-hot)}
 
-/* receipt polaroid */
-.receipt{position:absolute;top:calc(14px + 96px);right:clamp(18px,4vw,56px);z-index:3;width:clamp(150px,15vw,210px);background:#f4f0e6;padding:7px 7px 9px;border-radius:1px;
-box-shadow:0 14px 40px rgba(0,0,0,.55);transform:rotate(2.5deg) translateY(-16px);opacity:0;transition:opacity .45s ease,transform .45s cubic-bezier(.2,1.4,.4,1);pointer-events:none}
-.receipt.show{opacity:1;transform:rotate(-2deg) translateY(0)}
-.receipt img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;filter:saturate(.92) contrast(1.02)}
-.receipt figcaption{font-family:var(--mono);font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:#3a352b;padding:7px 2px 0;line-height:1.5}
-.receipt figcaption b{display:block;color:var(--red);font-weight:700}
-
 /* locates HUD (bore scene) */
 .hud{position:absolute;top:calc(14px + 108px);left:clamp(18px,4vw,56px);z-index:3;font-family:var(--mono);color:var(--yellow);font-size:10.5px;letter-spacing:.14em;
 text-transform:uppercase;line-height:2.1;opacity:0;transform:translateY(10px);transition:.45s;pointer-events:none;text-shadow:0 1px 8px rgba(0,0,0,.9)}
@@ -128,16 +120,6 @@ text-transform:uppercase;line-height:2.1;opacity:0;transform:translateY(10px);tr
 .hud .dirt{stroke:rgba(245,245,245,.35);stroke-width:1.5;fill:none}
 .hud .borepath{stroke:var(--yellow);stroke-width:1.5;stroke-dasharray:3 4;fill:none}
 .hud .head{fill:var(--red-hot)}
-
-/* filmstrip */
-.strip{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.strip .row{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line)}
-.strip a{position:relative;display:block;background:var(--panel);cursor:pointer}
-.strip img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;filter:saturate(.85) brightness(.85);transition:.3s}
-.strip a:hover img{filter:saturate(1) brightness(1)}
-.strip span{position:absolute;left:10px;bottom:8px;font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);text-shadow:0 1px 6px rgba(0,0,0,.9)}
-.strip span b{color:var(--red-hot);font-weight:600;margin-right:6px}
-.strip .cap{position:absolute;top:10px;left:10px;right:10px;text-align:left;font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:var(--ink-faint);text-transform:uppercase}
 
 /* projector lightbox */
 .ltbx{position:fixed;inset:0;z-index:200;background:rgba(10,10,10,.96);display:none;align-items:center;justify-content:center;flex-direction:column;cursor:zoom-out}
@@ -331,15 +313,10 @@ h2{margin-bottom:18px}
 .masonry figure{margin-bottom:12px}
 .masonry img{max-height:62vh;object-fit:cover}
 .masonry figcaption{opacity:1;padding:34px 14px 12px}
-.receipt{width:104px;top:calc(14px + 92px);bottom:auto;right:var(--gut)}
-.receipt figcaption{font-size:7.5px;line-height:1.45}
-.receipt figcaption b{font-size:8px}
 .hud{top:calc(14px + 84px);left:var(--gut);font-size:9px;line-height:1.9}
 .hud svg{width:150px}
 .hud .tc{font-size:12px}
 .sndbtn{left:var(--gut);bottom:16px;padding:6px 9px}
-.strip .row{grid-template-columns:repeat(3,1fr)}
-.strip span{font-size:8px;left:6px;bottom:5px}
 .ltbx .pv,.ltbx .nx{width:38px;height:38px}
 .fullphoto img{height:70vh}
 .paradise .photocap{right:var(--gut)}
@@ -625,7 +602,6 @@ body:`
         <a class="btn ghost" href="/contact/">Get a quote →</a>
       </div>
     </div>
-    <figure class="receipt" id="receipt"><img id="receiptImg" src="" alt=""><figcaption><b>This shot · real crew</b><span id="receiptCap"></span></figcaption></figure>
     <div class="hud" id="hud">
       <div class="tc" id="hudTc">00:00.0</div>
       <div>Rig <em>· Vermeer D23x30DR S3</em></div>
@@ -646,15 +622,6 @@ body:`
     <div class="scrub-hint" id="scrubHint"><span>Scroll to fly</span><i></i></div>
   </div>
 </section>
-
-<section class="strip" aria-label="Chapters of the flight"><div class="row" id="strip">
-  <a data-j="0"><img src="/world/assets/still_1.jpg" alt="The road" loading="lazy"><span><b>01</b>The road</span></a>
-  <a data-j="1"><img src="/world/assets/still_2.jpg" alt="The cut" loading="lazy"><span><b>02</b>The cut</span></a>
-  <a data-j="2"><img src="/world/assets/still_3.jpg" alt="The bore" loading="lazy"><span><b>03</b>The bore</span></a>
-  <a data-j="3"><img src="/world/assets/still_4.jpg" alt="The line" loading="lazy"><span><b>04</b>The line</span></a>
-  <a data-j="4"><img src="/world/assets/still_5.jpg" alt="The mat" loading="lazy"><span><b>05</b>The mat</span></a>
-  <a data-j="5"><img src="/world/assets/still_6.jpg" alt="Roll home" loading="lazy"><span><b>06</b>Roll home</span></a>
-</div></section>
 
 <section class="sec"><div class="wrap">
   <span class="kick rv">What we do</span>
@@ -730,15 +697,7 @@ ${paradiseBand()}
   const SC=[[0,.119],[.168,.287],[.337,.495],[.545,.663],[.713,.832],[.881,1]];
   const NAMES=['01 · The road','02 · The cut','03 · The bore','04 · The line','05 · The mat','06 · Roll home'];
   const rail=document.getElementById('rail'),railLabel=document.getElementById('railLabel'),pips=[...rail.querySelectorAll('i')];
-  const receipt=document.getElementById('receipt'),rImg=document.getElementById('receiptImg'),rCap=document.getElementById('receiptCap');
   const hud=document.getElementById('hud'),hudTc=document.getElementById('hudTc'),hudGround=document.getElementById('hudGround'),hudHead=document.getElementById('hudHead');
-  const RPH=[
-    ["${P("a004537b-0195-44d4-9fe7-1081749ff5ee.jpg")}","Rig walking the shoulder between shots"],
-    ["${P("Untitled-1.jpg")}","Rock cut with the excavator — plates ready"],
-    ["${P("80144252-8a61-4e2b-be71-811a5ea9d846.jpg")}","Bore rig on the highway shoulder, first light"],
-    ["${P("60c82a06-8321-44e5-b403-a7b5255d25b0.jpg")}","Fusion weld on the line, burn-scar timber behind"],
-    ["${P("0c587916-7d9a-4a63-9daa-3ae3177b74ba.jpg")}","Double-drum roller on a patch set"],
-    ["${P("55c6ea23-532c-424f-b29b-2cc15e39013f.jpg")}","Cleanup pass — leave it better than we found it"]];
   // camera settles mid-dive, whips the stitches (ported from the world engine)
   const linger=function(x,L){var c=x-0.5;return (1-L)*x+L*(4*c*c*c+0.5);};
   function warp(p){for(var i=0;i<6;i++){var a=SC[i][0],b=SC[i][1];if(p>=a&&p<=b){var x=(p-a)/(b-a);return a+linger(x,0.5)*(b-a);}}return p;}
@@ -765,15 +724,13 @@ ${paradiseBand()}
     sndBtn.classList.toggle('on',sndOn);sndBtn.setAttribute('aria-pressed',sndOn);
     if(!sndOn){dG.gain.setTargetAtTime(0,AC.currentTime,0.1);wG.gain.setTargetAtTime(0,AC.currentTime,0.1);}else{click(1400);}});
   document.addEventListener('visibilitychange',function(){if(AC&&document.hidden){sndOn=false;sndBtn.classList.remove('on');dG.gain.value=0;wG.gain.value=0;}});
-  // ---- chapter jumps: pips, keys 1-6, filmstrip ----
+  // ---- chapter jumps: pips, keys 1-6 ----
   function jumpTo(i){var r=sec.getBoundingClientRect(),top=r.top+scrollY,total=r.height-innerHeight;
     var tp=SC[i][0]+(SC[i][1]-SC[i][0])*0.45;
     scrollTo({top:Math.round(top+total*tp),behavior:'smooth'});}
   pips.forEach(function(el,i){el.addEventListener('click',function(e){e.stopPropagation();jumpTo(i);});});
   addEventListener('keydown',function(e){var k=+e.key;
     if(k>=1&&k<=6&&!e.metaKey&&!e.ctrlKey&&!e.altKey&&!/INPUT|TEXTAREA/.test(document.activeElement.tagName))jumpTo(k-1);});
-  var strip=document.getElementById('strip');
-  if(strip)strip.addEventListener('click',function(e){var a=e.target.closest('a[data-j]');if(a)jumpTo(+a.dataset.j);});
   // ---- rail jog: drag to walk the shot ----
   var jogging=false,jx=0;
   rail.addEventListener('pointerdown',function(e){if(e.target.closest('i'))return;jogging=true;jx=e.clientX;rail.setPointerCapture(e.pointerId);});
@@ -804,9 +761,6 @@ ${paradiseBand()}
     if(scene!==lastScene){
       var first=lastScene<0;lastScene=scene;
       railLabel.textContent=NAMES[scene];pips.forEach((el,i)=>el.classList.toggle('on',i<=scene));
-      rImg.src=RPH[scene][0];rImg.alt=RPH[scene][1];rCap.textContent=RPH[scene][1];
-      receipt.classList.remove('show');void receipt.offsetWidth;
-      setTimeout(function(){receipt.classList.add('show');},first?900:120);
       if(!first){click(scene===2?2600:1700);if(navigator.vibrate)navigator.vibrate([8,20,8]);}
     }
     if(AC&&sndOn){dG.gain.setTargetAtTime(0.02+vel*0.5,AC.currentTime,0.12);
