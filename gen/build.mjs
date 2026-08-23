@@ -97,10 +97,96 @@ color:var(--ink-soft);border:1px solid var(--line);padding:7px 12px;border-radiu
 
 /* hero scrub */
 .scrub{position:relative;height:880vh}
-.rail{position:absolute;right:clamp(18px,4vw,56px);bottom:26px;display:flex;align-items:center;gap:6px;z-index:3}
-.rail i{width:22px;height:2px;background:rgba(245,245,245,.22);transition:background .3s}
-.rail i.on{background:var(--red-hot)}
-.rail b{margin-left:10px;font-family:var(--mono);font-weight:400;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+.rail{position:absolute;right:clamp(18px,4vw,56px);bottom:26px;display:flex;align-items:center;gap:2px;z-index:4;touch-action:none;cursor:ew-resize}
+.rail i{width:22px;height:14px;position:relative;cursor:pointer}
+.rail i::after{content:"";position:absolute;left:0;right:2px;top:6px;height:2px;background:rgba(245,245,245,.22);transition:background .3s}
+.rail i.on::after{background:var(--red-hot)}
+.rail b{margin-left:10px;font-family:var(--mono);font-weight:400;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);pointer-events:none}
+.sndbtn{position:absolute;left:clamp(18px,4vw,56px);bottom:22px;z-index:4;display:flex;align-items:center;gap:8px;background:none;border:1px solid rgba(245,245,245,.28);border-radius:2px;
+padding:7px 12px;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);cursor:pointer;transition:.25s}
+.sndbtn::before{content:"";width:7px;height:7px;border-radius:50%;background:rgba(245,245,245,.3);transition:.25s}
+.sndbtn.on{border-color:var(--red);color:var(--ink)}
+.sndbtn.on::before{background:var(--red-hot);box-shadow:0 0 10px var(--red-hot)}
+
+/* receipt polaroid */
+.receipt{position:absolute;top:calc(14px + 96px);right:clamp(18px,4vw,56px);z-index:3;width:clamp(150px,15vw,210px);background:#f4f0e6;padding:7px 7px 9px;border-radius:1px;
+box-shadow:0 14px 40px rgba(0,0,0,.55);transform:rotate(2.5deg) translateY(-16px);opacity:0;transition:opacity .45s ease,transform .45s cubic-bezier(.2,1.4,.4,1);pointer-events:none}
+.receipt.show{opacity:1;transform:rotate(-2deg) translateY(0)}
+.receipt img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;filter:saturate(.92) contrast(1.02)}
+.receipt figcaption{font-family:var(--mono);font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:#3a352b;padding:7px 2px 0;line-height:1.5}
+.receipt figcaption b{display:block;color:var(--red);font-weight:700}
+
+/* locates HUD (bore scene) */
+.hud{position:absolute;top:calc(14px + 108px);left:clamp(18px,4vw,56px);z-index:3;font-family:var(--mono);color:var(--yellow);font-size:10.5px;letter-spacing:.14em;
+text-transform:uppercase;line-height:2.1;opacity:0;transform:translateY(10px);transition:.45s;pointer-events:none;text-shadow:0 1px 8px rgba(0,0,0,.9)}
+.hud.show{opacity:1;transform:none}
+.hud .tc{font-size:15px;letter-spacing:.08em;color:var(--yellow)}
+.hud .tc::before{content:"● ";color:var(--red-hot);animation:hudblink 1.1s steps(2) infinite}
+@keyframes hudblink{50%{opacity:.15}}
+.hud em{font-style:normal;color:rgba(245,245,245,.75)}
+.hud svg{display:block;margin-top:8px;overflow:visible}
+.hud .dirt{stroke:rgba(245,245,245,.35);stroke-width:1.5;fill:none}
+.hud .borepath{stroke:var(--yellow);stroke-width:1.5;stroke-dasharray:3 4;fill:none}
+.hud .head{fill:var(--red-hot)}
+
+/* filmstrip */
+.strip{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.strip .row{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line)}
+.strip a{position:relative;display:block;background:var(--panel);cursor:pointer}
+.strip img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;filter:saturate(.85) brightness(.85);transition:.3s}
+.strip a:hover img{filter:saturate(1) brightness(1)}
+.strip span{position:absolute;left:10px;bottom:8px;font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);text-shadow:0 1px 6px rgba(0,0,0,.9)}
+.strip span b{color:var(--red-hot);font-weight:600;margin-right:6px}
+.strip .cap{position:absolute;top:10px;left:10px;right:10px;text-align:left;font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:var(--ink-faint);text-transform:uppercase}
+
+/* projector lightbox */
+.ltbx{position:fixed;inset:0;z-index:200;background:rgba(10,10,10,.96);display:none;align-items:center;justify-content:center;flex-direction:column;cursor:zoom-out}
+.ltbx.open{display:flex}
+.ltbx img{max-width:96vw;max-height:82vh;object-fit:contain;box-shadow:0 30px 90px rgba(0,0,0,.7)}
+.ltbx figcaption{margin-top:16px;font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);text-align:center;padding:0 20px}
+.ltbx figcaption b{color:var(--red-hot);margin-right:10px}
+.ltbx .x{position:absolute;top:18px;right:22px;background:none;border:0;color:var(--ink);font-size:30px;cursor:pointer;font-family:var(--body)}
+.ltbx .pv,.ltbx .nx{position:absolute;top:50%;transform:translateY(-50%);background:none;border:1px solid rgba(245,245,245,.25);color:var(--ink);width:46px;height:46px;border-radius:2px;font-size:20px;cursor:pointer;transition:.2s}
+.ltbx .pv:hover,.ltbx .nx:hover{border-color:var(--red)}
+.ltbx .pv{left:18px}.ltbx .nx{right:18px}
+
+/* 27ft driveway pull */
+.pull27{position:relative}
+.pull27 svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.pull27 .bore{stroke:var(--yellow);stroke-width:3;fill:none;stroke-dasharray:6 7;filter:drop-shadow(0 0 6px rgba(215,162,26,.6))}
+.pull27 .hd{fill:var(--red-hot);filter:drop-shadow(0 0 6px rgba(226,54,61,.8))}
+.pull27 .ro{position:absolute;left:10px;bottom:44px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--yellow);text-shadow:0 1px 8px rgba(0,0,0,.95)}
+.pull27 input{position:absolute;left:8%;right:8%;bottom:14px;width:84%;appearance:none;height:3px;background:rgba(245,245,245,.25);outline:none;cursor:ew-resize}
+.pull27 input::-webkit-slider-thumb{appearance:none;width:22px;height:22px;border-radius:50%;background:var(--yellow);border:3px solid #0e0e0e;box-shadow:0 0 12px rgba(215,162,26,.7)}
+.pull27 .hint27{position:absolute;top:10px;left:10px;font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);background:rgba(14,14,14,.55);padding:5px 9px}
+
+/* bid sheet */
+.chips.pick li{cursor:pointer;user-select:none;transition:.2s}
+.chips.pick li.on{border-color:var(--red);color:var(--ink);background:rgba(193,39,45,.16)}
+.bidbtn{margin-top:26px}
+
+/* paradise upgrade */
+.paradise .bgimg{opacity:.55;filter:saturate(.85)}
+.paradise .in{background:linear-gradient(90deg,rgba(18,13,11,.94) 0%,rgba(18,13,11,.72) 46%,rgba(18,13,11,.15) 100%)}
+.paradise .wrap.in{background:none}
+.paradise::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#120d0b 0%,rgba(18,13,11,.82) 42%,rgba(18,13,11,.08) 100%);pointer-events:none}
+.paradise .wrap{position:relative;z-index:2}
+.paradise .photocap{position:absolute;right:18px;bottom:14px;z-index:2;font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,245,245,.75);text-shadow:0 1px 8px rgba(0,0,0,.9)}
+.ridge{display:block;margin-top:30px;max-width:520px;overflow:visible}
+.ridge .terrain{stroke:rgba(245,245,245,.3);stroke-width:1.5;fill:none}
+.ridge .fiber{stroke:var(--red-hot);stroke-width:2.5;fill:none;stroke-dasharray:600;stroke-dashoffset:600;transition:stroke-dashoffset 2.6s cubic-bezier(.5,0,.2,1) .3s;filter:drop-shadow(0 0 5px rgba(226,54,61,.6))}
+.paradise.on .ridge .fiber{stroke-dashoffset:0}
+.ridge text{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;fill:rgba(245,245,245,.6)}
+.ridge .mi{fill:var(--red-hot);font-size:11px;font-weight:700}
+
+/* full-bleed hold photo */
+.fullphoto{position:relative;overflow:hidden}
+.fullphoto img{width:100%;height:min(92vh,860px);object-fit:cover;display:block;transform:scale(1.08);transition:transform 6s ease}
+.fullphoto.on img{transform:scale(1)}
+.fullphoto .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,14,14,.55),transparent 30%,transparent 62%,rgba(14,14,14,.92))}
+.fullphoto .cap{position:absolute;left:0;right:0;bottom:0;padding:0 0 clamp(28px,5vw,56px)}
+.fullphoto .cap h2{max-width:16ch}
+.fullphoto .cap .mono{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--yellow)}
 .scrub-stick{position:sticky;top:0;height:100vh;overflow:hidden}
 .scrub-stick video,.scrub-stick .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%}
 .scrub-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,14,14,.55) 0%,rgba(14,14,14,.12) 38%,rgba(14,14,14,.62) 100%)}
@@ -245,6 +331,18 @@ h2{margin-bottom:18px}
 .masonry figure{margin-bottom:12px}
 .masonry img{max-height:62vh;object-fit:cover}
 .masonry figcaption{opacity:1;padding:34px 14px 12px}
+.receipt{width:104px;top:calc(14px + 92px);bottom:auto;right:var(--gut)}
+.receipt figcaption{font-size:7.5px;line-height:1.45}
+.receipt figcaption b{font-size:8px}
+.hud{top:calc(14px + 84px);left:var(--gut);font-size:9px;line-height:1.9}
+.hud svg{width:150px}
+.hud .tc{font-size:12px}
+.sndbtn{left:var(--gut);bottom:16px;padding:6px 9px}
+.strip .row{grid-template-columns:repeat(3,1fr)}
+.strip span{font-size:8px;left:6px;bottom:5px}
+.ltbx .pv,.ltbx .nx{width:38px;height:38px}
+.fullphoto img{height:70vh}
+.paradise .photocap{right:var(--gut)}
 .paradise .in{padding-top:72px;padding-bottom:72px}
 .paradise .mono-row{gap:18px 26px}
 .slab .in{padding:72px 0}
@@ -295,6 +393,11 @@ function layout({slug,title,desc,body,active}) {
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://bannisterderik-tech.github.io/dudleys-excavating/assets/og.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://bannisterderik-tech.github.io/dudleys-excavating/assets/og.jpg">
+${slug==="index"?`<link rel="preload" as="image" href="/world/assets/still_1.jpg">`:""}
 <meta name="theme-color" content="#0e0e0e">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230e0e0e'/%3E%3Ctext x='32' y='44' font-family='Arial Black,sans-serif' font-size='30' font-weight='900' fill='%23c1272d' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -342,6 +445,27 @@ navEl.addEventListener('click',e=>{if(e.target.closest('a')){navEl.classList.rem
   document.body.classList.remove('menu-open');burger.setAttribute('aria-expanded','false');}});
 const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('on')),{threshold:.04,rootMargin:'0px 0px -6% 0px'});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+// jobsite projector: click any gallery frame -> full-bleed
+(()=>{const figs=[...document.querySelectorAll('.masonry figure')];if(!figs.length)return;
+  const box=document.createElement('div');box.className='ltbx';
+  box.innerHTML='<button class="x" aria-label="close">×</button><button class="pv" aria-label="previous">←</button><img alt=""><figcaption></figcaption><button class="nx" aria-label="next">→</button>';
+  document.body.appendChild(box);
+  const im=box.querySelector('img'),cap=box.querySelector('figcaption');let cur=0;
+  function vis(){return figs.filter(f=>f.offsetParent!==null);}
+  function show(i){const v=vis();if(!v.length)return;cur=(i+v.length)%v.length;const f=v[cur];
+    im.src=f.querySelector('img').src;im.alt=f.querySelector('img').alt;
+    const c=f.querySelector('figcaption');const n=(cur+1)+' / '+v.length;
+    cap.innerHTML='<b>'+n+'</b>'+(c?c.textContent:'');box.classList.add('open');document.body.classList.add('menu-open');}
+  function hide(){box.classList.remove('open');document.body.classList.remove('menu-open');}
+  document.addEventListener('click',e=>{const f=e.target.closest('.masonry figure');
+    if(f){const v=vis();show(v.indexOf(f));return;}});
+  box.querySelector('.x').addEventListener('click',e=>{e.stopPropagation();hide();});
+  box.querySelector('.pv').addEventListener('click',e=>{e.stopPropagation();show(cur-1);});
+  box.querySelector('.nx').addEventListener('click',e=>{e.stopPropagation();show(cur+1);});
+  box.addEventListener('click',e=>{if(e.target===box||e.target===im)hide();});
+  addEventListener('keydown',e=>{if(!box.classList.contains('open'))return;
+    if(e.key==='Escape')hide();if(e.key==='ArrowLeft')show(cur-1);if(e.key==='ArrowRight')show(cur+1);});
+})();
 </script>
 </body>
 </html>`;
@@ -369,8 +493,17 @@ const paradiseBand = (big=false) => `
       <div><b>${paradise.yearsTotal} yr</b><span>Project length</span></div>
       <div><b>AT&amp;T</b><span>Client</span></div>
     </div>
+    <svg class="ridge" viewBox="0 0 520 96" aria-hidden="true">
+      <polyline class="terrain" points="0,58 40,46 78,52 120,30 168,42 210,24 258,38 300,20 348,34 396,26 444,40 484,32 520,44"/>
+      <path class="fiber" d="M0 74 C 90 70, 170 78, 260 72 S 430 76, 520 70"/>
+      <text x="300" y="12">Paradise ridge</text>
+      <text class="mi" x="0" y="94">0 mi</text>
+      <text class="mi" x="482" y="94">${paradise.miles} mi</text>
+      <text x="212" y="94" >underground · fireproof</text>
+    </svg>
     ${big?"":`<p style="margin-top:34px"><a class="btn ghost" href="/paradise-fiber/">Read the Paradise job →</a></p>`}
   </div>
+  <span class="photocap">Real frame · Dudley&rsquo;s crew fusing conduit in the burn scar</span>
 </section>`;
 
 function svcCard(href,img,tab,title,text){
@@ -492,13 +625,36 @@ body:`
         <a class="btn ghost" href="/contact/">Get a quote →</a>
       </div>
     </div>
-    <div class="rail" id="rail" aria-hidden="true">
+    <figure class="receipt" id="receipt"><img id="receiptImg" src="" alt=""><figcaption><b>This shot · real crew</b><span id="receiptCap"></span></figcaption></figure>
+    <div class="hud" id="hud">
+      <div class="tc" id="hudTc">00:00.0</div>
+      <div>Rig <em>· Vermeer D23x30DR S3</em></div>
+      <div>Ground <em id="hudGround">· clay</em></div>
+      <div>Surface <em>· never opened</em></div>
+      <div>40 mi <em>· under Paradise</em></div>
+      <svg width="190" height="52" viewBox="0 0 190 52">
+        <line class="dirt" x1="0" y1="10" x2="190" y2="10"/>
+        <path class="borepath" d="M6 10 C 40 42, 150 42, 184 10"/>
+        <circle class="head" id="hudHead" r="3.5" cx="6" cy="10"/>
+      </svg>
+    </div>
+    <div class="rail" id="rail">
       <i></i><i></i><i></i><i></i><i></i><i></i>
       <b id="railLabel">01 · The road</b>
     </div>
+    <button class="sndbtn" id="sndBtn" aria-pressed="false" aria-label="jobsite audio">Audio</button>
     <div class="scrub-hint" id="scrubHint"><span>Scroll to fly</span><i></i></div>
   </div>
 </section>
+
+<section class="strip" aria-label="Chapters of the flight"><div class="row" id="strip">
+  <a data-j="0"><img src="/world/assets/still_1.jpg" alt="The road" loading="lazy"><span><b>01</b>The road</span></a>
+  <a data-j="1"><img src="/world/assets/still_2.jpg" alt="The cut" loading="lazy"><span><b>02</b>The cut</span></a>
+  <a data-j="2"><img src="/world/assets/still_3.jpg" alt="The bore" loading="lazy"><span><b>03</b>The bore</span></a>
+  <a data-j="3"><img src="/world/assets/still_4.jpg" alt="The line" loading="lazy"><span><b>04</b>The line</span></a>
+  <a data-j="4"><img src="/world/assets/still_5.jpg" alt="The mat" loading="lazy"><span><b>05</b>The mat</span></a>
+  <a data-j="5"><img src="/world/assets/still_6.jpg" alt="Roll home" loading="lazy"><span><b>06</b>Roll home</span></a>
+</div></section>
 
 <section class="sec"><div class="wrap">
   <span class="kick rv">What we do</span>
@@ -574,16 +730,88 @@ ${paradiseBand()}
   const SC=[[0,.119],[.168,.287],[.337,.495],[.545,.663],[.713,.832],[.881,1]];
   const NAMES=['01 · The road','02 · The cut','03 · The bore','04 · The line','05 · The mat','06 · Roll home'];
   const rail=document.getElementById('rail'),railLabel=document.getElementById('railLabel'),pips=[...rail.querySelectorAll('i')];
-  let lastScene=-1;
+  const receipt=document.getElementById('receipt'),rImg=document.getElementById('receiptImg'),rCap=document.getElementById('receiptCap');
+  const hud=document.getElementById('hud'),hudTc=document.getElementById('hudTc'),hudGround=document.getElementById('hudGround'),hudHead=document.getElementById('hudHead');
+  const RPH=[
+    ["${P("a004537b-0195-44d4-9fe7-1081749ff5ee.jpg")}","Rig walking the shoulder between shots"],
+    ["${P("Untitled-1.jpg")}","Rock cut with the excavator — plates ready"],
+    ["${P("80144252-8a61-4e2b-be71-811a5ea9d846.jpg")}","Bore rig on the highway shoulder, first light"],
+    ["${P("60c82a06-8321-44e5-b403-a7b5255d25b0.jpg")}","Fusion weld on the line, burn-scar timber behind"],
+    ["${P("0c587916-7d9a-4a63-9daa-3ae3177b74ba.jpg")}","Double-drum roller on a patch set"],
+    ["${P("55c6ea23-532c-424f-b29b-2cc15e39013f.jpg")}","Cleanup pass — leave it better than we found it"]];
+  // camera settles mid-dive, whips the stitches (ported from the world engine)
+  const linger=function(x,L){var c=x-0.5;return (1-L)*x+L*(4*c*c*c+0.5);};
+  function warp(p){for(var i=0;i<6;i++){var a=SC[i][0],b=SC[i][1];if(p>=a&&p<=b){var x=(p-a)/(b-a);return a+linger(x,0.5)*(b-a);}}return p;}
+  let lastScene=-1,lastP=0,lastT=0,vel=0;
+  // ---- jobsite audio: procedural, default off ----
+  const sndBtn=document.getElementById('sndBtn');
+  let AC=null,dG=null,wG=null,wO=null,clkBuf=null,sndOn=false;
+  function initAudio(){if(AC)return;AC=new (window.AudioContext||window.webkitAudioContext)();
+    var len=AC.sampleRate*2,buf=AC.createBuffer(1,len,AC.sampleRate),d=buf.getChannelData(0),last=0;
+    for(var i=0;i<len;i++){var w=Math.random()*2-1;last=(last+0.02*w)/1.02;d[i]=last*3.5;}
+    var src=AC.createBufferSource();src.buffer=buf;src.loop=true;
+    var lp=AC.createBiquadFilter();lp.type='lowpass';lp.frequency.value=110;lp.Q.value=0.8;
+    dG=AC.createGain();dG.gain.value=0;src.connect(lp).connect(dG).connect(AC.destination);src.start();
+    wO=AC.createOscillator();wO.type='sawtooth';wO.frequency.value=1150;
+    var bp=AC.createBiquadFilter();bp.type='bandpass';bp.frequency.value=1250;bp.Q.value=9;
+    wG=AC.createGain();wG.gain.value=0;wO.connect(bp).connect(wG).connect(AC.destination);wO.start();
+    var cl=AC.sampleRate*0.04;clkBuf=AC.createBuffer(1,cl,AC.sampleRate);var cd=clkBuf.getChannelData(0);
+    for(var j=0;j<cl;j++){cd[j]=(Math.random()*2-1)*Math.pow(1-j/cl,3);}
+  }
+  function click(freq){if(!AC||!sndOn)return;var s2=AC.createBufferSource();s2.buffer=clkBuf;
+    var f=AC.createBiquadFilter();f.type='bandpass';f.frequency.value=freq||1900;f.Q.value=2.5;
+    var g=AC.createGain();g.gain.value=0.5;s2.connect(f).connect(g).connect(AC.destination);s2.start();}
+  sndBtn.addEventListener('click',function(){initAudio();AC.resume();sndOn=!sndOn;
+    sndBtn.classList.toggle('on',sndOn);sndBtn.setAttribute('aria-pressed',sndOn);
+    if(!sndOn){dG.gain.setTargetAtTime(0,AC.currentTime,0.1);wG.gain.setTargetAtTime(0,AC.currentTime,0.1);}else{click(1400);}});
+  document.addEventListener('visibilitychange',function(){if(AC&&document.hidden){sndOn=false;sndBtn.classList.remove('on');dG.gain.value=0;wG.gain.value=0;}});
+  // ---- chapter jumps: pips, keys 1-6, filmstrip ----
+  function jumpTo(i){var r=sec.getBoundingClientRect(),top=r.top+scrollY,total=r.height-innerHeight;
+    var tp=SC[i][0]+(SC[i][1]-SC[i][0])*0.45;
+    scrollTo({top:Math.round(top+total*tp),behavior:'smooth'});}
+  pips.forEach(function(el,i){el.addEventListener('click',function(e){e.stopPropagation();jumpTo(i);});});
+  addEventListener('keydown',function(e){var k=+e.key;
+    if(k>=1&&k<=6&&!e.metaKey&&!e.ctrlKey&&!e.altKey&&!/INPUT|TEXTAREA/.test(document.activeElement.tagName))jumpTo(k-1);});
+  var strip=document.getElementById('strip');
+  if(strip)strip.addEventListener('click',function(e){var a=e.target.closest('a[data-j]');if(a)jumpTo(+a.dataset.j);});
+  // ---- rail jog: drag to walk the shot ----
+  var jogging=false,jx=0;
+  rail.addEventListener('pointerdown',function(e){if(e.target.closest('i'))return;jogging=true;jx=e.clientX;rail.setPointerCapture(e.pointerId);});
+  rail.addEventListener('pointermove',function(e){if(!jogging)return;var dx=e.clientX-jx;jx=e.clientX;
+    var r=sec.getBoundingClientRect(),total=r.height-innerHeight;
+    scrollBy(0,dx/240*(SC[0][1]-SC[0][0])*4*total);});
+  rail.addEventListener('pointerup',function(){jogging=false;});
+  rail.addEventListener('pointercancel',function(){jogging=false;});
+  function fmtTc(t){var m=Math.floor(t/60),ss=(t%60).toFixed(1);return (m<10?'0':'')+m+':'+(ss<10?'0':'')+ss;}
   function onScroll(){
     const r=sec.getBoundingClientRect();
     const total=r.height-innerHeight;
     const p=total>0?Math.min(1,Math.max(0,-r.top/total)):0;
-    if(ready&&vid.duration) seek(p*Math.max(0,vid.duration-0.05));
+    const now=performance.now();
+    if(lastT){var dt=now-lastT;if(dt>0){vel=vel*0.8+Math.min(1,Math.abs(p-lastP)/dt*2600)*0.2;}}
+    lastP=p;lastT=now;
+    if(ready&&vid.duration) seek(warp(p)*Math.max(0,vid.duration-0.05));
     let idx=-1,scene=0;
     SC.forEach(([a,b],i)=>{ if(p>=a) scene=i; const len=b-a; const lo=i===0?0:a+len*.08, hi=i===5?1.01:b-len*.06; if(p>=lo&&p<hi) idx=i; });
     beats.forEach((b,i)=>b.classList.toggle('on',i===idx));
-    if(scene!==lastScene){lastScene=scene;railLabel.textContent=NAMES[scene];pips.forEach((el,i)=>el.classList.toggle('on',i<=scene));}
+    // bore HUD
+    var inBore=p>=SC[2][0]&&p<SC[2][1];
+    hud.classList.toggle('show',inBore);
+    if(inBore){var x=(p-SC[2][0])/(SC[2][1]-SC[2][0]);
+      if(ready)hudTc.textContent=fmtTc(vid.currentTime);
+      hudGround.textContent='· '+(x<0.33?'red clay':x<0.66?'cobble':'granite');
+      hudHead.setAttribute('cx',6+178*x);hudHead.setAttribute('cy',10+24*Math.sin(Math.PI*x));}
+    if(scene!==lastScene){
+      var first=lastScene<0;lastScene=scene;
+      railLabel.textContent=NAMES[scene];pips.forEach((el,i)=>el.classList.toggle('on',i<=scene));
+      rImg.src=RPH[scene][0];rImg.alt=RPH[scene][1];rCap.textContent=RPH[scene][1];
+      receipt.classList.remove('show');void receipt.offsetWidth;
+      setTimeout(function(){receipt.classList.add('show');},first?900:120);
+      if(!first){click(scene===2?2600:1700);if(navigator.vibrate)navigator.vibrate([8,20,8]);}
+    }
+    if(AC&&sndOn){dG.gain.setTargetAtTime(0.02+vel*0.5,AC.currentTime,0.12);
+      wG.gain.setTargetAtTime(inBore?0.015+vel*0.06:0,AC.currentTime,0.18);
+      if(wO)wO.frequency.setTargetAtTime(1050+vel*700,AC.currentTime,0.15);}
     hint.style.opacity=p>0.02?0:1;
   }
   addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);addEventListener('load',onScroll);onScroll();
@@ -615,7 +843,29 @@ ${scrubHero(3,"Service 01 · The flagship","Directional<br>Boring",
       <li>Rock &amp; cobble capable</li><li><b>${paradise.rig}</b> class rigs</li><li>Vacuum potholing</li><li>HDPE fusion on site</li>
     </ul>
   </div>
-  <figure class="rv"><img src="${P("f3a270d4-b715-4035-9683-9f4e000664f5.jpg")}" alt="27 foot 1 inch bore under a finished driveway" loading="lazy"><figcaption>27&nbsp;ft bore · 1&Prime; · surface untouched</figcaption></figure>
+  <figure class="rv pull27" id="pull27"><img src="${P("f3a270d4-b715-4035-9683-9f4e000664f5.jpg")}" alt="27 foot 1 inch bore under a finished driveway" loading="lazy">
+    <span class="hint27">Drag the head under the driveway ↓</span>
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+      <path class="bore" id="borePath" d="M5 62 C 28 88, 72 88, 95 62" pathLength="100" stroke-dashoffset="100" stroke-dasharray="100"/>
+      <circle class="hd" id="boreHead" r="1.6" cx="5" cy="62"/>
+    </svg>
+    <span class="ro" id="boreRo">0 FT · 1&Prime; · SURFACE UNTOUCHED</span>
+    <input type="range" id="boreRange" min="0" max="100" value="0" aria-label="walk the bore head under the driveway">
+  </figure>
+  <script>
+  (()=>{var f=document.getElementById('pull27');if(!f)return;
+    var path=document.getElementById('borePath'),head=document.getElementById('boreHead'),
+        ro=document.getElementById('boreRo'),rng=document.getElementById('boreRange');
+    var L=path.getTotalLength();
+    function set(v){var t=v/100;path.setAttribute('stroke-dashoffset',100-v);
+      var pt=path.getPointAtLength(L*t);head.setAttribute('cx',pt.x);head.setAttribute('cy',pt.y);
+      ro.innerHTML=Math.round(27*t)+' FT · 1&Prime; · SURFACE UNTOUCHED';}
+    rng.addEventListener('input',function(){set(+rng.value);});
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){
+      var v=0,tm=setInterval(function(){v+=2;if(v>=62){clearInterval(tm);}set(v);rng.value=v;},24);io.disconnect();}});},{threshold:.5});
+    io.observe(f);
+  })();
+  </script>
 </div></section>
 
 ${paradiseBand()}
@@ -737,8 +987,8 @@ sections:[
 pages.push({slug:"paradise-fiber",active:"",title:`The Paradise Fiber Rebuild — 40 Miles of Underground Fiber After the Camp Fire | Dudley's Excavating`,
 desc:`How Dudley's Excavating bored 40 miles of underground fiber through red clay, cobble and granite to help rebuild Paradise, CA after the Camp Fire — a 6-year AT&T infrastructure restoration.`,
 body:`
-${scrubHero(6,"Case study · Butte County","The Paradise<br>Job",
-`The Camp Fire erased a town's infrastructure in a day. Putting it back — underground this time — takes years. This is the job our crews have carried since.`,"Directional drill rig at golden hour on the ridge",
+${scrubHero(4,"Case study · Butte County · Camp Fire restoration","The Paradise<br>Job",
+`The Camp Fire erased a town's infrastructure in a day. This is where it went when it came back: <b>underground</b> — ${paradise.miles} miles of fiber, fused into one line and pulled beneath the ridge.`,"Fused fiber line being pulled through a Dudley's bore beneath Paradise",
 `<a class="btn red" href="/directional-boring/">Our boring capability →</a><a class="btn ghost" href="${biz.phoneHref}">Call ${biz.phone}</a>`)}
 
 <section class="sec"><div class="wrap band">
@@ -755,6 +1005,15 @@ ${scrubHero(6,"Case study · Butte County","The Paradise<br>Job",
   </div>
   <figure class="rv"><img src="${P("d159418c-2f4b-4ef1-ae66-7ca10a88a9da.jpg")}" alt="Fused HDPE conduit strung along the roadside ready to pull" loading="lazy"><figcaption>Strung &amp; ready to pull</figcaption></figure>
 </div></section>
+
+<section class="fullphoto rv">
+  <img src="${P("60c82a06-8321-44e5-b403-a7b5255d25b0.jpg")}" alt="Dudley's crew fusion-welding fiber conduit, Camp Fire burn-scar timber behind" loading="lazy">
+  <div class="shade"></div>
+  <div class="cap"><div class="wrap">
+    <span class="mono">Real frame · no stock · Butte County</span>
+    <h2>The next fire doesn&rsquo;t get the plant.</h2>
+  </div></div>
+</section>
 
 <div class="stats rv"><div class="wrap row">
   <div class="stat"><b><i>${paradise.miles}</i> mi</b><span>Underground fiber</span></div>
@@ -876,15 +1135,42 @@ ${pageHero("80144252-8a61-4e2b-be71-811a5ea9d846.jpg","One call does it","Contac
 `Tell us what's in the ground — or what needs to be. We'll help evaluate the site and recommend the right path forward.`,"Dudley's bore rig at sunrise")}
 <section class="sec"><div class="wrap band">
   <div class="rv">
-    <div class="credgrid" style="margin-top:0;grid-template-columns:1fr">
+    <span class="kick">Start the bid sheet</span>
+    <h3 style="margin-bottom:6px">What&rsquo;s the work?</h3>
+    <ul class="chips pick" id="bidSvc">
+      <li data-v="Directional boring">Directional boring</li><li data-v="Excavation">Excavation</li>
+      <li data-v="Utility installation">Utilities</li><li data-v="Paving">Paving</li>
+      <li data-v="Septic">Septic</li><li data-v="Grading">Grading</li>
+      <li data-v="Hauling">Hauling</li><li data-v="Public agency / bid">Public agency</li>
+    </ul>
+    <h3 style="margin:22px 0 6px">Where?</h3>
+    <ul class="chips pick" id="bidCty">
+      <li data-v="Tehama County">Tehama</li><li data-v="Glenn County">Glenn</li>
+      <li data-v="Butte County">Butte</li><li data-v="Shasta County">Shasta</li>
+    </ul>
+    <p class="bidbtn"><a class="btn red" id="bidGo" href="mailto:${biz.email}">Open the email draft →</a></p>
+    <p style="margin-top:10px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--ink-faint)" id="bidPrev">Tap what applies — we&rsquo;ll draft the email for you. Or just call.</p>
+    <div class="credgrid" style="grid-template-columns:1fr;margin-top:34px">
       <div class="cred"><b>Phone — fastest</b><span style="font-family:var(--disp);font-weight:700;font-size:40px;color:var(--ink)"><a href="${biz.phoneHref}">${biz.phone}</a></span></div>
-      <div class="cred"><b>Email</b><span><a href="mailto:${biz.email}" style="color:var(--ink);font-size:19px">${biz.email}</a></span></div>
-      <div class="cred"><b>Yard &amp; office</b><span>209 San Benito Ave<br>Gerber, CA 96035</span></div>
+      <div class="cred"><b>Yard &amp; office</b><span>209 San Benito Ave, Gerber, CA 96035</span></div>
       <div class="cred"><b>Public agencies</b><span>CSLB #${biz.license} · DGS SB #${biz.dgs} · USDOT ${biz.usdot} — bid docs on request.</span></div>
     </div>
   </div>
   <figure class="rv"><img src="${P("f12f27ca-54ff-49e2-ae8a-ee6393f580fc.jpg")}" alt="Directional drill rig working" loading="lazy"><figcaption>Ready when you are</figcaption></figure>
 </div></section>
+<script>
+(()=>{var em='${biz.email}';
+  var go=document.getElementById('bidGo'),prev=document.getElementById('bidPrev');
+  function picked(id){return [].map.call(document.querySelectorAll('#'+id+' li.on'),function(li){return li.dataset.v;});}
+  function upd(){var sv=picked('bidSvc'),ct=picked('bidCty');
+    var subj='Bid request'+(sv.length?': '+sv.join(' + '):'')+(ct.length?' — '+ct.join(', '):'');
+    var body='Job type: '+(sv.join(', ')||'(tell us)')+'%0D%0ALocation: '+(ct.join(', ')||'(tell us)')+'%0D%0ASite address:%0D%0AWhat needs to happen:%0D%0ATimeline:%0D%0A';
+    go.href='mailto:'+em+'?subject='+encodeURIComponent(subj)+'&body='+body;
+    prev.textContent=sv.length||ct.length?('Draft ready — '+subj):'Tap what applies — we\u2019ll draft the email for you. Or just call.';}
+  document.addEventListener('click',function(e){var li=e.target.closest('.chips.pick li');
+    if(!li)return;li.classList.toggle('on');upd();});
+})();
+</script>
 `});
 
 /* --------------------------------- emit --------------------------------- */
