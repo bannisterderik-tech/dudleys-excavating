@@ -18,13 +18,13 @@ const basify = h => BASE ? h
 
 /* ---------------------------------- CSS ---------------------------------- */
 const css = `
-:root{--bg:#0e0e0e;--panel:#161616;--panel2:#1d1c1a;--ink:#f5f5f5;--ink-soft:rgba(245,245,245,.68);
---ink-faint:rgba(245,245,245,.45);--red:#c1272d;--red-hot:#e03a40;--line:rgba(245,245,245,.1);
+:root{--bg:#0e0e0e;--panel:#161616;--panel2:#1d1c1a;--ink:#f5f5f5;--ink-soft:rgba(245,245,245,.82);
+--ink-faint:rgba(245,245,245,.6);--red:#c1272d;--red-hot:#e03a40;--line:rgba(245,245,245,.1);
 --yellow:#d7a21a;--disp:'Barlow Condensed',Impact,sans-serif;--body:'Barlow',system-ui,sans-serif;
 --mono:ui-monospace,'SF Mono',Menlo,monospace}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:500;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 ::selection{background:var(--red);color:#fff}
@@ -125,7 +125,7 @@ h1,h2{font-family:var(--disp);font-weight:700;text-transform:uppercase;line-heig
 h1{font-size:clamp(52px,9vw,124px)}
 h2{font-size:clamp(36px,4.6vw,62px);margin-bottom:22px}
 h3{font-family:var(--disp);font-weight:600;text-transform:uppercase;font-size:clamp(21px,2vw,26px);letter-spacing:.02em}
-.lede{font-size:clamp(16px,1.35vw,18.5px);line-height:1.65;color:var(--ink-soft);max-width:640px;text-wrap:pretty}
+.lede{font-size:clamp(16px,1.35vw,18.5px);font-weight:500;line-height:1.65;color:var(--ink-soft);max-width:640px;text-wrap:pretty}
 .lede b{color:var(--ink)}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
 .chips li{list-style:none;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
@@ -253,7 +253,7 @@ text-transform:uppercase;padding:14px 26px;border-radius:2px;transition:.2s;bord
 font-size:15px;letter-spacing:.05em;text-transform:uppercase;padding:9px 16px}
 @media(max-width:860px){.band{grid-template-columns:1fr}}
 .checks{margin-top:22px;display:grid;gap:11px}
-.checks li{list-style:none;position:relative;padding-left:28px;font-size:15.5px;line-height:1.55;color:var(--ink-soft)}
+.checks li{list-style:none;position:relative;padding-left:28px;font-size:15.5px;font-weight:500;line-height:1.55;color:var(--ink-soft)}
 .checks li::before{content:"//";position:absolute;left:0;top:.2em;font-family:var(--mono);color:var(--red-hot);font-size:12px}
 .checks li b{color:var(--ink)}
 
