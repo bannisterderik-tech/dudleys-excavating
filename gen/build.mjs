@@ -200,7 +200,7 @@ text-transform:uppercase;line-height:2.1;opacity:0;transform:translateY(10px);tr
 .bigline{font-family:var(--disp);font-weight:700;text-transform:uppercase;line-height:.94;font-size:clamp(44px,7.6vw,104px)}
 .bigline em{font-style:normal;color:var(--red-hot)}
 .beat p{margin-top:16px;font-size:clamp(15px,1.3vw,18px);line-height:1.55;color:rgba(245,245,245,.88);max-width:560px;text-shadow:0 1px 14px rgba(0,0,0,.9)}
-.beat .kick,.pbeat .kick{background:rgba(14,14,14,.62);padding:8px 14px;font-size:12px;color:#ff5a60;text-shadow:0 1px 6px rgba(0,0,0,.9);border-radius:2px}
+.beat .kick,.pbeat .kick,.phero .kick{background:rgba(14,14,14,.62);padding:8px 14px;font-size:12px;color:#ff5a60;text-shadow:0 1px 6px rgba(0,0,0,.9);border-radius:2px}
 .scrub-hint{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;
 font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);transition:opacity .4s}
 .scrub-hint i{width:20px;height:32px;border-radius:11px;border:2px solid rgba(245,245,245,.28);position:relative}
