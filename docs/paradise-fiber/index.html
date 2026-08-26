@@ -366,11 +366,11 @@ footer .cols{grid-template-columns:1fr;gap:26px;margin-bottom:30px}
 }
 
 /* claude chat widget */
-.cw-fab{position:fixed;left:18px;bottom:18px;z-index:150;width:56px;height:56px;border-radius:50%;border:0;cursor:pointer;
+.cw-fab{position:fixed;right:18px;bottom:18px;z-index:150;width:56px;height:56px;border-radius:50%;border:0;cursor:pointer;
 background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(0,0,0,.5);transition:.25s}
 .cw-fab:hover{background:var(--red-hot);transform:translateY(-2px)}
 .cw-fab svg{width:26px;height:26px}
-.cw{position:fixed;left:18px;bottom:86px;z-index:151;width:min(400px,calc(100vw - 36px));max-height:min(640px,calc(100dvh - 110px));
+.cw{position:fixed;right:18px;bottom:86px;z-index:151;width:min(400px,calc(100vw - 36px));max-height:min(640px,calc(100dvh - 110px));
 display:none;flex-direction:column;background:#141414;border:1px solid var(--line);border-top:2px solid var(--red);border-radius:6px;
 box-shadow:0 30px 80px rgba(0,0,0,.6);overflow:hidden}
 .cw.open{display:flex}
@@ -401,7 +401,7 @@ font-family:var(--body);font-weight:500;font-size:13.5px;padding:8px 14px;cursor
 .cw-row button:hover{background:var(--red-hot)}
 .cw-pow{margin-top:9px;text-align:center;font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)}
 .cw-pow a{color:var(--ink-soft);text-decoration:underline}
-@media(max-width:700px){.cw{left:12px;right:12px;width:auto;bottom:80px}.cw-fab{left:14px;bottom:14px}}
+@media(max-width:700px){.cw{left:12px;right:12px;width:auto;bottom:80px}.cw-fab{right:14px;bottom:14px}}
 
 /* reveal on scroll */
 .rv{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}
