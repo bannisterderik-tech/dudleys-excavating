@@ -129,7 +129,7 @@ color:var(--ink-soft);border:1px solid var(--line);padding:7px 12px;border-radiu
 .chips li b{color:var(--red-hot);font-weight:600}
 
 /* hero scrub */
-.scrub{position:relative;height:880vh}
+.scrub{position:relative;height:100svh;min-height:640px}
 .rail{position:absolute;right:clamp(18px,4vw,56px);bottom:26px;display:flex;align-items:center;gap:2px;z-index:4;touch-action:none;cursor:ew-resize}
 .rail i{width:22px;height:14px;position:relative;cursor:pointer}
 .rail i::after{content:"";position:absolute;left:0;right:2px;top:6px;height:2px;background:rgba(245,245,245,.22);transition:background .3s}
@@ -308,7 +308,7 @@ background:linear-gradient(0deg,rgba(0,0,0,.82),transparent);opacity:0;transitio
 .masonry figure:hover figcaption{opacity:1}
 
 /* interior scrub hero */
-.pscrub{height:260vh}
+.pscrub{height:88svh;min-height:560px}
 .pbeat{position:absolute;left:clamp(18px,5vw,72px);bottom:clamp(64px,12vh,130px);max-width:min(820px,92vw)}
 .pbeat h1{font-size:clamp(44px,7.4vw,104px);text-shadow:0 4px 40px rgba(0,0,0,.85)}
 .pbeat .lede{color:rgba(245,245,245,.9);text-shadow:0 1px 14px rgba(0,0,0,.9)}
@@ -343,7 +343,6 @@ footer .lic{border-top:1px solid var(--line);padding-top:22px;font-family:var(--
 h2{margin-bottom:18px}
 .lede{font-size:16.5px}
 .beat,.pbeat{left:var(--gut);right:var(--gut);max-width:none;bottom:clamp(56px,10vh,110px)}
-.scrub{height:620vh}
 .rail{right:var(--gut);bottom:18px}
 .rail b{display:none}
 .beat p{font-size:15px}
@@ -581,7 +580,7 @@ function scrubHero(clipN,kick,title,lede,alt,ctas){
   const c=ctas||`<a class="btn red" href="/contact/#form">Request a call →</a><a class="btn ghost" href="/projects/">See the work →</a>`;
   return `<section class="scrub pscrub" data-clip="${clipN}"><div class="scrub-stick">
   <img class="poster" src="/world/assets/still_${clipN}.jpg" alt="${esc(alt||"")}">
-  <video muted playsinline preload="auto" style="opacity:0"></video>
+  <video muted playsinline autoplay loop preload="auto" style="opacity:0"></video>
   <div class="scrub-shade"></div>
   <div class="pbeat"><span class="kick">${kick}</span><h1>${title}</h1>
   <p class="lede" style="margin-top:18px">${lede}</p>
@@ -592,24 +591,14 @@ function scrubHero(clipN,kick,title,lede,alt,ctas){
   (()=>{
     const sec=document.currentScript.previousElementSibling.tagName==='SECTION'?document.currentScript.previousElementSibling:document.querySelector('.pscrub');
     const vid=sec.querySelector('video'),poster=sec.querySelector('.poster'),hint=sec.querySelector('.scrub-hint');
-    const n=sec.dataset.clip;
     const phone=matchMedia('(max-width:860px),(pointer:coarse)').matches;
-    const src='/world/assets/dive_'+n+(phone?'_m':'')+'.mp4';
-    let ready=false,busy=false,pend=null,wd=null;
-    vid.addEventListener('seeked',()=>{clearTimeout(wd);busy=false;
-      if(pend!=null){const p2=pend;pend=null;seek(p2);}});
-    function seek(t){if(!ready)return;
-      if(Math.abs(vid.currentTime-t)<0.02)return;
-      if(busy){pend=t;return;}
-      busy=true;vid.currentTime=t;wd=setTimeout(()=>{busy=false;},300);}
-    fetch(src,{method:'HEAD'}).then(r=>{if(!r.ok)return;vid.src=src;vid.load();
-      vid.addEventListener('loadeddata',()=>{ready=true;vid.style.opacity=1;poster.style.opacity=0;},{once:true});}).catch(()=>{});
-    addEventListener('touchstart',()=>{if(vid.src)vid.play().then(()=>vid.pause()).catch(()=>{});},{once:true,passive:true});
-    function onS(){const r=sec.getBoundingClientRect();
-      const p=Math.min(1,Math.max(0,-r.top/(r.height-innerHeight)));
-      if(ready&&vid.duration)seek(p*Math.max(0,vid.duration-0.05));
-      hint.style.opacity=p>0.04?0:1;}
-    addEventListener('scroll',onS,{passive:true});onS();
+    vid.src='/world/assets/dive_'+sec.dataset.clip+(phone?'_m':'')+'.mp4';
+    vid.addEventListener('loadeddata',()=>{vid.style.opacity=1;poster.style.opacity=0;},{once:true});
+    const tryPlay=()=>vid.play().catch(()=>{});
+    addEventListener('touchstart',tryPlay,{once:true,passive:true});
+    document.addEventListener('visibilitychange',()=>{if(!document.hidden)tryPlay();});
+    new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting?tryPlay():vid.pause()),{threshold:.1}).observe(sec);
+    addEventListener('scroll',()=>{hint.style.opacity=scrollY>60?0:1;},{passive:true});
   })();
   </script>`;
 }
@@ -634,28 +623,10 @@ desc:`Three generations of underground construction in Northern California. Dire
 body:`
 <section class="scrub" id="scrub">
   <div class="scrub-stick">
-    <img class="poster" id="scrubPoster" src="/world/assets/still_1.jpg" alt="A Northern California mountain road — the start of the Dudley's flight">
-    <video id="scrubVid" muted playsinline preload="auto" style="opacity:0"></video>
+    <img class="poster" id="scrubPoster" src="/world/assets/still_3.jpg" alt="Inside a Dudley's directional bore — the flagship service">
+    <video id="scrubVid" muted playsinline autoplay loop preload="auto" style="opacity:0"></video>
     <div class="scrub-shade"></div>
     <div class="beat" data-b="0">
-      <span class="kick">Northern California · Est. ${biz.founded}</span>
-      <div class="bigline">Three generations<br>in the ground.</div>
-      <p>Scroll. You're about to fly a real Dudley's jobsite — road, cut, bore, line, mat, home.</p>
-      <div class="hero-ctas">
-        <a class="btn red" href="/contact/#form">Request a call →</a>
-        <a class="btn ghost" href="/about/">The Dudley story →</a>
-      </div>
-    </div>
-    <div class="beat" data-b="1">
-      <span class="kick">Excavation</span>
-      <div class="bigline">We don't stop<br><em>at rock.</em></div>
-      <p>Granite on the grades, hardpan in the valley. We cut it, plate it, and keep the road open.</p>
-      <div class="hero-ctas">
-        <a class="btn red" href="/excavation/">Excavation →</a>
-        <a class="btn ghost" href="/contact/#form">Request a call</a>
-      </div>
-    </div>
-    <div class="beat" data-b="2">
       <span class="kick">Horizontal directional drilling · The flagship</span>
       <div class="bigline">Under streets. Highways.<br><em>Streams. Railroads.</em></div>
       <p>You're inside a bore. The road above never closes — ${paradise.miles} miles of this went under Paradise alone.</p>
@@ -664,7 +635,7 @@ body:`
         <a class="btn ghost" href="/paradise-fiber/">The Paradise job →</a>
       </div>
     </div>
-    <div class="beat" data-b="3">
+    <div class="beat" data-b="1">
       <span class="kick">Utility installation</span>
       <div class="bigline">One continuous<br><em>line.</em></div>
       <p>Gas, water, sewer, power, fiber — fused on site and pulled back through the bore. No joints in the ground.</p>
@@ -673,13 +644,31 @@ body:`
         <a class="btn ghost" href="/contact/#form">Request a call</a>
       </div>
     </div>
-    <div class="beat" data-b="4">
+    <div class="beat" data-b="2">
+      <span class="kick">Excavation</span>
+      <div class="bigline">We don't stop<br><em>at rock.</em></div>
+      <p>Granite on the grades, hardpan in the valley. We cut it, plate it, and keep the road open.</p>
+      <div class="hero-ctas">
+        <a class="btn red" href="/excavation/">Excavation →</a>
+        <a class="btn ghost" href="/contact/#form">Request a call</a>
+      </div>
+    </div>
+    <div class="beat" data-b="3">
       <span class="kick">Paving</span>
       <div class="bigline">Finish like we were<br><em>never there.</em></div>
       <p>The outfit that opened the ground closes it — grade, base, mat, rolled to agency spec. One crew.</p>
       <div class="hero-ctas">
         <a class="btn red" href="/paving/">Paving →</a>
         <a class="btn ghost" href="/chip-seal/">Chip seal →</a>
+      </div>
+    </div>
+    <div class="beat" data-b="4">
+      <span class="kick">Northern California · Est. ${biz.founded}</span>
+      <div class="bigline">Three generations<br>in the ground.</div>
+      <p>Founded by ${biz.founder}. Still run by Dudleys. Every frame of this film is their real work.</p>
+      <div class="hero-ctas">
+        <a class="btn red" href="/contact/#form">Request a call →</a>
+        <a class="btn ghost" href="/about/">The Dudley story →</a>
       </div>
     </div>
     <div class="beat" data-b="5">
@@ -705,10 +694,10 @@ body:`
     </div>
     <div class="rail" id="rail">
       <i></i><i></i><i></i><i></i><i></i><i></i>
-      <b id="railLabel">01 · The road</b>
+      <b id="railLabel">01 · The bore</b>
     </div>
     <button class="sndbtn" id="sndBtn" aria-pressed="false" aria-label="jobsite audio">Audio</button>
-    <div class="scrub-hint" id="scrubHint"><span>Scroll to fly</span><i></i></div>
+    <div class="scrub-hint" id="scrubHint"><span>Scroll</span><i></i></div>
   </div>
 </section>
 
@@ -776,40 +765,26 @@ ${paradiseBand()}
   const sec=document.getElementById('scrub'),vid=document.getElementById('scrubVid'),
         poster=document.getElementById('scrubPoster'),hint=document.getElementById('scrubHint'),
         beats=[...document.querySelectorAll('.beat')];
-  const src='/assets/flight.mp4';
-  let ready=false,seekBusy=false,pend=null;
   const phone=matchMedia('(max-width:860px),(pointer:coarse)').matches;
-  const useSrc=phone?'/assets/flight_m.mp4':src;   // 480p tight-GOP reel for phones
-  fetch(useSrc,{method:'HEAD'}).then(r=>{if(!r.ok)return;
-    vid.src=useSrc;vid.load();
-    vid.addEventListener('loadeddata',()=>{ready=true;vid.style.opacity=1;poster.style.opacity=0;},{once:true});
-  }).catch(()=>{});
-  // iOS: prime the decoder on first touch so seeks paint
-  addEventListener('touchstart',()=>{if(vid.src)vid.play().then(()=>vid.pause()).catch(()=>{});},{once:true,passive:true});
-  let watchdog=null;
-  vid.addEventListener('seeked',()=>{clearTimeout(watchdog);seekBusy=false;
-    if(pend!=null){const p=pend;pend=null;seek(p);}});
-  function seek(t){ if(!ready)return;
-    if(Math.abs(vid.currentTime-t)<0.02)return;   // same-frame seek never fires 'seeked'
-    if(seekBusy){pend=t;return;}
-    seekBusy=true;vid.currentTime=t;
-    watchdog=setTimeout(()=>{seekBusy=false;},300); // decoder hiccup safety
-  }
-  // scene windows as fractions of the 50.8s reel: six dives, connectors run clean between them
-  const SC=[[0,.119],[.168,.287],[.337,.495],[.545,.663],[.713,.832],[.881,1]];
-  const NAMES=['01 · The road','02 · The cut','03 · The bore','04 · The line','05 · The mat','06 · Roll home'];
+  vid.src=phone?'/assets/film_m.mp4':'/assets/film.mp4';
+  vid.addEventListener('loadeddata',function(){vid.style.opacity=1;poster.style.opacity=0;},{once:true});
+  var userPaused=false;
+  function tryPlay(){if(!userPaused)vid.play().catch(function(){});}
+  addEventListener('touchstart',tryPlay,{once:true,passive:true});
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)tryPlay();});
+  new IntersectionObserver(function(es){es.forEach(function(e){e.isIntersecting?tryPlay():vid.pause();});},{threshold:.1}).observe(sec);
+  // scene windows in seconds on the 50s film: bore, line, cut, mat, road, home
+  const SC=[[0,8.0],[10.4,16.4],[18.8,24.8],[27.2,33.2],[35.6,41.6],[44.0,50.1]];
+  const NAMES=['01 · The bore','02 · The line','03 · The cut','04 · The mat','05 · The road','06 · Roll home'];
   const rail=document.getElementById('rail'),railLabel=document.getElementById('railLabel'),pips=[...rail.querySelectorAll('i')];
   const hud=document.getElementById('hud'),hudTc=document.getElementById('hudTc'),hudGround=document.getElementById('hudGround'),hudHead=document.getElementById('hudHead');
-  // camera settles mid-dive, whips the stitches (ported from the world engine)
-  const linger=function(x,L){var c=x-0.5;return (1-L)*x+L*(4*c*c*c+0.5);};
-  function warp(p){for(var i=0;i<6;i++){var a=SC[i][0],b=SC[i][1];if(p>=a&&p<=b){var x=(p-a)/(b-a);return a+linger(x,0.5)*(b-a);}}return p;}
-  let lastScene=-1,lastP=0,lastT=0,vel=0;
+  let lastScene=-1;
   // ---- jobsite audio: procedural, default off ----
   const sndBtn=document.getElementById('sndBtn');
   let AC=null,dG=null,wG=null,wO=null,clkBuf=null,sndOn=false;
   function initAudio(){if(AC)return;AC=new (window.AudioContext||window.webkitAudioContext)();
     var len=AC.sampleRate*2,buf=AC.createBuffer(1,len,AC.sampleRate),d=buf.getChannelData(0),last=0;
-    for(var i=0;i<len;i++){var w=Math.random()*2-1;last=(last+0.02*w)/1.02;d[i]=last*3.5;}
+    for(var i2=0;i2<len;i2++){var w=Math.random()*2-1;last=(last+0.02*w)/1.02;d[i2]=last*3.5;}
     var src=AC.createBufferSource();src.buffer=buf;src.loop=true;
     var lp=AC.createBiquadFilter();lp.type='lowpass';lp.frequency.value=110;lp.Q.value=0.8;
     dG=AC.createGain();dG.gain.value=0;src.connect(lp).connect(dG).connect(AC.destination);src.start();
@@ -817,7 +792,7 @@ ${paradiseBand()}
     var bp=AC.createBiquadFilter();bp.type='bandpass';bp.frequency.value=1250;bp.Q.value=9;
     wG=AC.createGain();wG.gain.value=0;wO.connect(bp).connect(wG).connect(AC.destination);wO.start();
     var cl=AC.sampleRate*0.04;clkBuf=AC.createBuffer(1,cl,AC.sampleRate);var cd=clkBuf.getChannelData(0);
-    for(var j=0;j<cl;j++){cd[j]=(Math.random()*2-1)*Math.pow(1-j/cl,3);}
+    for(var j2=0;j2<cl;j2++){cd[j2]=(Math.random()*2-1)*Math.pow(1-j2/cl,3);}
   }
   function click(freq){if(!AC||!sndOn)return;var s2=AC.createBufferSource();s2.buffer=clkBuf;
     var f=AC.createBiquadFilter();f.type='bandpass';f.frequency.value=freq||1900;f.Q.value=2.5;
@@ -826,51 +801,39 @@ ${paradiseBand()}
     sndBtn.classList.toggle('on',sndOn);sndBtn.setAttribute('aria-pressed',sndOn);
     if(!sndOn){dG.gain.setTargetAtTime(0,AC.currentTime,0.1);wG.gain.setTargetAtTime(0,AC.currentTime,0.1);}else{click(1400);}});
   document.addEventListener('visibilitychange',function(){if(AC&&document.hidden){sndOn=false;sndBtn.classList.remove('on');dG.gain.value=0;wG.gain.value=0;}});
-  // ---- chapter jumps: pips, keys 1-6 ----
-  function jumpTo(i){var r=sec.getBoundingClientRect(),top=r.top+scrollY,total=r.height-innerHeight;
-    var tp=SC[i][0]+(SC[i][1]-SC[i][0])*0.45;
-    scrollTo({top:Math.round(top+total*tp),behavior:'smooth'});}
-  pips.forEach(function(el,i){el.addEventListener('click',function(e){e.stopPropagation();jumpTo(i);});});
+  // ---- chapters: pips + keys seek the film ----
+  function jumpTo(i2){vid.currentTime=SC[i2][0]+0.15;tryPlay();}
+  pips.forEach(function(el,i2){el.addEventListener('click',function(e){e.stopPropagation();jumpTo(i2);});});
   addEventListener('keydown',function(e){var k=+e.key;
     if(k>=1&&k<=6&&!e.metaKey&&!e.ctrlKey&&!e.altKey&&!/INPUT|TEXTAREA/.test(document.activeElement.tagName))jumpTo(k-1);});
-  // ---- rail jog: drag to walk the shot ----
-  var jogging=false,jx=0;
-  rail.addEventListener('pointerdown',function(e){if(e.target.closest('i'))return;jogging=true;jx=e.clientX;rail.setPointerCapture(e.pointerId);});
-  rail.addEventListener('pointermove',function(e){if(!jogging)return;var dx=e.clientX-jx;jx=e.clientX;
-    var r=sec.getBoundingClientRect(),total=r.height-innerHeight;
-    scrollBy(0,dx/240*(SC[0][1]-SC[0][0])*4*total);});
-  rail.addEventListener('pointerup',function(){jogging=false;});
-  rail.addEventListener('pointercancel',function(){jogging=false;});
+  // hover a beat -> hold the frame so CTAs stay put
+  beats.forEach(function(b){
+    b.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse'){userPaused=true;vid.pause();}});
+    b.addEventListener('pointerleave',function(e){if(e.pointerType==='mouse'){userPaused=false;tryPlay();}});});
   function fmtTc(t){var m=Math.floor(t/60),ss=(t%60).toFixed(1);return (m<10?'0':'')+m+':'+(ss<10?'0':'')+ss;}
-  function onScroll(){
-    const r=sec.getBoundingClientRect();
-    const total=r.height-innerHeight;
-    const p=total>0?Math.min(1,Math.max(0,-r.top/total)):0;
-    const now=performance.now();
-    if(lastT){var dt=now-lastT;if(dt>0){vel=vel*0.8+Math.min(1,Math.abs(p-lastP)/dt*2600)*0.2;}}
-    lastP=p;lastT=now;
-    if(ready&&vid.duration) seek(warp(p)*Math.max(0,vid.duration-0.05));
+  function onTime(){
+    const t=vid.currentTime;
     let idx=-1,scene=0;
-    SC.forEach(([a,b],i)=>{ if(p>=a) scene=i; const len=b-a; const lo=i===0?0:a+len*.08, hi=i===5?1.01:b-len*.06; if(p>=lo&&p<hi) idx=i; });
-    beats.forEach((b,i)=>b.classList.toggle('on',i===idx));
-    // bore HUD
-    var inBore=p>=SC[2][0]&&p<SC[2][1];
-    hud.classList.toggle('show',inBore);
-    if(inBore){var x=(p-SC[2][0])/(SC[2][1]-SC[2][0]);
-      if(ready)hudTc.textContent=fmtTc(vid.currentTime);
+    SC.forEach(function(w,i2){ if(t>=w[0]) scene=i2; if(t>=w[0]+0.3&&t<w[1]-0.2) idx=i2; });
+    if(t<SC[0][1]) idx=0;
+    beats.forEach(function(b,i2){b.classList.toggle('on',i2===idx);});
+    var inBore=t<SC[0][1];
+    hud.classList.toggle('show',inBore&&!phone);
+    if(inBore){var x=Math.min(1,t/SC[0][1]);
+      hudTc.textContent=fmtTc(t);
       hudGround.textContent='· '+(x<0.33?'red clay':x<0.66?'cobble':'granite');
       hudHead.setAttribute('cx',6+178*x);hudHead.setAttribute('cy',10+24*Math.sin(Math.PI*x));}
     if(scene!==lastScene){
       var first=lastScene<0;lastScene=scene;
-      railLabel.textContent=NAMES[scene];pips.forEach((el,i)=>el.classList.toggle('on',i<=scene));
-      if(!first){click(scene===2?2600:1700);if(navigator.vibrate)navigator.vibrate([8,20,8]);}
+      railLabel.textContent=NAMES[scene];pips.forEach(function(el,i2){el.classList.toggle('on',i2<=scene);});
+      if(!first&&scene!==0){click(1700);}
     }
-    if(AC&&sndOn){dG.gain.setTargetAtTime(0.02+vel*0.5,AC.currentTime,0.12);
-      wG.gain.setTargetAtTime(inBore?0.015+vel*0.06:0,AC.currentTime,0.18);
-      if(wO)wO.frequency.setTargetAtTime(1050+vel*700,AC.currentTime,0.15);}
-    hint.style.opacity=p>0.02?0:1;
+    if(AC&&sndOn){dG.gain.setTargetAtTime(0.05,AC.currentTime,0.2);
+      wG.gain.setTargetAtTime(inBore?0.02:0,AC.currentTime,0.25);}
   }
-  addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);addEventListener('load',onScroll);onScroll();
+  vid.addEventListener('timeupdate',onTime);
+  addEventListener('scroll',function(){hint.style.opacity=scrollY>60?0:1;},{passive:true});
+  onTime();
 })();
 </script>
 `});
