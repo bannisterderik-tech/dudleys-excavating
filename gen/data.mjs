@@ -19,6 +19,7 @@ export const biz = {
   powerUnits: 40,              // FMCSA MCS-150 filed 09/25/2025
   drivers: 44,                 // FMCSA MCS-150 filed 09/25/2025
   permits: 127,                // BuildZoom permit history 2018–2025 (Chico, Redding, Butte Co.)
+  founded: 1955,             // confirmed by the Dudley team on the walkthrough call, Aug 2026
   founder: "Harry Dudley",
   family: ["Scott Dudley", "Michael Dudley", "Kyle Dudley"],
   pm: "Glen Gipper",

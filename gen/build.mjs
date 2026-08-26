@@ -400,7 +400,7 @@ const nav = [
 const jsonld = JSON.stringify({
   "@context":"https://schema.org","@type":"GeneralContractor",
   "@id":`https://${biz.domain}/#business`,name:biz.name,telephone:"+15303851445",
-  email:biz.email,url:`https://${biz.domain}/`,foundingDate:undefined,founder:{"@type":"Person",name:biz.founder},
+  email:biz.email,url:`https://${biz.domain}/`,foundingDate:String(biz.founded),founder:{"@type":"Person",name:biz.founder},
   address:{"@type":"PostalAddress",streetAddress:"209 San Benito Ave",addressLocality:"Gerber",addressRegion:"CA",postalCode:"96035",addressCountry:"US"},
   areaServed:biz.counties.map(c=>({"@type":"AdministrativeArea",name:`${c} County, CA`})),
   hasCredential:[{"@type":"EducationalOccupationalCredential",credentialCategory:"license",name:`CSLB Class A Contractor #${biz.license}`}],
@@ -491,7 +491,7 @@ ${body}
   <div class="cols">
     <div>
       <h4>Dudley&rsquo;s Excavating, Inc.</h4>
-      <p style="max-width:34ch;line-height:1.7">Three generations of underground construction out of Gerber, California. Founded by ${biz.founder}.</p>
+      <p style="max-width:34ch;line-height:1.7">Three generations of underground construction out of Gerber, California. Founded by ${biz.founder} in ${biz.founded}.</p>
     </div>
     <div><h4>Work</h4><a href="/directional-boring/">Directional Boring</a><a href="/utilities/">Utility Installation</a><a href="/excavation/">Excavation</a><a href="/paving/">Paving</a><a href="/chip-seal/">Chip Seal</a><a href="/septic/">Septic</a><a href="/grading/">Grading</a><a href="/hauling/">Hauling &amp; Materials</a></div>
     <div><h4>Company</h4><a href="/about/">About</a><a href="/paradise-fiber/">The Paradise Job</a><a href="/projects/">Projects</a><a href="/service-area/">Service Area</a><a href="/apply/">Careers</a></div>
@@ -638,7 +638,7 @@ body:`
     <video id="scrubVid" muted playsinline preload="auto" style="opacity:0"></video>
     <div class="scrub-shade"></div>
     <div class="beat" data-b="0">
-      <span class="kick">Northern California · Est. by ${biz.founder}</span>
+      <span class="kick">Northern California · Est. ${biz.founded}</span>
       <div class="bigline">Three generations<br>in the ground.</div>
       <p>Scroll. You're about to fly a real Dudley's jobsite — road, cut, bore, line, mat, home.</p>
       <div class="hero-ctas">
@@ -749,7 +749,7 @@ ${paradiseBand()}
 
 <section class="sec" style="padding-top:0"><div class="wrap band">
   <div class="rv">
-    <span class="kick">Since ${biz.founder} broke ground</span>
+    <span class="kick">Since ${biz.founded}, when ${biz.founder} broke ground</span>
     <h2>We know how the ground moves here</h2>
     <p class="lede">Dudley&rsquo;s Excavating has been serving the Gerber area for generations. We understand the way the ground moves around here, the soil types that are common, and the hazards a project can run into — because we've been digging in it our whole lives.</p>
     <ul class="checks">
@@ -1010,11 +1010,11 @@ servicePage({slug:"septic",num:"06",title:"Septic",heroImg:"610ce8ca-c6ad-47e8-8
 heroAlt:"Careful excavation tight to landscaping for septic work",
 titleTag:"Septic Replacement & Pumping — Tehama, Shasta, Butte, Glenn | Dudley's Excavating",
 desc:"Septic system replacement and pumping for rural Northern California properties. Dudley's Excavating, Gerber CA. CSLB #694077.",
-kick:"Service 06",lede:`Septic replacement and pumping for the properties the sewer never reached — which, out here, is most of them.`,
+kick:"Service 06 · Residential",lede:`A residential side service: septic tank pumping and installation for the homes the sewer never reached — which, out here, is most of them.`,
 sections:[
  {kick:"Rural reality",h:"When the system fails,<br>speed matters",p:"A failed septic isn't a someday problem. We replace failed tanks and systems and keep working systems pumped — with the excavation experience to work tight to houses, wells and landscaping instead of trenching through everything you own.",
  img:"c592f19f-b545-4e93-a547-5d780c311a95.jpg",alt:"Clean trench crossing in native red dirt",cap:"Tight, clean cuts",
- checks:["<b>Septic replacement</b> — failed tanks and systems out, new systems in.","<b>Septic pumping</b> — routine service that prevents the emergency.","<b>Yard-respecting excavation</b> — vac and careful bucket work near what matters.","<b>One call</b> — dig, set, plumb, backfill and grade, all one crew."]},
+ checks:["<b>Septic installation &amp; replacement</b> — failed tanks and systems out, new systems in. Residential only.","<b>Septic pumping</b> — routine service that prevents the emergency.","<b>Porta-potty pumping</b> — we pump them; we don&rsquo;t supply them.","<b>One call</b> — dig, set, plumb, backfill and grade, all one crew."]},
 ],cats:["utility","excavation"]});
 
 servicePage({slug:"grading",num:"07",title:"Grading &amp;<br>Site Work",heroImg:"a6c99a6d-5882-4da3-bdbc-dc0ade895dd5.jpg",
@@ -1103,7 +1103,7 @@ ${pageHero("64fcad2e-5201-4399-af3c-c5ebc1a974ff-1.jpg","Gerber, California","Th
     <h2>A knowledgeable, engaged crew<br>is the whole product</h2>
     <p class="lede">As a construction partner, we believe a knowledgeable, experienced and engaged team delivers a superior end result. That's not a poster in the office — it's why the same families have run this company's iron for decades, and why agencies across four counties keep our number.</p>
     <ul class="checks">
-      <li><b>${biz.founder}</b> founded the company and set the standard.</li>
+      <li><b>${biz.founder}</b> founded the company in ${biz.founded} and set the standard.</li>
       <li><b>Scott Dudley</b> — president, General Engineering contractor, four decades on the iron.</li>
       <li><b>Michael Dudley</b> — third generation, Chico State project management.</li>
       <li><b>Kyle Dudley</b> — third generation, running the work forward.</li>
@@ -1297,7 +1297,7 @@ ${pageHero("64fcad2e-5201-4399-af3c-c5ebc1a974ff.jpg","Careers · Hiring the fou
     <ul class="checks" style="margin-top:26px">
       <li><b>Real fleet.</b> ${biz.powerUnits} power units, ${biz.drivers} drivers on file with the FMCSA — radio-dispatched from Gerber.</li>
       <li><b>Real work.</b> ${biz.permits} permitted projects since 2018; carrier-grade fiber, state routes, subdivisions.</li>
-      <li><b>Real people.</b> Family-run since ${biz.founder}. You&rsquo;d know the owner&rsquo;s first name by Tuesday.</li>
+      <li><b>Real people.</b> Family-run since ${biz.founded}. You&rsquo;d know the owner&rsquo;s first name by Tuesday.</li>
     </ul>
   </div>
 </div></section>
