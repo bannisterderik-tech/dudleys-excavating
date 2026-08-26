@@ -365,6 +365,44 @@ footer .cols{grid-template-columns:1fr;gap:26px;margin-bottom:30px}
 .filter{margin:20px 0 22px}
 }
 
+/* claude chat widget */
+.cw-fab{position:fixed;left:18px;bottom:18px;z-index:150;width:56px;height:56px;border-radius:50%;border:0;cursor:pointer;
+background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(0,0,0,.5);transition:.25s}
+.cw-fab:hover{background:var(--red-hot);transform:translateY(-2px)}
+.cw-fab svg{width:26px;height:26px}
+.cw{position:fixed;left:18px;bottom:86px;z-index:151;width:min(400px,calc(100vw - 36px));max-height:min(640px,calc(100dvh - 110px));
+display:none;flex-direction:column;background:#141414;border:1px solid var(--line);border-top:2px solid var(--red);border-radius:6px;
+box-shadow:0 30px 80px rgba(0,0,0,.6);overflow:hidden}
+.cw.open{display:flex}
+.cw-head{display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid var(--line)}
+.cw-head .ic{width:38px;height:38px;border-radius:50%;background:rgba(193,39,45,.18);display:flex;align-items:center;justify-content:center;color:var(--red-hot);flex:none}
+.cw-head b{font-family:var(--disp);font-size:20px;letter-spacing:.03em;text-transform:uppercase;display:block;line-height:1.1}
+.cw-head span{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
+.cw-head .x{margin-left:auto;background:none;border:0;color:var(--ink-soft);font-size:22px;cursor:pointer}
+.cw-body{flex:1;overflow-y:auto;padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.cw-qk{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);margin:2px 0 4px}
+.cw-q{align-self:flex-start;background:none;border:1px solid var(--line);border-radius:18px;color:var(--ink-soft);
+font-family:var(--body);font-weight:500;font-size:13.5px;padding:8px 14px;cursor:pointer;text-align:left;transition:.2s}
+.cw-q:hover{border-color:var(--red);color:var(--ink)}
+.cw-m{max-width:88%;padding:10px 14px;border-radius:10px;font-size:14px;line-height:1.55;white-space:pre-wrap}
+.cw-m.u{align-self:flex-end;background:var(--red);color:#fff;border-bottom-right-radius:3px}
+.cw-m.a{align-self:flex-start;background:#1e1e1e;color:var(--ink-soft);border-bottom-left-radius:3px}
+.cw-m.a.think::after{content:"···";animation:cwth 1s steps(3) infinite}
+@keyframes cwth{50%{opacity:.3}}
+.cw-cta{align-self:flex-start;display:flex;gap:8px;flex-wrap:wrap}
+.cw-cta a{font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;padding:9px 14px;border-radius:3px}
+.cw-cta .r{background:var(--red);color:#fff}.cw-cta .r:hover{background:var(--red-hot)}
+.cw-cta .g{border:1px solid rgba(245,245,245,.35);color:var(--ink)}
+.cw-foot{border-top:1px solid var(--line);padding:12px 14px}
+.cw-row{display:flex;gap:8px}
+.cw-row input{flex:1;background:#1a1a1a;border:1px solid var(--line);border-radius:20px;color:var(--ink);font-family:var(--body);font-size:14px;padding:11px 16px;outline:none}
+.cw-row input:focus{border-color:var(--red)}
+.cw-row button{width:42px;height:42px;border-radius:50%;border:0;background:var(--red);color:#fff;cursor:pointer;flex:none;display:flex;align-items:center;justify-content:center}
+.cw-row button:hover{background:var(--red-hot)}
+.cw-pow{margin-top:9px;text-align:center;font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)}
+.cw-pow a{color:var(--ink-soft);text-decoration:underline}
+@media(max-width:700px){.cw{left:12px;right:12px;width:auto;bottom:80px}.cw-fab{left:14px;bottom:14px}}
+
 /* reveal on scroll */
 .rv{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}
 .rv.on{opacity:1;transform:none}
@@ -467,6 +505,27 @@ footer .cols{grid-template-columns:1fr;gap:26px;margin-bottom:30px}
   <p style="margin-top:28px"><a class="btn red big" href="/dudleys-excavating/contact/#form">Request a call →</a></p>
   <p style="margin-top:22px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--ink-faint)">209 San Benito Ave, Gerber, CA 96035 &nbsp;·&nbsp; <a href="mailto:paul@dudleysexcavating.com" style="color:var(--ink-soft);text-decoration:underline">paul@dudleysexcavating.com</a></p>
 </div></section>
+<button class="cw-fab" id="cwFab" aria-label="Ask Dudley's assistant"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a8 8 0 0 1-8 8H5l-2 2V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"/></svg></button>
+<div class="cw" id="cw" role="dialog" aria-label="Dudley's assistant">
+  <div class="cw-head">
+    <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a8 8 0 0 1-8 8H5l-2 2V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"/></svg></span>
+    <div><b>Ask Dudley&rsquo;s</b><span>Northern California · Est. 1955</span></div>
+    <button class="x" id="cwX" aria-label="close">×</button>
+  </div>
+  <div class="cw-body" id="cwBody">
+    <div class="cw-qk">Quick questions</div>
+    <button class="cw-q">Do you bore under highways and streams?</button>
+    <button class="cw-q">What counties do you serve?</button>
+    <button class="cw-q">Are you licensed for public agency work?</button>
+    <button class="cw-q">Tell me about the Paradise fiber rebuild</button>
+    <button class="cw-q">Do you handle residential septic?</button>
+    <button class="cw-q">How do I get a bid?</button>
+  </div>
+  <div class="cw-foot">
+    <div class="cw-row"><input id="cwIn" placeholder="Ask about the work…" maxlength="500" autocomplete="off"><button id="cwGo" aria-label="send"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></button></div>
+    <div class="cw-pow">Powered by Claude · or call <a href="tel:5303851445">530-385-1445</a></div>
+  </div>
+</div>
 <footer><div class="wrap">
   <div class="cols">
     <div>
@@ -492,6 +551,34 @@ navEl.addEventListener('click',e=>{if(e.target.closest('a')){navEl.classList.rem
   document.body.classList.remove('menu-open');burger.setAttribute('aria-expanded','false');}});
 const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('on')),{threshold:.04,rootMargin:'0px 0px -6% 0px'});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+// Ask Dudley's — Claude widget
+(()=>{const EP='https://ayskxkjorhoaknkqtyvm.supabase.co/functions/v1/dudley-chat';
+  const fab=document.getElementById('cwFab'),box=document.getElementById('cw'),body=document.getElementById('cwBody'),
+        inp=document.getElementById('cwIn'),go=document.getElementById('cwGo');
+  if(!fab)return;
+  const hist=[];
+  fab.addEventListener('click',()=>{box.classList.toggle('open');if(box.classList.contains('open'))inp.focus();});
+  document.getElementById('cwX').addEventListener('click',()=>box.classList.remove('open'));
+  function el(cls,txt){const d=document.createElement('div');d.className=cls;if(txt)d.textContent=txt;body.appendChild(d);body.scrollTop=body.scrollHeight;return d;}
+  function ctaRow(){const d=el('cw-cta');
+    d.innerHTML='<a class="r" href="/dudleys-excavating/contact/#form">Request a call →</a><a class="g" href="tel:5303851445">Call 530-385-1445</a>';
+    body.scrollTop=body.scrollHeight;}
+  let busy=false;
+  function ask(q){if(busy||!q.trim())return;busy=true;
+    el('cw-m u',q);hist.push({role:'user',content:q});inp.value='';
+    const th=el('cw-m a think','');
+    fetch(EP,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({messages:hist})})
+      .then(r=>{if(!r.ok)throw 0;return r.json();})
+      .then(d=>{let t=(d.reply||'').trim();const cta=t.indexOf('[CTA]')>-1;t=t.replace(/\s*\[CTA\]\s*/g,'').trim();
+        th.classList.remove('think');th.textContent=t||'Give us a call and a Dudley will get you a straight answer.';
+        hist.push({role:'assistant',content:t});if(cta||!t)ctaRow();})
+      .catch(()=>{th.classList.remove('think');
+        th.textContent="Can't reach the assistant right now — but a Dudley can answer anything.";ctaRow();})
+      .finally(()=>{busy=false;body.scrollTop=body.scrollHeight;});}
+  body.addEventListener('click',e=>{const q=e.target.closest('.cw-q');if(q)ask(q.textContent);});
+  go.addEventListener('click',()=>ask(inp.value));
+  inp.addEventListener('keydown',e=>{if(e.key==='Enter')ask(inp.value);});
+})();
 // jobsite projector: click any gallery frame -> full-bleed
 (()=>{const figs=[...document.querySelectorAll('.masonry figure')];if(!figs.length)return;
   const box=document.createElement('div');box.className='ltbx';
