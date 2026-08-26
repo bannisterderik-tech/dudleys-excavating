@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 import { biz, paradise, photos } from "./data.mjs";
 
 const OUT = fileURLToPath(new URL("../docs/", import.meta.url));
+const LEADS = "https://formsubmit.co/ajax/bannisterderik@gmail.com"; // demo phase: leads to Derik; swap to client email at handoff
 const BASE = process.env.BASE ?? "";           // e.g. "/dudleys-excavating" for project Pages
 const basify = h => BASE ? h
   .replaceAll('href="/', `href="${BASE}/`)
@@ -41,16 +42,45 @@ gap:16px;padding:14px clamp(18px,4vw,56px);transition:background .3s,border-colo
 .brand{display:flex;flex-direction:column;line-height:1}
 .brand b{font-family:var(--disp);font-weight:700;font-size:22px;letter-spacing:.04em;text-transform:uppercase}
 .brand span{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--red-hot);margin-top:4px}
-.nav{display:flex;gap:clamp(10px,1.6vw,26px);align-items:center;font-size:12.5px;letter-spacing:.09em;text-transform:uppercase}
+.nav{display:flex;gap:clamp(12px,1.9vw,30px);align-items:center;font-family:var(--disp);font-weight:700;font-size:16.5px;letter-spacing:.055em;text-transform:uppercase}
 .nav a{color:var(--ink-soft);padding:6px 2px;border-bottom:2px solid transparent;transition:.2s}
 .nav a:hover,.nav a.on{color:var(--ink);border-color:var(--red)}
 .hdr .call{font-family:var(--disp);font-weight:700;font-size:19px;letter-spacing:.03em;color:#fff;background:var(--red);
 padding:9px 16px;border-radius:2px;white-space:nowrap;transition:.2s}
 .hdr .call:hover{background:var(--red-hot)}
+.callwrap{position:relative;display:flex;align-items:center;margin-left:auto;margin-right:14px}
+.pic{display:flex;align-items:center;justify-content:center;width:42px;height:42px;border:1.5px solid rgba(245,245,245,.35);border-radius:50%;color:var(--ink);transition:.25s}
+.pic:hover{border-color:var(--red-hot);color:var(--red-hot)}
+.calldrop{position:absolute;top:calc(100% + 20px);right:-10px;width:290px;background:#141414;border:1px solid var(--line);border-top:2px solid var(--red);border-radius:2px;
+padding:22px 24px 0;opacity:0;visibility:hidden;transform:translateY(8px);transition:.22s;box-shadow:0 30px 70px rgba(0,0,0,.55)}
+.callwrap:hover .calldrop,.callwrap:focus-within .calldrop{opacity:1;visibility:visible;transform:none}
+.callwrap::before{content:"";position:absolute;top:100%;left:-6px;right:-6px;height:22px}
+.cd-k{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px}
+.cd-num{display:block;font-family:var(--disp);font-weight:700;font-size:34px;color:var(--red-hot);line-height:1.05;letter-spacing:.01em}
+.cd-num:hover{color:#ff5a60}
+.cd-sub{display:block;margin-top:10px;font-size:12.5px;line-height:1.65;color:var(--ink-soft);padding-bottom:18px;border-bottom:1px solid var(--line)}
+.cd-go{display:flex;justify-content:space-between;align-items:center;padding:15px 0;font-family:var(--disp);font-weight:600;font-size:16px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink)}
+.cd-go:hover{color:var(--red-hot)}
 .burger{display:none;background:none;border:0;color:var(--ink);font-size:26px;cursor:pointer}
 .nav .m-cta{display:none}
+.navdrop{position:relative;display:inline-flex;align-items:center}
+.navdrop>a::after{content:" ▾";font-size:9px;opacity:.6}
+.mega{position:absolute;top:calc(100% + 18px);right:-20px;width:min(620px,92vw);display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:26px;
+background:#141414;border:1px solid var(--line);border-top:2px solid var(--red);border-radius:2px;padding:26px 28px 28px;
+opacity:0;visibility:hidden;transform:translateY(8px);transition:.22s;box-shadow:0 30px 70px rgba(0,0,0,.55);text-transform:none;letter-spacing:0}
+.navdrop:hover .mega,.navdrop:focus-within .mega{opacity:1;visibility:visible;transform:none}
+.navdrop::before{content:"";position:absolute;top:100%;left:-10px;right:-30px;height:20px}
+.mega h5{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:12px}
+.mega .m1 .kick{margin-bottom:10px}
+.mega .m1 p{font-family:var(--body);font-weight:400;font-size:13.5px;line-height:1.6;color:var(--ink-soft);margin-bottom:16px;letter-spacing:.01em}
+.mega .m1 .btn{font-size:15px;padding:10px 18px}
+.mega .m2 a,.mega .m3 a{display:block;padding:6px 0;font-family:var(--body);font-weight:400;font-size:14px;letter-spacing:.02em;color:var(--ink-soft);border:0}
+.mega .m2 a:hover,.mega .m3 a:hover{color:var(--red-hot)}
 @media(max-width:940px){
-.brand b{font-size:17px}.brand span{font-size:8.5px;letter-spacing:.18em}.hdr .call{font-size:16px;padding:8px 12px}
+.brand b{font-size:17px}.brand span{font-size:8.5px;letter-spacing:.18em}.hdr .call{display:none}
+.calldrop{display:none}
+.callwrap{margin-right:4px}
+.pic{width:38px;height:38px}
 .nav{display:none;position:fixed;inset:0;background:#0e0e0e;flex-direction:column;align-items:flex-start;
 justify-content:center;gap:0;z-index:84;padding:96px clamp(24px,8vw,48px) 40px;overflow-y:auto}
 .nav.open{display:flex}
@@ -61,6 +91,9 @@ align-items:baseline;gap:14px;counter-increment:mnav}
 letter-spacing:.15em;color:var(--red-hot)}
 .nav a.on{color:var(--red-hot)}
 .nav{counter-reset:mnav}
+.navdrop{display:contents}
+.navdrop>a::after{content:""}
+.mega{display:none}
 .nav .m-cta{margin-top:28px;border:0;width:100%;display:flex;flex-direction:column;gap:12px}
 .nav .m-cta a{border:0;padding:0;width:auto;counter-increment:none}
 .nav .m-cta a::before{content:none}
@@ -142,6 +175,23 @@ text-transform:uppercase;line-height:2.1;opacity:0;transform:translateY(10px);tr
 .pull27 input::-webkit-slider-thumb{appearance:none;width:22px;height:22px;border-radius:50%;background:var(--yellow);border:3px solid #0e0e0e;box-shadow:0 0 12px rgba(215,162,26,.7)}
 .pull27 .hint27{position:absolute;top:10px;left:10px;font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);background:rgba(14,14,14,.55);padding:5px 9px}
 
+/* lead forms */
+.form{display:grid;gap:14px;margin-top:26px}
+.form .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form label{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:7px}
+.form input,.form textarea{width:100%;background:#161616;border:1px solid var(--line);border-radius:2px;color:var(--ink);
+font-family:var(--body);font-size:15.5px;padding:13px 14px;outline:none;transition:border-color .2s}
+.form input:focus,.form textarea:focus{border-color:var(--red)}
+.form textarea{min-height:110px;resize:vertical}
+.form .send{justify-content:center;width:100%;border:0;cursor:pointer}
+.form .fine{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--ink-faint);line-height:1.7}
+.form.sent{opacity:.45;pointer-events:none}
+.sentmsg{display:none;margin-top:26px;border:1px solid rgba(193,39,45,.5);border-left:3px solid var(--red);padding:20px 22px;background:rgba(193,39,45,.08)}
+.sentmsg.show{display:block}
+.sentmsg b{font-family:var(--disp);font-size:22px;text-transform:uppercase;letter-spacing:.02em;display:block;margin-bottom:6px}
+.sentmsg span{color:var(--ink-soft);font-size:14.5px}
+@media(max-width:700px){.form .two{grid-template-columns:1fr}}
+
 /* bid sheet */
 .chips.pick li{cursor:pointer;user-select:none;transition:.2s}
 .chips.pick li.on{border-color:var(--red);color:var(--ink);background:rgba(193,39,45,.16)}
@@ -179,6 +229,7 @@ text-transform:uppercase;line-height:2.1;opacity:0;transform:translateY(10px);tr
 .bigline{font-family:var(--disp);font-weight:700;text-transform:uppercase;line-height:.94;font-size:clamp(44px,7.6vw,104px)}
 .bigline em{font-style:normal;color:var(--red-hot)}
 .beat p{margin-top:16px;font-size:clamp(15px,1.3vw,18px);line-height:1.55;color:rgba(245,245,245,.88);max-width:560px;text-shadow:0 1px 14px rgba(0,0,0,.9)}
+.beat .kick,.pbeat .kick{background:rgba(14,14,14,.62);padding:8px 14px;font-size:12px;color:#ff5a60;text-shadow:0 1px 6px rgba(0,0,0,.9);border-radius:2px}
 .scrub-hint{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;
 font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);transition:opacity .4s}
 .scrub-hint i{width:20px;height:32px;border-radius:11px;border:2px solid rgba(245,245,245,.28);position:relative}
@@ -358,7 +409,29 @@ const jsonld = JSON.stringify({
 });
 
 function layout({slug,title,desc,body,active}) {
-  const navHtml = nav.map(([s,l])=>`<a href="/${s}/" ${s===active?'class="on"':''}>${l}</a>`).join("");
+  const mega = `<span class="navdrop${active==="apply"?" onwrap":""}">
+    <a href="/apply/" ${active==="apply"?'class="on"':''}>Careers</a>
+    <div class="mega" aria-label="Careers">
+      <div class="m1">
+        <span class="kick">Hiring the fourth generation</span>
+        <p>Family-run since Harry Dudley. Radio-dispatched fleet, year-round public and private work across Northern California.</p>
+        <a class="btn red" href="/apply/">Apply →</a>
+      </div>
+      <div class="m2"><h5>The work</h5>
+        <a href="/apply/?role=Drill%20operator%20%2F%20locator">Drill operators &amp; locators</a>
+        <a href="/apply/?role=Equipment%20operator">Equipment operators</a>
+        <a href="/apply/?role=CDL%20driver%20(Class%20A)">CDL drivers — Class A</a>
+        <a href="/apply/?role=Laborer%20%2F%20apprentice">Laborers &amp; apprentices</a>
+        <a href="/apply/?role=Foreman">Foremen</a>
+      </div>
+      <div class="m3"><h5>Why Dudley&rsquo;s</h5>
+        <a href="/about/">Three generations deep</a>
+        <a href="/projects/">The work speaks →</a>
+        <a href="/paradise-fiber/">The Paradise rebuild</a>
+      </div>
+    </div>
+  </span>`;
+  const navHtml = nav.map(([s,l])=>`<a href="/${s}/" ${s===active?'class="on"':''}>${l}</a>`).join("") + mega;
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -394,17 +467,27 @@ ${slug==="index"?`<link rel="preload" as="image" href="/world/assets/still_1.jpg
 <body>
 <div class="grain" aria-hidden="true"></div>
 <header class="hdr" id="hdr">
-  <a class="brand" href="/"><b>Dudley&rsquo;s Excavating</b><span>Gerber · California · Inc.</span></a>
-  <nav class="nav" id="nav">${navHtml}<div class="m-cta"><a class="btn red" href="${biz.phoneHref}">Call ${biz.phone}</a><a class="btn ghost" href="/contact/">Get a quote →</a></div></nav>
-  <a class="call" href="${biz.phoneHref}">${biz.phone}</a>
+  <a class="brand" href="/"><b>Dudley&rsquo;s Excavating</b><span>Northern California · Inc.</span></a>
+  <nav class="nav" id="nav">${navHtml}<div class="m-cta"><a class="btn red" href="/contact/#form">Request a call →</a><a class="btn ghost" href="${biz.phoneHref}">Or call direct: ${biz.phone}</a></div></nav>
+  <span class="callwrap">
+    <a class="pic" href="${biz.phoneHref}" aria-label="Call ${biz.phone}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.78.66 2.62a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.46-1.23a2 2 0 0 1 2.11-.45c.84.32 1.72.54 2.62.66A2 2 0 0 1 22 16.92z"/></svg></a>
+    <div class="calldrop">
+      <span class="cd-k">Call us</span>
+      <a class="cd-num" href="${biz.phoneHref}">${biz.phone}</a>
+      <span class="cd-sub">Radio-dispatched from Gerber, CA<br>Northern California · Class A #${biz.license}</span>
+      <a class="cd-go" href="/contact/#form">Or get in touch <span>→</span></a>
+    </div>
+  </span>
+  <a class="call" href="/contact/#form">Request a call</a>
   <button class="burger" id="burger" aria-label="menu" aria-expanded="false"><i class="bi"></i></button>
 </header>
 ${body}
 <section class="slab"><div class="wrap in">
   <span class="kick" style="justify-content:center">Class A Contractor · CA Lic #${biz.license}</span>
   <h2>Put us in the ground</h2>
-  <a class="phone" href="${biz.phoneHref}">${biz.phone}</a>
-  <p>${biz.address} &nbsp;·&nbsp; <a href="mailto:${biz.email}" style="color:var(--ink-soft);text-decoration:underline">${biz.email}</a></p>
+  <p style="max-width:52ch;margin:14px auto 0">Tell us about the job — we&rsquo;ll call you back with a straight answer.</p>
+  <p style="margin-top:28px"><a class="btn red big" href="/contact/#form">Request a call →</a></p>
+  <p style="margin-top:22px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--ink-faint)">${biz.address} &nbsp;·&nbsp; <a href="mailto:${biz.email}" style="color:var(--ink-soft);text-decoration:underline">${biz.email}</a></p>
 </div></section>
 <footer><div class="wrap">
   <div class="cols">
@@ -413,7 +496,7 @@ ${body}
       <p style="max-width:34ch;line-height:1.7">Three generations of underground construction out of Gerber, California. Founded by ${biz.founder}.</p>
     </div>
     <div><h4>Work</h4><a href="/directional-boring/">Directional Boring</a><a href="/utilities/">Utility Installation</a><a href="/excavation/">Excavation</a><a href="/paving/">Paving</a><a href="/chip-seal/">Chip Seal</a><a href="/septic/">Septic</a><a href="/grading/">Grading</a><a href="/hauling/">Hauling &amp; Materials</a></div>
-    <div><h4>Company</h4><a href="/about/">About</a><a href="/paradise-fiber/">The Paradise Job</a><a href="/projects/">Projects</a><a href="/service-area/">Service Area</a></div>
+    <div><h4>Company</h4><a href="/about/">About</a><a href="/paradise-fiber/">The Paradise Job</a><a href="/projects/">Projects</a><a href="/service-area/">Service Area</a><a href="/apply/">Careers</a></div>
     <div><h4>Contact</h4><a href="${biz.phoneHref}">${biz.phone}</a><a href="mailto:${biz.email}">${biz.email}</a><p style="margin-top:8px;line-height:1.7">209 San Benito Ave<br>Gerber, CA 96035</p></div>
   </div>
   <div class="lic">© 2026 ${biz.name} · CSLB Class A Lic #${biz.license} · ${biz.licenseClasses}<br>
@@ -497,7 +580,7 @@ function svcCard(href,img,tab,title,text){
 }
 
 function scrubHero(clipN,kick,title,lede,alt,ctas){
-  const c=ctas||`<a class="btn red" href="${biz.phoneHref}">Call ${biz.phone}</a><a class="btn ghost" href="/contact/">Get a quote →</a>`;
+  const c=ctas||`<a class="btn red" href="/contact/#form">Request a call →</a><a class="btn ghost" href="/projects/">See the work →</a>`;
   return `<section class="scrub pscrub" data-clip="${clipN}"><div class="scrub-stick">
   <img class="poster" src="/world/assets/still_${clipN}.jpg" alt="${esc(alt||"")}">
   <video muted playsinline preload="auto" style="opacity:0"></video>
@@ -548,7 +631,7 @@ function gallery(cats){
 const pages = [];
 
 /* ---- HOME ---- */
-pages.push({slug:"index",active:"",title:`Dudley's Excavating, Inc. — Directional Boring, Excavation & Paving | Gerber, CA`,
+pages.push({slug:"index",active:"",title:`Dudley's Excavating, Inc. — Directional Boring, Excavation & Paving | Northern California`,
 desc:`Three generations of underground construction in Northern California. Directional boring under streets, highways, streams and railroads. CSLB #694077. Call 530-385-1445.`,
 body:`
 <section class="scrub" id="scrub">
@@ -557,11 +640,11 @@ body:`
     <video id="scrubVid" muted playsinline preload="auto" style="opacity:0"></video>
     <div class="scrub-shade"></div>
     <div class="beat" data-b="0">
-      <span class="kick">Gerber, California · Est. by ${biz.founder}</span>
+      <span class="kick">Northern California · Est. by ${biz.founder}</span>
       <div class="bigline">Three generations<br>in the ground.</div>
       <p>Scroll. You're about to fly a real Dudley's jobsite — road, cut, bore, line, mat, home.</p>
       <div class="hero-ctas">
-        <a class="btn red" href="${biz.phoneHref}">Call ${biz.phone}</a>
+        <a class="btn red" href="/contact/#form">Request a call →</a>
         <a class="btn ghost" href="/about/">The Dudley story →</a>
       </div>
     </div>
@@ -571,7 +654,7 @@ body:`
       <p>Granite on the grades, hardpan in the valley. We cut it, plate it, and keep the road open.</p>
       <div class="hero-ctas">
         <a class="btn red" href="/excavation/">Excavation →</a>
-        <a class="btn ghost" href="${biz.phoneHref}">Call ${biz.phone}</a>
+        <a class="btn ghost" href="/contact/#form">Request a call</a>
       </div>
     </div>
     <div class="beat" data-b="2">
@@ -589,7 +672,7 @@ body:`
       <p>Gas, water, sewer, power, fiber — fused on site and pulled back through the bore. No joints in the ground.</p>
       <div class="hero-ctas">
         <a class="btn red" href="/utilities/">Utility installation →</a>
-        <a class="btn ghost" href="${biz.phoneHref}">Call ${biz.phone}</a>
+        <a class="btn ghost" href="/contact/#form">Request a call</a>
       </div>
     </div>
     <div class="beat" data-b="4">
@@ -606,8 +689,8 @@ body:`
       <div class="bigline">Put us in<br><em>the ground.</em></div>
       <p>${biz.address}. Radio-dispatched fleet, three generations deep.</p>
       <div class="hero-ctas">
-        <a class="btn red" href="${biz.phoneHref}">Call ${biz.phone}</a>
-        <a class="btn ghost" href="/contact/">Get a quote →</a>
+        <a class="btn red" href="/contact/#form">Request a call →</a>
+        <a class="btn ghost" href="/projects/">See the work →</a>
       </div>
     </div>
     <div class="hud" id="hud">
@@ -653,7 +736,20 @@ body:`
 ${statBand}
 ${paradiseBand()}
 
-<section class="sec"><div class="wrap band">
+<section class="sec"><div class="wrap">
+  <span class="kick rv">For prime contractors &amp; program managers</span>
+  <h2 class="rv" style="max-width:18ch">Running a major job in Northern California?</h2>
+  <p class="lede rv">The iron is already here. Enterprise primes and utility program managers hire Dudley&rsquo;s as the local HDD and civil sub — carrier-grade specs, agency-grade paperwork, and a fleet that shows up radio-dispatched from Gerber.</p>
+  <div class="rv" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:36px">
+    <div class="cred"><b>Licensed &amp; on file</b><span>CSLB Class A #${biz.license} · USDOT ${biz.usdot} · certified DGS Small Business #${biz.dgs} — we count toward your SB participation goals.</span></div>
+    <div class="cred"><b>Fleet depth</b><span>${biz.powerUnits} power units, ${biz.drivers} drivers on file with the FMCSA. Crews, trucks and tooling scale to program work.</span></div>
+    <div class="cred"><b>Proven at carrier grade</b><span>${paradise.miles} miles of underground fiber for AT&amp;T on the Paradise rebuild — ${paradise.yearsTotal} years under carrier inspection.</span></div>
+    <div class="cred"><b>Paper ready</b><span>Bid docs, references and certificates on request. ${biz.permits} permitted projects since 2018.</span></div>
+  </div>
+  <p class="rv" style="margin-top:30px"><a class="btn red" href="/contact/">Start the bid sheet →</a> <a class="btn ghost" href="/directional-boring/" style="margin-left:8px">HDD capability →</a></p>
+</div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap band">
   <div class="rv">
     <span class="kick">Since ${biz.founder} broke ground</span>
     <h2>We know how the ground moves here</h2>
@@ -788,7 +884,7 @@ desc:`Horizontal directional drilling (HDD) in Tehama, Shasta, Butte & Glenn cou
 body:`
 ${scrubHero(3,"Service 01 · The flagship","Directional<br>Boring",
 `Horizontal directional drilling puts gas, water, sewer, power and fiber <b>under</b> streets, highways, streams and railroads — without opening the surface. You're inside one of our bores right now.`,"Inside a Dudley's directional bore — drill head advancing through red clay",
-`<a class="btn red" href="${biz.phoneHref}">Call ${biz.phone}</a><a class="btn ghost" href="/paradise-fiber/">The Paradise job →</a>`)}
+`<a class="btn red" href="/contact/#form">Request a call →</a><a class="btn ghost" href="/paradise-fiber/">The Paradise job →</a>`)}
 
 <section class="sec"><div class="wrap band">
   <div class="rv">
@@ -951,7 +1047,7 @@ desc:`How Dudley's Excavating bored 40 miles of underground fiber through red cl
 body:`
 ${scrubHero(4,"Case study · Butte County · Camp Fire restoration","The Paradise<br>Job",
 `The Camp Fire erased a town's infrastructure in a day. This is where it went when it came back: <b>underground</b> — ${paradise.miles} miles of fiber, fused into one line and pulled beneath the ridge.`,"Fused fiber line being pulled through a Dudley's bore beneath Paradise",
-`<a class="btn red" href="/directional-boring/">Our boring capability →</a><a class="btn ghost" href="${biz.phoneHref}">Call ${biz.phone}</a>`)}
+`<a class="btn red" href="/directional-boring/">Our boring capability →</a><a class="btn ghost" href="/contact/#form">Request a call</a>`)}
 
 <section class="sec"><div class="wrap band">
   <div class="rv">
@@ -1040,7 +1136,7 @@ ${statBand}
     <span class="kick">Join our team</span>
     <h2>Build a career<br>on solid ground</h2>
     <p class="lede">Dudley's is always looking for hardworking operators, laborers and drivers who take pride in doing the job right. If that's you, call the office.</p>
-    <p style="margin-top:24px"><a class="btn red" href="${biz.phoneHref}">Call ${biz.phone}</a></p>
+    <p style="margin-top:24px"><a class="btn red" href="/contact/#form">Request a call →</a></p>
   </div>
   <figure class="rv"><img src="${P("55c6ea23-532c-424f-b29b-2cc15e39013f.jpg")}" alt="Crew member on cleanup pass" loading="lazy"></figure>
 </div></section>
@@ -1095,42 +1191,139 @@ desc:`Call Dudley's Excavating at 530-385-1445 or email paul@dudleysexcavating.c
 body:`
 ${pageHero("80144252-8a61-4e2b-be71-811a5ea9d846.jpg","One call does it","Contact",
 `Tell us what's in the ground — or what needs to be. We'll help evaluate the site and recommend the right path forward.`,"Dudley's bore rig at sunrise")}
-<section class="sec"><div class="wrap band">
+<section class="sec" id="form"><div class="wrap band">
   <div class="rv">
-    <span class="kick">Start the bid sheet</span>
-    <h3 style="margin-bottom:6px">What&rsquo;s the work?</h3>
+    <span class="kick">Request a call</span>
+    <h2 style="max-width:14ch">Tell us about the job</h2>
+    <p class="lede">Fill this out and a Dudley — not a call center — calls you back. Prime contractors: ask for the capability statement and bid docs.</p>
+    <h3 style="margin:26px 0 4px;font-size:17px">What&rsquo;s the work?</h3>
     <ul class="chips pick" id="bidSvc">
       <li data-v="Directional boring">Directional boring</li><li data-v="Excavation">Excavation</li>
       <li data-v="Utility installation">Utilities</li><li data-v="Paving">Paving</li>
       <li data-v="Septic">Septic</li><li data-v="Grading">Grading</li>
       <li data-v="Hauling">Hauling</li><li data-v="Public agency / bid">Public agency</li>
+      <li data-v="Prime contractor / sub partnership">Prime / GC</li>
     </ul>
-    <h3 style="margin:22px 0 6px">Where?</h3>
+    <h3 style="margin:18px 0 4px;font-size:17px">Where?</h3>
     <ul class="chips pick" id="bidCty">
       <li data-v="Tehama County">Tehama</li><li data-v="Glenn County">Glenn</li>
       <li data-v="Butte County">Butte</li><li data-v="Shasta County">Shasta</li>
     </ul>
-    <p class="bidbtn"><a class="btn red" id="bidGo" href="mailto:${biz.email}">Open the email draft →</a></p>
-    <p style="margin-top:10px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--ink-faint)" id="bidPrev">Tap what applies — we&rsquo;ll draft the email for you. Or just call.</p>
+    <form class="form" id="leadForm" novalidate>
+      <div class="two">
+        <div><label for="lf-name">Name *</label><input id="lf-name" name="name" autocomplete="name" required></div>
+        <div><label for="lf-co">Company</label><input id="lf-co" name="company" autocomplete="organization"></div>
+      </div>
+      <div class="two">
+        <div><label for="lf-phone">Phone *</label><input id="lf-phone" name="phone" type="tel" autocomplete="tel" required></div>
+        <div><label for="lf-email">Email</label><input id="lf-email" name="email" type="email" autocomplete="email"></div>
+      </div>
+      <div><label for="lf-msg">The job — site, scope, timeline</label><textarea id="lf-msg" name="message"></textarea></div>
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+      <button class="btn red send" type="submit">Request a call →</button>
+      <p class="fine">Straight to the Dudley&rsquo;s office. No newsletter, no spam — a callback about your job.</p>
+    </form>
+    <div class="sentmsg" id="sentMsg"><b>Got it.</b><span>Your request is in. A Dudley will call you back — usually same day.</span></div>
     <div class="credgrid" style="grid-template-columns:1fr;margin-top:34px">
-      <div class="cred"><b>Phone — fastest</b><span style="font-family:var(--disp);font-weight:700;font-size:40px;color:var(--ink)"><a href="${biz.phoneHref}">${biz.phone}</a></span></div>
+      <div class="cred"><b>Prefer the phone?</b><span style="font-family:var(--disp);font-weight:700;font-size:34px;color:var(--ink)"><a href="${biz.phoneHref}">${biz.phone}</a></span></div>
       <div class="cred"><b>Yard &amp; office</b><span>209 San Benito Ave, Gerber, CA 96035</span></div>
-      <div class="cred"><b>Public agencies</b><span>CSLB #${biz.license} · DGS SB #${biz.dgs} · USDOT ${biz.usdot} — bid docs on request.</span></div>
+      <div class="cred"><b>Public agencies &amp; primes</b><span>CSLB #${biz.license} · DGS SB #${biz.dgs} · USDOT ${biz.usdot} — capability statement, references and bid docs on request.</span></div>
     </div>
   </div>
   <figure class="rv"><img src="${P("f12f27ca-54ff-49e2-ae8a-ee6393f580fc.jpg")}" alt="Directional drill rig working" loading="lazy"><figcaption>Ready when you are</figcaption></figure>
 </div></section>
 <script>
-(()=>{var em='${biz.email}';
-  var go=document.getElementById('bidGo'),prev=document.getElementById('bidPrev');
+(()=>{var EP='${LEADS}',em='${biz.email}';
   function picked(id){return [].map.call(document.querySelectorAll('#'+id+' li.on'),function(li){return li.dataset.v;});}
-  function upd(){var sv=picked('bidSvc'),ct=picked('bidCty');
-    var subj='Bid request'+(sv.length?': '+sv.join(' + '):'')+(ct.length?' — '+ct.join(', '):'');
-    var body='Job type: '+(sv.join(', ')||'(tell us)')+'%0D%0ALocation: '+(ct.join(', ')||'(tell us)')+'%0D%0ASite address:%0D%0AWhat needs to happen:%0D%0ATimeline:%0D%0A';
-    go.href='mailto:'+em+'?subject='+encodeURIComponent(subj)+'&body='+body;
-    prev.textContent=sv.length||ct.length?('Draft ready — '+subj):'Tap what applies — we\u2019ll draft the email for you. Or just call.';}
-  document.addEventListener('click',function(e){var li=e.target.closest('.chips.pick li');
-    if(!li)return;li.classList.toggle('on');upd();});
+  document.addEventListener('click',function(e){var li=e.target.closest('.chips.pick li');if(li)li.classList.toggle('on');});
+  var f=document.getElementById('leadForm');
+  f.addEventListener('submit',function(e){e.preventDefault();
+    var el=f.elements,name=el.name.value.trim(),phone=el.phone.value.trim();
+    if(!name||!phone){f.reportValidity();return;}
+    var sv=picked('bidSvc'),ct=picked('bidCty');
+    var data={_subject:'Lead: '+(sv.join(' + ')||'General')+(ct.length?' — '+ct.join(', '):''),
+      name:name,company:el.company.value,phone:phone,email:el.email.value,
+      work:sv.join(', '),where:ct.join(', '),message:el.message.value,_honey:el._honey.value,
+      page:location.href,_template:'table'};
+    var btn=f.querySelector('.send');btn.textContent='Sending…';
+    fetch(EP,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(data)})
+      .then(function(r){if(!r.ok)throw 0;f.classList.add('sent');document.getElementById('sentMsg').classList.add('show');})
+      .catch(function(){var b='Name: '+name+'%0D%0APhone: '+phone+'%0D%0AWork: '+(sv.join(', ')||'-')+'%0D%0AWhere: '+(ct.join(', ')||'-')+'%0D%0A'+encodeURIComponent(el.message.value);
+        location.href='mailto:'+em+'?subject='+encodeURIComponent(data._subject)+'&body='+b;})
+      .finally(function(){btn.textContent='Request a call →';});});
+})();
+</script>
+`});
+
+/* ---- CAREERS / APPLY ---- */
+pages.push({slug:"apply",active:"apply",title:`Careers at Dudley's Excavating — Operators, Drivers, Laborers | Northern California`,
+desc:`Work for a three-generation Northern California underground contractor. Drill operators, equipment operators, Class A CDL drivers, laborers and foremen. Apply to Dudley's Excavating, Gerber, CA.`,
+body:`
+${pageHero("64fcad2e-5201-4399-af3c-c5ebc1a974ff.jpg","Careers · Hiring the fourth generation","Work in<br>the ground",
+`Three generations of Dudleys have run this outfit. The crews that bored 40 miles under Paradise are the crews you'd work beside — public and private jobs, year-round, across Northern California.`,"Dudley's crew and excavator on a hillside job")}
+
+<section class="sec" id="form"><div class="wrap band">
+  <div class="rv">
+    <span class="kick">Apply</span>
+    <h2>Tell us who you are</h2>
+    <p class="lede">No portal, no resume-parser. This goes to the office; if there&rsquo;s a fit, a Dudley calls you.</p>
+    <h3 style="margin:26px 0 4px;font-size:17px">The work you do</h3>
+    <ul class="chips pick" id="apRole">
+      <li data-v="Drill operator / locator">Drill operator / locator</li>
+      <li data-v="Equipment operator">Equipment operator</li>
+      <li data-v="CDL driver (Class A)">CDL driver — Class A</li>
+      <li data-v="Laborer / apprentice">Laborer / apprentice</li>
+      <li data-v="Foreman">Foreman</li>
+      <li data-v="Mechanic">Mechanic</li>
+    </ul>
+    <h3 style="margin:18px 0 4px;font-size:17px">Time in the trade</h3>
+    <ul class="chips pick one" id="apExp">
+      <li data-v="New to the trade">New to it</li><li data-v="1-5 years">1–5 yrs</li>
+      <li data-v="5-10 years">5–10 yrs</li><li data-v="10+ years">10+ yrs</li>
+    </ul>
+    <form class="form" id="applyForm" novalidate>
+      <div class="two">
+        <div><label for="af-name">Name *</label><input id="af-name" name="name" autocomplete="name" required></div>
+        <div><label for="af-phone">Phone *</label><input id="af-phone" name="phone" type="tel" autocomplete="tel" required></div>
+      </div>
+      <div><label for="af-email">Email</label><input id="af-email" name="email" type="email" autocomplete="email"></div>
+      <div><label for="af-msg">Anything else — tickets, endorsements, the iron you&rsquo;ve run</label><textarea id="af-msg" name="message"></textarea></div>
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+      <button class="btn red send" type="submit">Send the application →</button>
+      <p class="fine">Goes straight to the office in Gerber. Equal opportunity — the ground doesn&rsquo;t care where you&rsquo;re from, and neither do we.</p>
+    </form>
+    <div class="sentmsg" id="apSent"><b>In the pile.</b><span>Application received. If there&rsquo;s a fit, you&rsquo;ll hear from a Dudley directly.</span></div>
+  </div>
+  <div class="rv">
+    <figure><img src="${P("21c6cc0e-b49d-4ac3-a612-9cf67f2aa817.jpg")}" alt="Crew butt-fusing HDPE on the hillside" loading="lazy"></figure>
+    <ul class="checks" style="margin-top:26px">
+      <li><b>Real fleet.</b> ${biz.powerUnits} power units, ${biz.drivers} drivers on file with the FMCSA — radio-dispatched from Gerber.</li>
+      <li><b>Real work.</b> ${biz.permits} permitted projects since 2018; carrier-grade fiber, state routes, subdivisions.</li>
+      <li><b>Real people.</b> Family-run since ${biz.founder}. You&rsquo;d know the owner&rsquo;s first name by Tuesday.</li>
+    </ul>
+  </div>
+</div></section>
+<script>
+(()=>{var EP='${LEADS}',em='${biz.email}';
+  var pre=new URLSearchParams(location.search).get('role');
+  if(pre){[].forEach.call(document.querySelectorAll('#apRole li'),function(li){if(li.dataset.v===pre)li.classList.add('on');});}
+  document.addEventListener('click',function(e){var li=e.target.closest('.chips.pick li');if(!li)return;
+    if(li.parentElement.classList.contains('one')){[].forEach.call(li.parentElement.children,function(x){if(x!==li)x.classList.remove('on');});}
+    li.classList.toggle('on');});
+  function picked(id){return [].map.call(document.querySelectorAll('#'+id+' li.on'),function(li){return li.dataset.v;});}
+  var f=document.getElementById('applyForm');
+  f.addEventListener('submit',function(e){e.preventDefault();
+    var el=f.elements,name=el.name.value.trim(),phone=el.phone.value.trim();
+    if(!name||!phone){f.reportValidity();return;}
+    var ro=picked('apRole'),ex=picked('apExp');
+    var data={_subject:'Application: '+(ro.join(' + ')||'General')+(ex.length?' ('+ex[0]+')':''),
+      name:name,phone:phone,email:el.email.value,role:ro.join(', '),experience:ex.join(', '),
+      message:el.message.value,_honey:el._honey.value,page:location.href,_template:'table'};
+    var btn=f.querySelector('.send');btn.textContent='Sending…';
+    fetch(EP,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(data)})
+      .then(function(r){if(!r.ok)throw 0;f.classList.add('sent');document.getElementById('apSent').classList.add('show');})
+      .catch(function(){location.href='mailto:'+em+'?subject='+encodeURIComponent(data._subject)+'&body='+encodeURIComponent('Name: '+name+'\\nPhone: '+phone+'\\nRole: '+ro.join(', ')+'\\nExperience: '+ex.join(', ')+'\\n'+el.message.value);})
+      .finally(function(){btn.textContent='Send the application →';});});
 })();
 </script>
 `});

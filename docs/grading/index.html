@@ -53,16 +53,45 @@ gap:16px;padding:14px clamp(18px,4vw,56px);transition:background .3s,border-colo
 .brand{display:flex;flex-direction:column;line-height:1}
 .brand b{font-family:var(--disp);font-weight:700;font-size:22px;letter-spacing:.04em;text-transform:uppercase}
 .brand span{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--red-hot);margin-top:4px}
-.nav{display:flex;gap:clamp(10px,1.6vw,26px);align-items:center;font-size:12.5px;letter-spacing:.09em;text-transform:uppercase}
+.nav{display:flex;gap:clamp(12px,1.9vw,30px);align-items:center;font-family:var(--disp);font-weight:700;font-size:16.5px;letter-spacing:.055em;text-transform:uppercase}
 .nav a{color:var(--ink-soft);padding:6px 2px;border-bottom:2px solid transparent;transition:.2s}
 .nav a:hover,.nav a.on{color:var(--ink);border-color:var(--red)}
 .hdr .call{font-family:var(--disp);font-weight:700;font-size:19px;letter-spacing:.03em;color:#fff;background:var(--red);
 padding:9px 16px;border-radius:2px;white-space:nowrap;transition:.2s}
 .hdr .call:hover{background:var(--red-hot)}
+.callwrap{position:relative;display:flex;align-items:center;margin-left:auto;margin-right:14px}
+.pic{display:flex;align-items:center;justify-content:center;width:42px;height:42px;border:1.5px solid rgba(245,245,245,.35);border-radius:50%;color:var(--ink);transition:.25s}
+.pic:hover{border-color:var(--red-hot);color:var(--red-hot)}
+.calldrop{position:absolute;top:calc(100% + 20px);right:-10px;width:290px;background:#141414;border:1px solid var(--line);border-top:2px solid var(--red);border-radius:2px;
+padding:22px 24px 0;opacity:0;visibility:hidden;transform:translateY(8px);transition:.22s;box-shadow:0 30px 70px rgba(0,0,0,.55)}
+.callwrap:hover .calldrop,.callwrap:focus-within .calldrop{opacity:1;visibility:visible;transform:none}
+.callwrap::before{content:"";position:absolute;top:100%;left:-6px;right:-6px;height:22px}
+.cd-k{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px}
+.cd-num{display:block;font-family:var(--disp);font-weight:700;font-size:34px;color:var(--red-hot);line-height:1.05;letter-spacing:.01em}
+.cd-num:hover{color:#ff5a60}
+.cd-sub{display:block;margin-top:10px;font-size:12.5px;line-height:1.65;color:var(--ink-soft);padding-bottom:18px;border-bottom:1px solid var(--line)}
+.cd-go{display:flex;justify-content:space-between;align-items:center;padding:15px 0;font-family:var(--disp);font-weight:600;font-size:16px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink)}
+.cd-go:hover{color:var(--red-hot)}
 .burger{display:none;background:none;border:0;color:var(--ink);font-size:26px;cursor:pointer}
 .nav .m-cta{display:none}
+.navdrop{position:relative;display:inline-flex;align-items:center}
+.navdrop>a::after{content:" ▾";font-size:9px;opacity:.6}
+.mega{position:absolute;top:calc(100% + 18px);right:-20px;width:min(620px,92vw);display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:26px;
+background:#141414;border:1px solid var(--line);border-top:2px solid var(--red);border-radius:2px;padding:26px 28px 28px;
+opacity:0;visibility:hidden;transform:translateY(8px);transition:.22s;box-shadow:0 30px 70px rgba(0,0,0,.55);text-transform:none;letter-spacing:0}
+.navdrop:hover .mega,.navdrop:focus-within .mega{opacity:1;visibility:visible;transform:none}
+.navdrop::before{content:"";position:absolute;top:100%;left:-10px;right:-30px;height:20px}
+.mega h5{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:12px}
+.mega .m1 .kick{margin-bottom:10px}
+.mega .m1 p{font-family:var(--body);font-weight:400;font-size:13.5px;line-height:1.6;color:var(--ink-soft);margin-bottom:16px;letter-spacing:.01em}
+.mega .m1 .btn{font-size:15px;padding:10px 18px}
+.mega .m2 a,.mega .m3 a{display:block;padding:6px 0;font-family:var(--body);font-weight:400;font-size:14px;letter-spacing:.02em;color:var(--ink-soft);border:0}
+.mega .m2 a:hover,.mega .m3 a:hover{color:var(--red-hot)}
 @media(max-width:940px){
-.brand b{font-size:17px}.brand span{font-size:8.5px;letter-spacing:.18em}.hdr .call{font-size:16px;padding:8px 12px}
+.brand b{font-size:17px}.brand span{font-size:8.5px;letter-spacing:.18em}.hdr .call{display:none}
+.calldrop{display:none}
+.callwrap{margin-right:4px}
+.pic{width:38px;height:38px}
 .nav{display:none;position:fixed;inset:0;background:#0e0e0e;flex-direction:column;align-items:flex-start;
 justify-content:center;gap:0;z-index:84;padding:96px clamp(24px,8vw,48px) 40px;overflow-y:auto}
 .nav.open{display:flex}
@@ -73,6 +102,9 @@ align-items:baseline;gap:14px;counter-increment:mnav}
 letter-spacing:.15em;color:var(--red-hot)}
 .nav a.on{color:var(--red-hot)}
 .nav{counter-reset:mnav}
+.navdrop{display:contents}
+.navdrop>a::after{content:""}
+.mega{display:none}
 .nav .m-cta{margin-top:28px;border:0;width:100%;display:flex;flex-direction:column;gap:12px}
 .nav .m-cta a{border:0;padding:0;width:auto;counter-increment:none}
 .nav .m-cta a::before{content:none}
@@ -154,6 +186,23 @@ text-transform:uppercase;line-height:2.1;opacity:0;transform:translateY(10px);tr
 .pull27 input::-webkit-slider-thumb{appearance:none;width:22px;height:22px;border-radius:50%;background:var(--yellow);border:3px solid #0e0e0e;box-shadow:0 0 12px rgba(215,162,26,.7)}
 .pull27 .hint27{position:absolute;top:10px;left:10px;font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);background:rgba(14,14,14,.55);padding:5px 9px}
 
+/* lead forms */
+.form{display:grid;gap:14px;margin-top:26px}
+.form .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form label{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:7px}
+.form input,.form textarea{width:100%;background:#161616;border:1px solid var(--line);border-radius:2px;color:var(--ink);
+font-family:var(--body);font-size:15.5px;padding:13px 14px;outline:none;transition:border-color .2s}
+.form input:focus,.form textarea:focus{border-color:var(--red)}
+.form textarea{min-height:110px;resize:vertical}
+.form .send{justify-content:center;width:100%;border:0;cursor:pointer}
+.form .fine{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--ink-faint);line-height:1.7}
+.form.sent{opacity:.45;pointer-events:none}
+.sentmsg{display:none;margin-top:26px;border:1px solid rgba(193,39,45,.5);border-left:3px solid var(--red);padding:20px 22px;background:rgba(193,39,45,.08)}
+.sentmsg.show{display:block}
+.sentmsg b{font-family:var(--disp);font-size:22px;text-transform:uppercase;letter-spacing:.02em;display:block;margin-bottom:6px}
+.sentmsg span{color:var(--ink-soft);font-size:14.5px}
+@media(max-width:700px){.form .two{grid-template-columns:1fr}}
+
 /* bid sheet */
 .chips.pick li{cursor:pointer;user-select:none;transition:.2s}
 .chips.pick li.on{border-color:var(--red);color:var(--ink);background:rgba(193,39,45,.16)}
@@ -191,6 +240,7 @@ text-transform:uppercase;line-height:2.1;opacity:0;transform:translateY(10px);tr
 .bigline{font-family:var(--disp);font-weight:700;text-transform:uppercase;line-height:.94;font-size:clamp(44px,7.6vw,104px)}
 .bigline em{font-style:normal;color:var(--red-hot)}
 .beat p{margin-top:16px;font-size:clamp(15px,1.3vw,18px);line-height:1.55;color:rgba(245,245,245,.88);max-width:560px;text-shadow:0 1px 14px rgba(0,0,0,.9)}
+.beat .kick,.pbeat .kick{background:rgba(14,14,14,.62);padding:8px 14px;font-size:12px;color:#ff5a60;text-shadow:0 1px 6px rgba(0,0,0,.9);border-radius:2px}
 .scrub-hint{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;
 font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);transition:opacity .4s}
 .scrub-hint i{width:20px;height:32px;border-radius:11px;border:2px solid rgba(245,245,245,.28);position:relative}
@@ -354,9 +404,39 @@ footer .cols{grid-template-columns:1fr;gap:26px;margin-bottom:30px}
 <body>
 <div class="grain" aria-hidden="true"></div>
 <header class="hdr" id="hdr">
-  <a class="brand" href="/dudleys-excavating/"><b>Dudley&rsquo;s Excavating</b><span>Gerber · California · Inc.</span></a>
-  <nav class="nav" id="nav"><a href="/dudleys-excavating/directional-boring/" >Boring</a><a href="/dudleys-excavating/excavation/" >Excavation</a><a href="/dudleys-excavating/paving/" >Paving</a><a href="/dudleys-excavating/septic/" >Septic</a><a href="/dudleys-excavating/projects/" >Projects</a><a href="/dudleys-excavating/about/" >About</a><a href="/dudleys-excavating/contact/" >Contact</a><div class="m-cta"><a class="btn red" href="tel:5303851445">Call 530-385-1445</a><a class="btn ghost" href="/dudleys-excavating/contact/">Get a quote →</a></div></nav>
-  <a class="call" href="tel:5303851445">530-385-1445</a>
+  <a class="brand" href="/dudleys-excavating/"><b>Dudley&rsquo;s Excavating</b><span>Northern California · Inc.</span></a>
+  <nav class="nav" id="nav"><a href="/dudleys-excavating/directional-boring/" >Boring</a><a href="/dudleys-excavating/excavation/" >Excavation</a><a href="/dudleys-excavating/paving/" >Paving</a><a href="/dudleys-excavating/septic/" >Septic</a><a href="/dudleys-excavating/projects/" >Projects</a><a href="/dudleys-excavating/about/" >About</a><a href="/dudleys-excavating/contact/" >Contact</a><span class="navdrop">
+    <a href="/dudleys-excavating/apply/" >Careers</a>
+    <div class="mega" aria-label="Careers">
+      <div class="m1">
+        <span class="kick">Hiring the fourth generation</span>
+        <p>Family-run since Harry Dudley. Radio-dispatched fleet, year-round public and private work across Northern California.</p>
+        <a class="btn red" href="/dudleys-excavating/apply/">Apply →</a>
+      </div>
+      <div class="m2"><h5>The work</h5>
+        <a href="/dudleys-excavating/apply/?role=Drill%20operator%20%2F%20locator">Drill operators &amp; locators</a>
+        <a href="/dudleys-excavating/apply/?role=Equipment%20operator">Equipment operators</a>
+        <a href="/dudleys-excavating/apply/?role=CDL%20driver%20(Class%20A)">CDL drivers — Class A</a>
+        <a href="/dudleys-excavating/apply/?role=Laborer%20%2F%20apprentice">Laborers &amp; apprentices</a>
+        <a href="/dudleys-excavating/apply/?role=Foreman">Foremen</a>
+      </div>
+      <div class="m3"><h5>Why Dudley&rsquo;s</h5>
+        <a href="/dudleys-excavating/about/">Three generations deep</a>
+        <a href="/dudleys-excavating/projects/">The work speaks →</a>
+        <a href="/dudleys-excavating/paradise-fiber/">The Paradise rebuild</a>
+      </div>
+    </div>
+  </span><div class="m-cta"><a class="btn red" href="/dudleys-excavating/contact/#form">Request a call →</a><a class="btn ghost" href="tel:5303851445">Or call direct: 530-385-1445</a></div></nav>
+  <span class="callwrap">
+    <a class="pic" href="tel:5303851445" aria-label="Call 530-385-1445"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.78.66 2.62a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.46-1.23a2 2 0 0 1 2.11-.45c.84.32 1.72.54 2.62.66A2 2 0 0 1 22 16.92z"/></svg></a>
+    <div class="calldrop">
+      <span class="cd-k">Call us</span>
+      <a class="cd-num" href="tel:5303851445">530-385-1445</a>
+      <span class="cd-sub">Radio-dispatched from Gerber, CA<br>Northern California · Class A #694077</span>
+      <a class="cd-go" href="/dudleys-excavating/contact/#form">Or get in touch <span>→</span></a>
+    </div>
+  </span>
+  <a class="call" href="/dudleys-excavating/contact/#form">Request a call</a>
   <button class="burger" id="burger" aria-label="menu" aria-expanded="false"><i class="bi"></i></button>
 </header>
 <section class="phero"><img class="bg" src="/dudleys-excavating/assets/photos/a6c99a6d-5882-4da3-bdbc-dc0ade895dd5.jpg" alt="Excavator loading a dump truck on a mountain grade"><div class="shade"></div>
@@ -389,8 +469,9 @@ footer .cols{grid-template-columns:1fr;gap:26px;margin-bottom:30px}
 <section class="slab"><div class="wrap in">
   <span class="kick" style="justify-content:center">Class A Contractor · CA Lic #694077</span>
   <h2>Put us in the ground</h2>
-  <a class="phone" href="tel:5303851445">530-385-1445</a>
-  <p>209 San Benito Ave, Gerber, CA 96035 &nbsp;·&nbsp; <a href="mailto:paul@dudleysexcavating.com" style="color:var(--ink-soft);text-decoration:underline">paul@dudleysexcavating.com</a></p>
+  <p style="max-width:52ch;margin:14px auto 0">Tell us about the job — we&rsquo;ll call you back with a straight answer.</p>
+  <p style="margin-top:28px"><a class="btn red big" href="/dudleys-excavating/contact/#form">Request a call →</a></p>
+  <p style="margin-top:22px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--ink-faint)">209 San Benito Ave, Gerber, CA 96035 &nbsp;·&nbsp; <a href="mailto:paul@dudleysexcavating.com" style="color:var(--ink-soft);text-decoration:underline">paul@dudleysexcavating.com</a></p>
 </div></section>
 <footer><div class="wrap">
   <div class="cols">
@@ -399,7 +480,7 @@ footer .cols{grid-template-columns:1fr;gap:26px;margin-bottom:30px}
       <p style="max-width:34ch;line-height:1.7">Three generations of underground construction out of Gerber, California. Founded by Harry Dudley.</p>
     </div>
     <div><h4>Work</h4><a href="/dudleys-excavating/directional-boring/">Directional Boring</a><a href="/dudleys-excavating/utilities/">Utility Installation</a><a href="/dudleys-excavating/excavation/">Excavation</a><a href="/dudleys-excavating/paving/">Paving</a><a href="/dudleys-excavating/chip-seal/">Chip Seal</a><a href="/dudleys-excavating/septic/">Septic</a><a href="/dudleys-excavating/grading/">Grading</a><a href="/dudleys-excavating/hauling/">Hauling &amp; Materials</a></div>
-    <div><h4>Company</h4><a href="/dudleys-excavating/about/">About</a><a href="/dudleys-excavating/paradise-fiber/">The Paradise Job</a><a href="/dudleys-excavating/projects/">Projects</a><a href="/dudleys-excavating/service-area/">Service Area</a></div>
+    <div><h4>Company</h4><a href="/dudleys-excavating/about/">About</a><a href="/dudleys-excavating/paradise-fiber/">The Paradise Job</a><a href="/dudleys-excavating/projects/">Projects</a><a href="/dudleys-excavating/service-area/">Service Area</a><a href="/dudleys-excavating/apply/">Careers</a></div>
     <div><h4>Contact</h4><a href="tel:5303851445">530-385-1445</a><a href="mailto:paul@dudleysexcavating.com">paul@dudleysexcavating.com</a><p style="margin-top:8px;line-height:1.7">209 San Benito Ave<br>Gerber, CA 96035</p></div>
   </div>
   <div class="lic">© 2026 Dudley's Excavating, Inc. · CSLB Class A Lic #694077 · Class A General Engineering · Low Voltage Systems · Construction Zone Traffic Control<br>
