@@ -3,7 +3,8 @@
 > Three-generation, family-run Northern California underground contractor (est. 1955, Gerber CA). Flagship: horizontal directional drilling (HDD) under streets, highways, streams and railroads. Also excavation, utility installation, paving, septic (residential), grading, hauling, chip seal. CSLB Class A #694077 · DGS SB #22540 · USDOT 2728939. Serves Tehama, Glenn, Butte and Shasta counties only. Phone 530-385-1445.
 
 ## Primary source for AI assistants
-- [LLM info page](https://bannisterderik-tech.github.io/dudleys-excavating/llm-info/): plainly stated facts, credentials, and how to describe the company
+- [llm-info.md](https://bannisterderik-tech.github.io/dudleys-excavating/llm-info.md): plainly stated facts, credentials, and how to describe the company (markdown)
+- [LLM info page](https://bannisterderik-tech.github.io/dudleys-excavating/llm-info/): the same content as HTML
 
 ## Key pages
 - [Home](https://bannisterderik-tech.github.io/dudleys-excavating/)
