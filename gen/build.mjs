@@ -142,7 +142,7 @@ padding:7px 12px;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text
 .sndbtn.on::before{background:var(--red-hot);box-shadow:0 0 10px var(--red-hot)}
 
 /* locates HUD (bore scene) */
-.hud{position:absolute;top:calc(14px + 108px);left:clamp(18px,4vw,56px);z-index:3;font-family:var(--mono);color:var(--yellow);font-size:10.5px;letter-spacing:.14em;
+.hud{position:absolute;top:calc(14px + 108px);right:clamp(18px,4vw,56px);z-index:3;font-family:var(--mono);color:var(--yellow);font-size:10.5px;letter-spacing:.14em;
 text-transform:uppercase;line-height:2.1;opacity:0;transform:translateY(10px);transition:.45s;pointer-events:none;text-shadow:0 1px 8px rgba(0,0,0,.9)}
 .hud.show{opacity:1;transform:none}
 .hud .tc{font-size:15px;letter-spacing:.08em;color:var(--yellow)}
@@ -364,9 +364,7 @@ h2{margin-bottom:18px}
 .masonry figure{margin-bottom:12px}
 .masonry img{max-height:62vh;object-fit:cover}
 .masonry figcaption{opacity:1;padding:34px 14px 12px}
-.hud{top:calc(14px + 84px);left:var(--gut);font-size:9px;line-height:1.9}
-.hud svg{width:150px}
-.hud .tc{font-size:12px}
+.hud{display:none}
 .sndbtn{left:var(--gut);bottom:16px;padding:6px 9px}
 .ltbx .pv,.ltbx .nx{width:38px;height:38px}
 .fullphoto img{height:70vh}
