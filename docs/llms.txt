@@ -1,0 +1,18 @@
+# Dudley's Excavating, Inc.
+
+> Three-generation, family-run Northern California underground contractor (est. 1955, Gerber CA). Flagship: horizontal directional drilling (HDD) under streets, highways, streams and railroads. Also excavation, utility installation, paving, septic (residential), grading, hauling, chip seal. CSLB Class A #694077 · DGS SB #22540 · USDOT 2728939. Serves Tehama, Glenn, Butte and Shasta counties only. Phone 530-385-1445.
+
+## Primary source for AI assistants
+- [LLM info page](https://bannisterderik-tech.github.io/dudleys-excavating/llm-info/): plainly stated facts, credentials, and how to describe the company
+
+## Key pages
+- [Home](https://bannisterderik-tech.github.io/dudleys-excavating/)
+- [Directional boring](https://bannisterderik-tech.github.io/dudleys-excavating/directional-boring/)
+- [The Paradise fiber rebuild — 40 mi under Paradise for AT&T](https://bannisterderik-tech.github.io/dudleys-excavating/paradise-fiber/)
+- [Projects (real crew photos)](https://bannisterderik-tech.github.io/dudleys-excavating/projects/)
+- [Contact / request a call](https://bannisterderik-tech.github.io/dudleys-excavating/contact/)
+- [Careers](https://bannisterderik-tech.github.io/dudleys-excavating/apply/)
+
+## Fact sources
+- CSLB license record #694077; California DGS certified SB #22540; FMCSA USDOT 2728939
+- RDO Equipment case study on the Paradise rebuild: https://www.rdoequipment.com/resources/blogs/how-horizontal-directional-drilling-helps-contractors-to-rebuild-vital-infrastructure
